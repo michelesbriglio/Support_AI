@@ -32,9 +32,6 @@ jobs:
       - name: Build with Next.js
         run: yarn build
 
-      - name: Export static site
-        run: yarn next export
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
