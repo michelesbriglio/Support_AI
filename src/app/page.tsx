@@ -3,9 +3,11 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Coffee, Zap, Heart, Star } from "lucide-react";
+import { Coffee, Zap, Heart, Star, Search } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { RepairReportUpload } from "@/components/repair-report-upload";
+import { SituationAppraisal } from "@/components/situation-appraisal";
+import { HARAnalyzer } from "@/components/har-analyzer";
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -83,30 +85,19 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          {/* Card 2 - 24/7 Support */}
-          <Card className="group hover:shadow-lg transition-all duration-300 border-secondary/20 hover:border-secondary/40">
+          {/* Card 2 - HAR File Analyzer */}
+          <Card className="group hover:shadow-lg transition-all duration-300 border-primary/20 hover:border-primary/40">
             <CardHeader className="pb-4">
-              <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-secondary/20 transition-colors">
-                <Heart className="h-6 w-6 text-secondary-foreground" />
+              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                <Search className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="text-xl">24/7 Support</CardTitle>
+              <CardTitle className="text-xl">.HAR File Analyzer</CardTitle>
               <CardDescription>
-                Round-the-clock assistance whenever you need it, no matter the time
+                Analyze HTTP Archive files to detect errors, performance issues, and security vulnerabilities
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-3">
-                <div className="flex items-center space-x-2">
-                  <Badge variant="outline" className="text-xs">Always On</Badge>
-                  <Badge variant="outline" className="text-xs">Reliable</Badge>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Never wait for business hours again. Get help instantly, day or night.
-                </p>
-                <Button variant="ghost" size="sm" className="w-full mt-4">
-                  Try Now →
-                </Button>
-              </div>
+              <HARAnalyzer />
             </CardContent>
           </Card>
 
@@ -116,24 +107,13 @@ export default function Home() {
               <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
                 <Star className="h-6 w-6 text-accent-foreground" />
               </div>
-              <CardTitle className="text-xl">Personalized</CardTitle>
+              <CardTitle className="text-xl">Problem Analysis</CardTitle>
               <CardDescription>
-                Tailored responses and recommendations based on your preferences
+                Analyze customer issues using structured and analytical thinking
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="space-y-3">
-                <div className="flex items-center space-x-2">
-                  <Badge variant="default" className="text-xs">Custom</Badge>
-                  <Badge variant="default" className="text-xs">Adaptive</Badge>
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Learns from your interactions to provide increasingly relevant assistance.
-                </p>
-                <Button variant="ghost" size="sm" className="w-full mt-4">
-                  Explore →
-                </Button>
-              </div>
+              <SituationAppraisal />
             </CardContent>
           </Card>
 
