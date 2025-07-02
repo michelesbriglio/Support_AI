@@ -34,7 +34,7 @@ interface AnalysisIssue {
   severity: 'high' | 'medium' | 'low';
   title: string;
   description: string;
-  details: any;
+  details: Record<string, unknown>;
 }
 
 interface AnalysisStats {
@@ -68,7 +68,7 @@ export function HARAnalyzer() {
         severity: 'medium',
         title: 'Empty HAR file',
         description: 'No HTTP requests found in the HAR file',
-        details: 'The HAR file contains no entries to analyze'
+                 details: { message: 'The HAR file contains no entries to analyze' }
       });
       return { issues, stats: getEmptyStats() };
     }
@@ -107,7 +107,7 @@ export function HARAnalyzer() {
     const maxTime = Math.max(...responseTimes);
 
     // Analyze security issues
-    const securityIssues: any[] = [];
+    const securityIssues: Array<{ type: string; url: string; description: string }> = [];
     entries.forEach(entry => {
       const url = entry.request.url;
       if (url.startsWith('http://') && !url.startsWith('https://')) {
@@ -197,7 +197,7 @@ export function HARAnalyzer() {
       
       const result = analyzeHARFile(harData);
       setAnalysisResult(result);
-    } catch (err) {
+    } catch {
       setError('Failed to parse HAR file. Please ensure it\'s a valid JSON file.');
     } finally {
       setIsAnalyzing(false);

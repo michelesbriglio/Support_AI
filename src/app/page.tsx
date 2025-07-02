@@ -3,7 +3,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Coffee, Zap, Heart, Star, Search } from "lucide-react";
+import { Coffee, Zap, Star, Search } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { RepairReportUpload } from "@/components/repair-report-upload";
 import { SituationAppraisal } from "@/components/situation-appraisal";

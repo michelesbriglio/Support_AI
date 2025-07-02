@@ -3,9 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Brain, Search, AlertCircle } from "lucide-react"
+import { Brain, AlertCircle } from "lucide-react"
 
 export function SituationAppraisal() {
   const [customerIssue, setCustomerIssue] = useState("")
