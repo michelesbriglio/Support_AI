@@ -195,13 +195,29 @@ export default function Home() {
         <div className="max-w-2xl mx-auto text-center space-y-8">
           <h3 className="text-3xl font-bold text-foreground">Get in Touch</h3>
           <p className="text-muted-foreground">
-            Ready to experience the future of AI-powered support? {"Let's start a conversation."}
+            For questions, bug reports, or issues related to the tools on this site, please contact michele.sbriglio@sas.com
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-primary hover:bg-primary/90">
-              <Coffee className="mr-2 h-4 w-4" />
-              Start Free Trial
-            </Button>
+            <a
+              href="mailto:michele.sbriglio@sas.com?subject=SupportAI%20Feedback"
+              style={{ textDecoration: 'none' }}
+            >
+              <Button size="lg" className="bg-primary hover:bg-primary/90">
+                <Coffee className="mr-2 h-4 w-4" />
+                Feedback (Email App)
+              </Button>
+            </a>
+            <a
+              href="https://outlook.office.com/mail/deeplink/compose?to=michele.sbriglio@sas.com&subject=SupportAI%20Feedback"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: 'none' }}
+            >
+              <Button size="lg" className="bg-primary hover:bg-primary/90">
+                <Coffee className="mr-2 h-4 w-4" />
+                Feedback (Outlook Web)
+              </Button>
+            </a>
             <Button size="lg" variant="outline">
               Contact Sales
             </Button>
