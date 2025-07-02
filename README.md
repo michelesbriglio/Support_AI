@@ -1,5 +1,7 @@
 # SupportAI
 
+<!-- Trigger rebuild -->
+
 A modern Next.js application with AI-powered support tools, featuring a beautiful Caffeine theme and repair report functionality.
 
 ## 🌟 Features
