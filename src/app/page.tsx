@@ -172,7 +172,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <h3 className="text-3xl font-bold text-foreground">About SupportAI</h3>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              This website offers a collection of tools designed to support users of SAS Visual Analytics. Whether you&apos;re diagnosing a problem, exploring system behavior, or seeking ways to improve efficiency, these resources provide practical support to enhance your SAS® Visual Analytics experience.
+              This website offers a collection of tools designed to support users of SAS® Visual Analytics. Whether you&apos;re diagnosing a problem, exploring system behavior, or seeking ways to improve efficiency, these resources provide practical support to enhance your SAS® Visual Analytics experience.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Please note: This site is independently developed and is not affiliated with or endorsed by SAS® Institute Inc.
