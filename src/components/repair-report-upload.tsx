@@ -38,29 +38,24 @@ export function RepairReportUpload() {
     }
   }
 
+  // Placeholder repair logic: just return the file as-is
   const handleRepair = async () => {
     if (!file) return
-
     setIsProcessing(true)
     setError("")
-    
     try {
-      const formData = new FormData()
-      formData.append('file', file)
-
-      const response = await fetch('/api/repair-report', {
-        method: 'POST',
-        body: formData,
+      // Read the file as ArrayBuffer
+      const arrayBuffer = await file.arrayBuffer()
+      // Placeholder: no actual repair, just return the file as base64
+      const buffer = new Uint8Array(arrayBuffer)
+      const base64 = btoa(String.fromCharCode(...buffer))
+      setRepairedFile(base64)
+      setRepairResults({
+        duplicates: 0,
+        prompts: 0,
+        hasDuplicates: false,
+        hasPrompts: false
       })
-
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || 'Failed to repair report')
-      }
-
-      const data = await response.json()
-      setRepairedFile(data.file)
-      setRepairResults(data.results)
       setIsCompleted(true)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred')
@@ -72,8 +67,13 @@ export function RepairReportUpload() {
 
   const handleDownload = () => {
     if (!repairedFile || !fileName) return
-
-    const blob = new Blob([Buffer.from(repairedFile, 'base64')], { type: 'application/xml' })
+    const binaryString = atob(repairedFile)
+    const len = binaryString.length
+    const bytes = new Uint8Array(len)
+    for (let i = 0; i < len; i++) {
+      bytes[i] = binaryString.charCodeAt(i)
+    }
+    const blob = new Blob([bytes], { type: 'application/xml' })
     const url = URL.createObjectURL(blob)
     const a = document.createElement("a")
     a.href = url
@@ -82,16 +82,12 @@ export function RepairReportUpload() {
     a.click()
     document.body.removeChild(a)
     URL.revokeObjectURL(url)
-
-    // Reset everything after download - hide both buttons and clear file input
     setIsCompleted(false)
     setRepairedFile(null)
     setRepairResults(null)
     setFile(null)
     setFileName("")
     setError("")
-    
-    // Reset the file input element so the same file can be selected again
     if (fileInputRef.current) {
       fileInputRef.current.value = ""
     }
