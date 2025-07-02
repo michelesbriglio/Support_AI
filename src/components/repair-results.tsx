@@ -10,10 +10,9 @@ interface RepairResultsProps {
     hasDuplicates: boolean;
     hasPrompts: boolean;
   };
-  showDownloadButton?: boolean;
 }
 
-export function RepairResults({ results, showDownloadButton = true }: RepairResultsProps) {
+export function RepairResults({ results }: RepairResultsProps) {
   const hasIssues = results.hasDuplicates || results.hasPrompts;
 
   return (

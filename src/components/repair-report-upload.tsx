@@ -4,7 +4,7 @@ import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Upload, Download, Wrench, CheckCircle, AlertCircle } from "lucide-react"
+import { Upload, Download, Wrench, AlertCircle } from "lucide-react"
 import { RepairResults } from "@/components/repair-results"
 
 interface RepairResultsData {
