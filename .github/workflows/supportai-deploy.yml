@@ -1,0 +1,82 @@
+name: Deploy SupportAI to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clean workspace
+        run: |
+          rm -rf ./*
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          clean: true
+          fetch-depth: 1
+
+      - name: Debug workspace
+        run: |
+          pwd
+          ls -l
+          ls -l yarn.lock
+
+      - name: Verify workspace
+        run: |
+          echo "Current workspace:"
+          pwd
+          echo "Contents:"
+          ls -la
+          
+      - name: Debug before setup-node
+        run: |
+          pwd
+          ls -l
+          ls -l yarn.lock
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: |
+          echo "Installing dependencies in $(pwd)"
+          yarn install
+      
+      - name: Build with Next.js
+        run: yarn build
+      
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 
