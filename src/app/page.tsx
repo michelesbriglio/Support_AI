@@ -157,20 +157,7 @@ export default function Home() {
             <p className="text-lg text-muted-foreground leading-relaxed">
               Please note: This site is independently developed and is not affiliated with or endorsed by SAS® Institute Inc.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">99.9%</div>
-                <div className="text-muted-foreground">Uptime</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">24/7</div>
-                <div className="text-muted-foreground">Availability</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">10k+</div>
-                <div className="text-muted-foreground">Happy Users</div>
-              </div>
-            </div>
+
           </div>
         </div>
       </section>
