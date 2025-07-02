@@ -14,6 +14,17 @@ interface RepairResultsData {
   hasPrompts: boolean;
 }
 
+// Helper to convert ArrayBuffer to base64 safely
+function arrayBufferToBase64(buffer: ArrayBuffer) {
+  let binary = '';
+  const bytes = new Uint8Array(buffer);
+  const len = bytes.byteLength;
+  for (let i = 0; i < len; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binary);
+}
+
 export function RepairReportUpload() {
   const [file, setFile] = useState<File | null>(null)
   const [isProcessing, setIsProcessing] = useState(false)
@@ -46,9 +57,8 @@ export function RepairReportUpload() {
     try {
       // Read the file as ArrayBuffer
       const arrayBuffer = await file.arrayBuffer()
-      // Placeholder: no actual repair, just return the file as base64
-      const buffer = new Uint8Array(arrayBuffer)
-      const base64 = btoa(String.fromCharCode(...buffer))
+      // Use safe base64 conversion
+      const base64 = arrayBufferToBase64(arrayBuffer)
       setRepairedFile(base64)
       setRepairResults({
         duplicates: 0,
