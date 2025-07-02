@@ -1,3 +1,5 @@
+"use client"
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -5,8 +7,11 @@ import { Coffee, Zap, Heart, Star } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { RepairReportUpload } from "@/components/repair-report-upload";
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Home() {
+  const [showTerms, setShowTerms] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header Section */}
@@ -167,10 +172,10 @@ export default function Home() {
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <h3 className="text-3xl font-bold text-foreground">About SupportAI</h3>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              SupportAI is built with the latest artificial intelligence technology to provide 
-              intelligent, responsive, and personalized support solutions. Our platform combines 
-              natural language processing, machine learning, and human-centered design to create 
-              an experience that feels both powerful and approachable.
+              This website offers a collection of tools designed to support users of SAS Visual Analytics. Whether you're diagnosing a problem, exploring system behavior, or seeking ways to improve efficiency, these resources provide practical support to enhance your SAS® Visual Analytics experience.
+            </p>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Please note: This site is independently developed and is not affiliated with or endorsed by SAS® Institute Inc.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
               <div className="text-center">
@@ -199,15 +204,6 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="mailto:michele.sbriglio@sas.com?subject=SupportAI%20Feedback"
-              style={{ textDecoration: 'none' }}
-            >
-              <Button size="lg" className="bg-primary hover:bg-primary/90">
-                <Coffee className="mr-2 h-4 w-4" />
-                Feedback (Email App)
-              </Button>
-            </a>
-            <a
               href="https://outlook.office.com/mail/deeplink/compose?to=michele.sbriglio@sas.com&subject=SupportAI%20Feedback"
               target="_blank"
               rel="noopener noreferrer"
@@ -218,9 +214,6 @@ export default function Home() {
                 Feedback (Outlook Web)
               </Button>
             </a>
-            <Button size="lg" variant="outline">
-              Contact Sales
-            </Button>
           </div>
         </div>
       </section>
@@ -230,20 +223,56 @@ export default function Home() {
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-2">
-              <Coffee className="h-6 w-6 text-primary" />
-              <span className="font-semibold text-foreground">SupportAI</span>
+              <Link href="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+                <Coffee className="h-6 w-6 text-primary" />
+                <span className="font-semibold text-foreground">SupportAI</span>
+              </Link>
             </div>
             <div className="flex space-x-6 text-sm text-muted-foreground">
-              <a href="#" className="hover:text-foreground transition-colors">Privacy</a>
-              <a href="#" className="hover:text-foreground transition-colors">Terms</a>
-              <a href="#" className="hover:text-foreground transition-colors">Support</a>
+              <button 
+                onClick={() => setShowTerms(true)}
+                className="hover:text-foreground transition-colors"
+              >
+                Terms
+              </button>
             </div>
           </div>
           <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-            © 2024 SupportAI. All rights reserved.
+            © 2025 SupportAI. All rights reserved.
           </div>
         </div>
       </footer>
+
+      {/* Terms Modal */}
+      {showTerms && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-background border rounded-lg p-6 max-w-2xl max-h-[80vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-bold text-foreground">Terms</h3>
+              <button 
+                onClick={() => setShowTerms(false)}
+                className="text-muted-foreground hover:text-foreground"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="text-sm text-muted-foreground space-y-4">
+              <p>
+                This website is not affiliated with or officially supported by SAS Institute Inc. All content provided here is for informational purposes only and is created independently.
+              </p>
+              <p>
+                SAS® and related trademarks are the property of SAS Institute Inc. Any references to SAS are for descriptive purposes only.
+              </p>
+              <p>
+                SAS Institute Inc. does not endorse, sponsor, or assume any responsibility for the content, functionality, or use of this website.
+              </p>
+              <p>
+                If you have any questions or concerns, please contact michele.sbriglio@sas.com
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
