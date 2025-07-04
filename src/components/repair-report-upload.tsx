@@ -57,8 +57,9 @@ export function RepairReportUpload() {
       const formData = new FormData()
       formData.append('file', file)
 
-      // Call the API endpoint - use relative path for local development
-      const response = await fetch('/api/repair-report', {
+      // Call the API endpoint - use dynamic path for both development and production
+      const basePath = window.location.pathname.startsWith('/Support_AI') ? '/Support_AI' : '';
+      const response = await fetch(`${basePath}/api/repair-report`, {
         method: 'POST',
         body: formData,
       })
