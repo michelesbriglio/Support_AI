@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Upload, Download, Wrench, AlertCircle } from "lucide-react"
 import { RepairResults } from "@/components/repair-results"
-import { repairXMLFile } from "@/lib/xml-repair"
+import { repairReportSmart } from "@/lib/repair-dispatch"
 
 interface RepairResultsData {
   duplicates: number;
@@ -54,8 +54,8 @@ export function RepairReportUpload() {
     setError("")
     
     try {
-      // Use client-side repair tool instead of API
-      const data = await repairXMLFile(file)
+      // Use smart dispatcher (server-side on Vercel, client-side elsewhere)
+      const data = await repairReportSmart(file)
       
       setRepairedFile(data.file)
       setRepairResults(data.results)
