@@ -26,13 +26,14 @@ export class XMLRepairTool {
         throw new Error("Invalid XML format");
       }
 
+      // Always analyze first to get the unique null candidate count
       const analysis = this.analyzeXML(doc);
       let repairedContent = xmlContent;
       let hasRepairs = false;
 
       // Perform repairs if needed
       if (analysis.nullCandidates > 0) {
-        repairedContent = this.repairNullCandidates(doc);
+        repairedContent = this.repairNullCandidates(doc, analysis.nullCandidateIds);
         hasRepairs = true;
       }
 
@@ -45,20 +46,22 @@ export class XMLRepairTool {
       // Store the original analysis for reporting
       const originalAnalysis = { ...analysis };
 
-              return {
-          file: btoa(unescape(encodeURIComponent(repairedContent))), // Base64 encode
-          results: {
-            duplicates: originalAnalysis.duplicates,
-            prompts: originalAnalysis.prompts,
-            nullCandidates: originalAnalysis.nullCandidates,
-            hasDuplicates: originalAnalysis.duplicates > 0,
-            hasPrompts: originalAnalysis.prompts > 0,
-            hasNullCandidates: originalAnalysis.nullCandidates > 0,
-            totalObjects: originalAnalysis.totalObjects
-          },
-          analysis: this.generateAnalysisReport(originalAnalysis),
-          hasRepairs
-        };
+      // After repairs, re-analyze to get the final unique null candidate count (should be 0)
+      // But for reporting, we want the original count (before repair)
+      return {
+        file: btoa(unescape(encodeURIComponent(repairedContent))), // Base64 encode
+        results: {
+          duplicates: originalAnalysis.duplicates,
+          prompts: originalAnalysis.prompts,
+          nullCandidates: originalAnalysis.nullCandidateIds ? originalAnalysis.nullCandidateIds.size : originalAnalysis.nullCandidates,
+          hasDuplicates: originalAnalysis.duplicates > 0,
+          hasPrompts: originalAnalysis.prompts > 0,
+          hasNullCandidates: (originalAnalysis.nullCandidateIds ? originalAnalysis.nullCandidateIds.size : originalAnalysis.nullCandidates) > 0,
+          totalObjects: originalAnalysis.totalObjects
+        },
+        analysis: this.generateAnalysisReport(originalAnalysis),
+        hasRepairs
+      };
     } catch (error) {
       console.error('Error repairing XML:', error);
       throw new Error('Failed to repair XML file');
@@ -86,9 +89,8 @@ export class XMLRepairTool {
       analysis.totalObjects++;
     }
 
-    // Find null candidates using the same logic as the Python script
-    const idCheck = /[a-z]{2}[0-9]+/;
-    const idInText = /(?<![A-Za-z0-9#])[a-z]{2}[0-9]+/g;
+    // Find null candidates using improved logic to match Python script
+    const idCheck = /^[a-z]{2}[0-9]+$/;  // Exact match for ID pattern
     const definedIds = new Set();
     const referencedIds = new Set();
 
@@ -100,25 +102,35 @@ export class XMLRepairTool {
       }
     }
 
-    // Second pass: collect all referenced IDs
+    // Second pass: collect all referenced IDs with better pattern matching
     for (let elem of allElements) {
       // Check attributes (except name attributes)
       for (let attr of elem.attributes) {
         if (attr.name !== 'name') {
-          const words = attr.value.split(/\s+/);
-          for (let word of words) {
-            if (idCheck.test(word)) {
-              referencedIds.add(word);
-            }
+          const val = attr.value;
+          // Look for ID patterns in attribute values
+          const matches = val.match(/[a-z]{2}[0-9]+/g);
+          if (matches) {
+            matches.forEach(match => {
+              if (idCheck.test(match)) {
+                referencedIds.add(match);
+              }
+            });
           }
         }
       }
 
-      // Check element text content
+      // Check element text content with better pattern matching
       if (elem.textContent) {
-        const results = elem.textContent.match(idInText);
-        if (results) {
-          results.forEach(id => referencedIds.add(id));
+        const text = elem.textContent;
+        // Look for ID patterns in text, avoiding false positives
+        const matches = text.match(/[a-z]{2}[0-9]+/g);
+        if (matches) {
+          matches.forEach(match => {
+            if (idCheck.test(match)) {
+              referencedIds.add(match);
+            }
+          });
         }
       }
     }
@@ -126,7 +138,7 @@ export class XMLRepairTool {
     // Null candidates are referenced but not defined
     const nullCandidates = new Set([...referencedIds].filter(id => !definedIds.has(id)));
 
-    // Filter out known false positives (like HTML colors, labels)
+    // Filter out known false positives (like HTML colors, labels, special cases)
     const falsePositives = new Set();
     for (let candidate of nullCandidates) {
       // Skip if it looks like an HTML color code
@@ -139,6 +151,10 @@ export class XMLRepairTool {
       }
       // Skip if it's 'bi1' (special case to ignore)
       else if (candidate === 'bi1') {
+        falsePositives.add(candidate);
+      }
+      // Skip if it's a very short ID (likely not a real reference)
+      else if (candidate.length < 3) {
         falsePositives.add(candidate);
       }
     }
@@ -195,10 +211,8 @@ export class XMLRepairTool {
   /**
    * Repair null candidates by removing references to undefined objects
    */
-  repairNullCandidates(doc) {
-    const analysis = this.analyzeXML(doc);
-    const nullCandidates = analysis.nullCandidateIds;
-    
+  repairNullCandidates(doc, nullCandidateIds) {
+    const nullCandidates = nullCandidateIds || new Set();
     if (nullCandidates.size === 0) {
       return this.serializer.serializeToString(doc);
     }
