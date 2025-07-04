@@ -6,15 +6,6 @@
 import { repairXMLFile } from './xml-repair';
 
 /**
- * Detect if we're running on Vercel
- */
-function isVercel() {
-  return typeof window !== 'undefined' && 
-         (window.location.hostname.includes('vercel.app') || 
-          process.env.VERCEL === '1');
-}
-
-/**
  * Detect if we're running locally
  */
 function isLocal() {
