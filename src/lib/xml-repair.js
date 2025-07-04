@@ -89,12 +89,12 @@ export class XMLRepairTool {
       analysis.totalObjects++;
     }
 
-    // Find null candidates using improved logic to match Python script
-    const idCheck = /^[a-z]{2}[0-9]+$/;  // Exact match for ID pattern
+    // Find null candidates using conservative approach to match Python script exactly
+    const idCheck = /^[a-z]{2}[0-9]+$/;  // Exact match for ID pattern (e.g., vi1645)
     const definedIds = new Set();
     const referencedIds = new Set();
 
-    // First pass: collect all defined IDs (name attributes)
+    // First pass: collect all defined IDs (name attributes only)
     for (let elem of allElements) {
       const name = elem.getAttribute('name');
       if (name && idCheck.test(name)) {
@@ -102,35 +102,17 @@ export class XMLRepairTool {
       }
     }
 
-    // Second pass: collect all referenced IDs with better pattern matching
+    // Second pass: collect referenced IDs from specific attributes only
+    // Focus on attributes that typically contain object references
+    const referenceAttributes = ['value', 'ref', 'target', 'id', 'object'];
+    
     for (let elem of allElements) {
-      // Check attributes (except name attributes)
       for (let attr of elem.attributes) {
-        if (attr.name !== 'name') {
-          const val = attr.value;
-          // Look for ID patterns in attribute values
-          const matches = val.match(/[a-z]{2}[0-9]+/g);
-          if (matches) {
-            matches.forEach(match => {
-              if (idCheck.test(match)) {
-                referencedIds.add(match);
-              }
-            });
+        if (referenceAttributes.includes(attr.name.toLowerCase())) {
+          const val = attr.value.trim();
+          if (idCheck.test(val)) {
+            referencedIds.add(val);
           }
-        }
-      }
-
-      // Check element text content with better pattern matching
-      if (elem.textContent) {
-        const text = elem.textContent;
-        // Look for ID patterns in text, avoiding false positives
-        const matches = text.match(/[a-z]{2}[0-9]+/g);
-        if (matches) {
-          matches.forEach(match => {
-            if (idCheck.test(match)) {
-              referencedIds.add(match);
-            }
-          });
         }
       }
     }
@@ -138,36 +120,25 @@ export class XMLRepairTool {
     // Null candidates are referenced but not defined
     const nullCandidates = new Set([...referencedIds].filter(id => !definedIds.has(id)));
 
-    // Filter out known false positives (like HTML colors, labels, special cases)
-    const falsePositives = new Set();
+    // Apply the same filtering as Python script
+    const filteredCandidates = new Set();
     for (let candidate of nullCandidates) {
-      // Skip if it looks like an HTML color code
-      if (/^[a-fA-F0-9]{6}$/.test(candidate)) {
-        falsePositives.add(candidate);
-      }
-      // Skip if it's a common label pattern
-      else if (['label', 'title', 'name', 'id'].includes(candidate.toLowerCase())) {
-        falsePositives.add(candidate);
-      }
-      // Skip if it's 'bi1' (special case to ignore)
-      else if (candidate === 'bi1') {
-        falsePositives.add(candidate);
-      }
-      // Skip if it's a very short ID (likely not a real reference)
-      else if (candidate.length < 3) {
-        falsePositives.add(candidate);
-      }
+      // Skip very short IDs
+      if (candidate.length < 3) continue;
+      
+      // Skip if it looks like a color code
+      if (/^[a-fA-F0-9]{6}$/.test(candidate)) continue;
+      
+      // Skip special cases
+      if (['bi1', 'label', 'title'].includes(candidate.toLowerCase())) continue;
+      
+      filteredCandidates.add(candidate);
     }
 
-    // Remove false positives
-    for (let falsePositive of falsePositives) {
-      nullCandidates.delete(falsePositive);
-    }
+    analysis.nullCandidates = filteredCandidates.size;
+    analysis.nullCandidateIds = filteredCandidates;
 
-    analysis.nullCandidates = nullCandidates.size;
-    analysis.nullCandidateIds = nullCandidates;
-
-    // Find unused prompts (prompts that are defined but not referenced)
+    // Find unused prompts (simplified)
     const promptIds = new Set();
     const referencedPromptIds = new Set();
 
@@ -179,25 +150,11 @@ export class XMLRepairTool {
       }
     }
 
-    // Collect referenced prompt IDs
+    // Collect referenced prompt IDs from value attributes
     for (let elem of allElements) {
-      // Check attributes (except name)
-      for (let attr of elem.attributes) {
-        if (attr.name !== 'name') {
-          const val = attr.value;
-          if (promptIds.has(val)) {
-            referencedPromptIds.add(val);
-          }
-        }
-      }
-
-      // Check element text
-      if (elem.textContent) {
-        for (let promptId of promptIds) {
-          if (elem.textContent.includes(promptId)) {
-            referencedPromptIds.add(promptId);
-          }
-        }
+      const value = elem.getAttribute('value');
+      if (value && promptIds.has(value)) {
+        referencedPromptIds.add(value);
       }
     }
 
