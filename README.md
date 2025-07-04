@@ -1,6 +1,6 @@
 # SupportAI
 
-<!-- Trigger rebuild -->
+<!-- Trigger rebuild - Client-side XML repair tool -->
 
 A modern Next.js application with AI-powered support tools, featuring a beautiful Caffeine theme and repair report functionality.
 
