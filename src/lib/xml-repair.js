@@ -42,6 +42,15 @@ export class XMLRepairTool {
         hasRepairs = true;
       }
 
+      // Count actual repairs made
+      let repairCount = 0;
+      if (analysis.nullCandidates > 0) {
+        repairCount += analysis.nullCandidates;
+      }
+      if (analysis.prompts > 0) {
+        repairCount += analysis.prompts;
+      }
+
       return {
         file: btoa(unescape(encodeURIComponent(repairedContent))), // Base64 encode
         results: {
@@ -209,24 +218,19 @@ export class XMLRepairTool {
       return this.serializer.serializeToString(doc);
     }
 
-    // Phase 1: Remove elements that directly reference null candidates
+    // Phase 1: Remove elements that directly reference null candidates (only exact matches in attributes)
     const elementsToRemove = [];
     const allElements = doc.getElementsByTagName('*');
     
     for (let elem of allElements) {
       let shouldRemove = false;
       
-      // Check all attributes for null candidate references
+      // Check all attributes for exact null candidate matches (like Python script)
       for (let attr of elem.attributes) {
         if (nullCandidates.has(attr.value)) {
           shouldRemove = true;
           break;
         }
-      }
-      
-      // Check text content for null candidate references
-      if (elem.textContent && Array.from(nullCandidates).some(nc => elem.textContent.includes(nc))) {
-        shouldRemove = true;
       }
       
       if (shouldRemove) {
@@ -244,9 +248,9 @@ export class XMLRepairTool {
     
     // Phase 2: Clean up expressions and attributes that contain null candidate references
     for (let elem of allElements) {
-      // Clean all attributes
+      // Clean all attributes (except name attributes)
       for (let attr of elem.attributes) {
-        if (attr.value && Array.from(nullCandidates).some(nc => attr.value.includes(nc))) {
+        if (attr.name !== 'name' && attr.value && Array.from(nullCandidates).some(nc => attr.value.includes(nc))) {
           const cleanedValue = this.removeNullCandidateReferences(attr.value, nullCandidates);
           if (cleanedValue !== attr.value) {
             if (cleanedValue.trim()) {
@@ -398,6 +402,10 @@ Potential Issues:
 ${analysis.nullCandidates > 0 ? `  ⚠️  Found ${analysis.nullCandidates} null candidates` : '  ✅ No null candidates found'}
 ${analysis.prompts > 0 ? `  ⚠️  Found ${analysis.prompts} unused prompts` : '  ✅ No unused prompts found'}
 ${analysis.duplicates > 0 ? `  ⚠️  Found ${analysis.duplicates} duplicate objects` : '  ✅ No duplicate objects found'}
+
+Repair Summary:
+${analysis.nullCandidates > 0 ? `  🔧 Removed ${analysis.nullCandidates} null candidate references` : ''}
+${analysis.prompts > 0 ? `  🔧 Removed ${analysis.prompts} unused prompt definitions` : ''}
 ==========================================================
 `;
   }
