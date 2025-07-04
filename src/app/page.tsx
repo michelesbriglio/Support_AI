@@ -77,7 +77,7 @@ export default function Home() {
               </div>
               <CardTitle className="text-xl">Repair VA Report</CardTitle>
               <CardDescription>
-                Enhanced tool that repairs VA Reports containing null candidates, duplicate items, unused prompts, and corrupted structure.
+                Tool that repairs VA Reports containing null candidates, duplicate items, unused prompts, and corrupted structure.
               </CardDescription>
             </CardHeader>
             <CardContent>

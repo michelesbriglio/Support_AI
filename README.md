@@ -8,7 +8,7 @@ A modern Next.js application with AI-powered support tools, featuring a beautifu
 
 - **Modern UI**: Built with Next.js 15 and styled with Tailwind CSS
 - **Dark Theme**: Elegant dark mode with theme toggle
-- **Repair VA Report Tool**: Enhanced tool that repairs XML files containing null candidates, duplicate items, unused prompts, and corrupted structure
+- **Repair VA Report Tool**: Tool that repairs XML files containing null candidates, duplicate items, unused prompts, and corrupted structure
 - **Responsive Design**: Works perfectly on desktop and mobile devices
 - **GitHub Pages**: Automatically deployed to GitHub Pages
 
@@ -22,7 +22,7 @@ Visit the live site: [https://michelesbriglio.github.io/supportAI/](https://mich
 - **Styling**: Tailwind CSS with Caffeine theme
 - **UI Components**: shadcn/ui components
 - **Theme**: next-themes for dark/light mode
-- **Backend**: Enhanced Python script for comprehensive XML repair (null candidates, duplicates, unused prompts)
+- **Backend**: Python script for comprehensive XML repair (null candidates, duplicates, unused prompts)
 - **Deployment**: GitHub Pages with GitHub Actions
 
 ## 📁 Project Structure
@@ -78,7 +78,7 @@ npm run dev
 
 1. Click on the "Repair VA Report" card
 2. Upload an XML file using the file input
-3. The system will automatically process the file using the enhanced Python script
+3. The system will automatically process the file using the Python script
 4. View the comprehensive repair results including:
    - Null candidates (referenced but not defined objects)
    - Duplicate object IDs

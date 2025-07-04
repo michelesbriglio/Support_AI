@@ -151,7 +151,7 @@ export function RepairReportUpload() {
           className="w-full bg-primary hover:bg-primary/90"
         >
           <Wrench className="mr-2 h-4 w-4" />
-          Repair Report (Enhanced)
+          Repair VA Report
         </Button>
       )}
 
@@ -159,7 +159,7 @@ export function RepairReportUpload() {
       {isProcessing && (
         <div className="flex items-center justify-center space-x-2 text-sm text-muted-foreground">
           <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
-          <span>Processing XML file with enhanced repair tool...</span>
+          <span>Processing XML file with repair tool...</span>
         </div>
       )}
 

@@ -24,7 +24,7 @@ export function RepairResults({ results }: RepairResultsProps) {
         <div className="flex items-center space-x-2">
           <CheckCircle className="h-5 w-5 text-green-600" />
           <CardTitle className="text-lg text-green-800 dark:text-green-200">
-            Enhanced Repair Results
+            Repair Results
           </CardTitle>
         </div>
         <CardDescription className="text-green-700 dark:text-green-300">
@@ -89,7 +89,7 @@ export function RepairResults({ results }: RepairResultsProps) {
         {hasIssues && (
           <div className="pt-2 border-t border-green-200 dark:border-green-800">
             <p className="text-xs text-green-600 dark:text-green-400">
-              Your XML file has been successfully processed and cleaned using the enhanced repair tool.
+              Your XML file has been successfully processed and cleaned using the repair tool.
             </p>
           </div>
         )}
