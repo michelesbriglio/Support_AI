@@ -192,15 +192,6 @@ export class XMLRepairTool {
           }
         }
       }
-
-      // Check element tail
-      if (elem.tail) {
-        for (let promptId of promptIds) {
-          if (elem.tail.includes(promptId)) {
-            referencedPromptIds.add(promptId);
-          }
-        }
-      }
     }
 
     // Unused prompts are defined but not referenced
@@ -221,44 +212,14 @@ export class XMLRepairTool {
       return this.serializer.serializeToString(doc);
     }
 
-    // Phase 1: Remove elements that directly reference null candidates
-    const elementsToRemove = [];
+    // Simple approach: just clean attributes and text content, don't remove elements
     const allElements = doc.getElementsByTagName('*');
     
+    // Clean up expressions and attributes that contain null candidate references
     for (let elem of allElements) {
-      let shouldRemove = false;
-      
-      // Check all attributes for null candidate references (exact matches)
+      // Clean all attributes (except name attributes)
       for (let attr of elem.attributes) {
-        if (nullCandidates.has(attr.value)) {
-          shouldRemove = true;
-          break;
-        }
-      }
-      
-      // Check text content for null candidate references (like Python script)
-      if (elem.textContent && Array.from(nullCandidates).some(nc => elem.textContent.includes(nc))) {
-        shouldRemove = true;
-      }
-      
-      if (shouldRemove) {
-        elementsToRemove.push(elem);
-      }
-    }
-    
-    // Remove marked elements
-    for (let elem of elementsToRemove) {
-      const parent = elem.parentNode;
-      if (parent) {
-        parent.removeChild(elem);
-      }
-    }
-    
-    // Phase 2: Clean up expressions and attributes that contain null candidate references
-    for (let elem of allElements) {
-      // Clean all attributes
-      for (let attr of elem.attributes) {
-        if (attr.value && Array.from(nullCandidates).some(nc => attr.value.includes(nc))) {
+        if (attr.name !== 'name' && attr.value && Array.from(nullCandidates).some(nc => attr.value.includes(nc))) {
           const cleanedValue = this.removeNullCandidateReferences(attr.value, nullCandidates);
           if (cleanedValue !== attr.value) {
             if (cleanedValue.trim()) {
@@ -277,62 +238,6 @@ export class XMLRepairTool {
           elem.textContent = cleanedText;
         }
       }
-    }
-    
-    // Phase 3: Remove empty or invalid expressions
-    for (let elem of allElements) {
-      const expression = elem.getAttribute('expression');
-      if (expression && ['', '()', '${}'].includes(expression)) {
-        const parent = elem.parentNode;
-        if (parent) {
-          parent.removeChild(elem);
-        }
-      }
-    }
-
-    // Phase 4: Iterative cleanup until no more null candidates (like Python script)
-    let maxIterations = 5;
-    let iteration = 0;
-    let currentNullCandidates = new Set(nullCandidates);
-    
-    while (iteration < maxIterations) {
-      // Re-analyze to find remaining null candidates
-      const remainingAnalysis = this.analyzeXML(doc);
-      const remainingCandidates = remainingAnalysis.nullCandidateIds;
-      
-      if (remainingCandidates.size === 0) {
-        break;
-      }
-      
-      // Update null candidates for next iteration
-      currentNullCandidates = remainingCandidates;
-      
-      // Repeat the cleaning process
-      for (let elem of allElements) {
-        // Clean all attributes again
-        for (let attr of elem.attributes) {
-          if (attr.value && Array.from(currentNullCandidates).some(nc => attr.value.includes(nc))) {
-            const cleanedValue = this.removeNullCandidateReferences(attr.value, currentNullCandidates);
-            if (cleanedValue !== attr.value) {
-              if (cleanedValue.trim()) {
-                elem.setAttribute(attr.name, cleanedValue);
-              } else {
-                elem.removeAttribute(attr.name);
-              }
-            }
-          }
-        }
-        
-        // Clean text content again
-        if (elem.textContent && Array.from(currentNullCandidates).some(nc => elem.textContent.includes(nc))) {
-          const cleanedText = this.removeNullCandidateReferences(elem.textContent, currentNullCandidates);
-          if (cleanedText !== elem.textContent) {
-            elem.textContent = cleanedText;
-          }
-        }
-      }
-      
-      iteration++;
     }
 
     return this.serializer.serializeToString(doc);
