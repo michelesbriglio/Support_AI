@@ -51,20 +51,23 @@ export class XMLRepairTool {
         repairCount += analysis.prompts;
       }
 
-      return {
-        file: btoa(unescape(encodeURIComponent(repairedContent))), // Base64 encode
-        results: {
-          duplicates: analysis.duplicates,
-          prompts: analysis.prompts,
-          nullCandidates: analysis.nullCandidates,
-          hasDuplicates: analysis.duplicates > 0,
-          hasPrompts: analysis.prompts > 0,
-          hasNullCandidates: analysis.nullCandidates > 0,
-          totalObjects: analysis.totalObjects
-        },
-        analysis: this.generateAnalysisReport(analysis),
-        hasRepairs
-      };
+      // Store the original analysis for reporting
+      const originalAnalysis = { ...analysis };
+
+              return {
+          file: btoa(unescape(encodeURIComponent(repairedContent))), // Base64 encode
+          results: {
+            duplicates: originalAnalysis.duplicates,
+            prompts: originalAnalysis.prompts,
+            nullCandidates: originalAnalysis.nullCandidates,
+            hasDuplicates: originalAnalysis.duplicates > 0,
+            hasPrompts: originalAnalysis.prompts > 0,
+            hasNullCandidates: originalAnalysis.nullCandidates > 0,
+            totalObjects: originalAnalysis.totalObjects
+          },
+          analysis: this.generateAnalysisReport(originalAnalysis),
+          hasRepairs
+        };
     } catch (error) {
       console.error('Error repairing XML:', error);
       throw new Error('Failed to repair XML file');
@@ -218,19 +221,24 @@ export class XMLRepairTool {
       return this.serializer.serializeToString(doc);
     }
 
-    // Phase 1: Remove elements that directly reference null candidates (only exact matches in attributes)
+    // Phase 1: Remove elements that directly reference null candidates
     const elementsToRemove = [];
     const allElements = doc.getElementsByTagName('*');
     
     for (let elem of allElements) {
       let shouldRemove = false;
       
-      // Check all attributes for exact null candidate matches (like Python script)
+      // Check all attributes for null candidate references (exact matches)
       for (let attr of elem.attributes) {
         if (nullCandidates.has(attr.value)) {
           shouldRemove = true;
           break;
         }
+      }
+      
+      // Check text content for null candidate references (like Python script)
+      if (elem.textContent && Array.from(nullCandidates).some(nc => elem.textContent.includes(nc))) {
+        shouldRemove = true;
       }
       
       if (shouldRemove) {
@@ -248,9 +256,9 @@ export class XMLRepairTool {
     
     // Phase 2: Clean up expressions and attributes that contain null candidate references
     for (let elem of allElements) {
-      // Clean all attributes (except name attributes)
+      // Clean all attributes
       for (let attr of elem.attributes) {
-        if (attr.name !== 'name' && attr.value && Array.from(nullCandidates).some(nc => attr.value.includes(nc))) {
+        if (attr.value && Array.from(nullCandidates).some(nc => attr.value.includes(nc))) {
           const cleanedValue = this.removeNullCandidateReferences(attr.value, nullCandidates);
           if (cleanedValue !== attr.value) {
             if (cleanedValue.trim()) {
@@ -280,6 +288,51 @@ export class XMLRepairTool {
           parent.removeChild(elem);
         }
       }
+    }
+
+    // Phase 4: Iterative cleanup until no more null candidates (like Python script)
+    let maxIterations = 5;
+    let iteration = 0;
+    let currentNullCandidates = new Set(nullCandidates);
+    
+    while (iteration < maxIterations) {
+      // Re-analyze to find remaining null candidates
+      const remainingAnalysis = this.analyzeXML(doc);
+      const remainingCandidates = remainingAnalysis.nullCandidateIds;
+      
+      if (remainingCandidates.size === 0) {
+        break;
+      }
+      
+      // Update null candidates for next iteration
+      currentNullCandidates = remainingCandidates;
+      
+      // Repeat the cleaning process
+      for (let elem of allElements) {
+        // Clean all attributes again
+        for (let attr of elem.attributes) {
+          if (attr.value && Array.from(currentNullCandidates).some(nc => attr.value.includes(nc))) {
+            const cleanedValue = this.removeNullCandidateReferences(attr.value, currentNullCandidates);
+            if (cleanedValue !== attr.value) {
+              if (cleanedValue.trim()) {
+                elem.setAttribute(attr.name, cleanedValue);
+              } else {
+                elem.removeAttribute(attr.name);
+              }
+            }
+          }
+        }
+        
+        // Clean text content again
+        if (elem.textContent && Array.from(currentNullCandidates).some(nc => elem.textContent.includes(nc))) {
+          const cleanedText = this.removeNullCandidateReferences(elem.textContent, currentNullCandidates);
+          if (cleanedText !== elem.textContent) {
+            elem.textContent = cleanedText;
+          }
+        }
+      }
+      
+      iteration++;
     }
 
     return this.serializer.serializeToString(doc);
