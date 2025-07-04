@@ -10,8 +10,11 @@ import { RepairResults } from "@/components/repair-results"
 interface RepairResultsData {
   duplicates: number;
   prompts: number;
+  nullCandidates: number;
   hasDuplicates: boolean;
   hasPrompts: boolean;
+  hasNullCandidates: boolean;
+  totalObjects: number;
 }
 
 // Helper to convert ArrayBuffer to base64 safely
@@ -142,6 +145,7 @@ export function RepairReportUpload() {
   const [error, setError] = useState("")
   const [repairedFile, setRepairedFile] = useState<string | null>(null)
   const [repairResults, setRepairResults] = useState<RepairResultsData | null>(null)
+  const [analysisOutput, setAnalysisOutput] = useState<string>("")
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -153,6 +157,7 @@ export function RepairReportUpload() {
       setError("")
       setRepairedFile(null)
       setRepairResults(null)
+      setAnalysisOutput("")
     } else if (selectedFile) {
       setError("Please select a valid XML file")
     }
@@ -162,16 +167,29 @@ export function RepairReportUpload() {
     if (!file) return
     setIsProcessing(true)
     setError("")
+    
     try {
-      const xmlText = await file.text();
-      const { xml, results } = fixXmlReport(xmlText);
-      // Convert XML string to base64 for download
-      const encoder = new TextEncoder();
-      const xmlUint8 = encoder.encode(xml);
-      const base64 = arrayBufferToBase64(xmlUint8.buffer);
-      setRepairedFile(base64);
-      setRepairResults(results);
-      setIsCompleted(true);
+      // Create FormData to send file to API
+      const formData = new FormData()
+      formData.append('file', file)
+
+      // Call the API endpoint
+      const response = await fetch('/api/repair-report', {
+        method: 'POST',
+        body: formData,
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to repair file')
+      }
+
+      const data = await response.json()
+      
+      setRepairedFile(data.file)
+      setRepairResults(data.results)
+      setAnalysisOutput(data.analysis || "")
+      setIsCompleted(true)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred')
       setIsCompleted(false)
@@ -200,6 +218,7 @@ export function RepairReportUpload() {
     setIsCompleted(false)
     setRepairedFile(null)
     setRepairResults(null)
+    setAnalysisOutput("")
     setFile(null)
     setFileName("")
     setError("")
@@ -248,7 +267,7 @@ export function RepairReportUpload() {
           className="w-full bg-primary hover:bg-primary/90"
         >
           <Wrench className="mr-2 h-4 w-4" />
-          Repair Report
+          Repair Report (Enhanced)
         </Button>
       )}
 
@@ -256,7 +275,7 @@ export function RepairReportUpload() {
       {isProcessing && (
         <div className="flex items-center justify-center space-x-2 text-sm text-muted-foreground">
           <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
-          <span>Processing XML file...</span>
+          <span>Processing XML file with enhanced repair tool...</span>
         </div>
       )}
 
@@ -265,8 +284,18 @@ export function RepairReportUpload() {
         <RepairResults results={repairResults} />
       )}
 
-      {/* Download Button - only show if issues were found and fixed */}
-      {isCompleted && repairedFile && (repairResults?.hasDuplicates || repairResults?.hasPrompts) && (
+      {/* Analysis Output */}
+      {isCompleted && analysisOutput && (
+        <div className="bg-muted/50 p-4 rounded-md">
+          <h4 className="text-sm font-medium mb-2">Analysis Details:</h4>
+          <pre className="text-xs text-muted-foreground whitespace-pre-wrap overflow-x-auto">
+            {analysisOutput}
+          </pre>
+        </div>
+      )}
+
+      {/* Download Button - show if any issues were found and fixed */}
+      {isCompleted && repairedFile && (repairResults?.hasDuplicates || repairResults?.hasPrompts || repairResults?.hasNullCandidates) && (
         <Button 
           onClick={handleDownload}
           className="w-full bg-green-600 hover:bg-green-700"

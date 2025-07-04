@@ -8,7 +8,7 @@ A modern Next.js application with AI-powered support tools, featuring a beautifu
 
 - **Modern UI**: Built with Next.js 15 and styled with Tailwind CSS
 - **Dark Theme**: Elegant dark mode with theme toggle
-- **Repair Report OLD Tool**: Upload XML files, automatically repair them, and download the fixed version
+- **Repair Report OLD Tool**: Enhanced tool that repairs XML files containing null candidates, duplicate items, unused prompts, and corrupted structure
 - **Responsive Design**: Works perfectly on desktop and mobile devices
 - **GitHub Pages**: Automatically deployed to GitHub Pages
 
@@ -22,7 +22,7 @@ Visit the live site: [https://michelesbriglio.github.io/supportAI/](https://mich
 - **Styling**: Tailwind CSS with Caffeine theme
 - **UI Components**: shadcn/ui components
 - **Theme**: next-themes for dark/light mode
-- **Backend**: Python script for XML processing
+- **Backend**: Enhanced Python script for comprehensive XML repair (null candidates, duplicates, unused prompts)
 - **Deployment**: GitHub Pages with GitHub Actions
 
 ## 📁 Project Structure
@@ -78,9 +78,13 @@ npm run dev
 
 1. Click on the "Repair Report OLD" card
 2. Upload an XML file using the file input
-3. The system will automatically process the file using the Python script
-4. View the repair results (duplicates removed, unused prompts)
-5. Download the repaired file if issues were found
+3. The system will automatically process the file using the enhanced Python script
+4. View the comprehensive repair results including:
+   - Null candidates (referenced but not defined objects)
+   - Duplicate object IDs
+   - Unused prompt definitions
+   - Total objects analyzed
+5. Download the repaired file if any issues were found and fixed
 
 ## 🎨 Customization
 

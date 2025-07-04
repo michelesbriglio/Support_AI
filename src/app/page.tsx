@@ -77,7 +77,7 @@ export default function Home() {
               </div>
               <CardTitle className="text-xl">Repair Report OLD</CardTitle>
               <CardDescription>
-                This Tool repairs the VA Reports that contain duplicates Items or unused Prompts.
+                Enhanced tool that repairs VA Reports containing null candidates, duplicate items, unused prompts, and corrupted structure.
               </CardDescription>
             </CardHeader>
             <CardContent>
