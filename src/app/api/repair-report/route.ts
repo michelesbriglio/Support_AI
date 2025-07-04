@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
     
     try {
       repairedContent = await readFile(repairedFilePath, 'utf-8');
-    } catch (readError) {
+    } catch {
       // If repaired file doesn't exist, use original file
       repairedContent = await readFile(tempInputPath, 'utf-8');
     }
@@ -93,7 +93,7 @@ export async function POST(request: NextRequest) {
         const repairedFilePath = tempInputPath.replace('.xml', '_repaired.xml');
         try {
           await unlink(repairedFilePath);
-        } catch (e) {
+        } catch {
           // Ignore errors if file doesn't exist
         }
       }
