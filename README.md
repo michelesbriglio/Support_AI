@@ -8,7 +8,7 @@ A modern Next.js application with AI-powered support tools, featuring a beautifu
 
 - **Modern UI**: Built with Next.js 15 and styled with Tailwind CSS
 - **Dark Theme**: Elegant dark mode with theme toggle
-- **Repair Report Tool**: Upload XML files, automatically repair them, and download the fixed version
+- **Repair Report OLD Tool**: Upload XML files, automatically repair them, and download the fixed version
 - **Responsive Design**: Works perfectly on desktop and mobile devices
 - **GitHub Pages**: Automatically deployed to GitHub Pages
 
@@ -74,9 +74,9 @@ npm run dev
 
 ## 📝 Usage
 
-### Repair Report Tool
+### Repair Report OLD Tool
 
-1. Click on the "Repair Report" card
+1. Click on the "Repair Report OLD" card
 2. Upload an XML file using the file input
 3. The system will automatically process the file using the Python script
 4. View the repair results (duplicates removed, unused prompts)
