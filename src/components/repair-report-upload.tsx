@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Upload, Download, Wrench, AlertCircle } from "lucide-react"
 import { RepairResults } from "@/components/repair-results"
+import { repairXMLFile } from "@/lib/xml-repair"
 
 interface RepairResultsData {
   duplicates: number;
@@ -53,23 +54,8 @@ export function RepairReportUpload() {
     setError("")
     
     try {
-      // Create FormData to send file to API
-      const formData = new FormData()
-      formData.append('file', file)
-
-      // Call the API endpoint - use dynamic path for both development and production
-      const basePath = window.location.pathname.startsWith('/Support_AI') ? '/Support_AI' : '';
-      const response = await fetch(`${basePath}/api/repair-report`, {
-        method: 'POST',
-        body: formData,
-      })
-
-      if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || 'Failed to repair file')
-      }
-
-      const data = await response.json()
+      // Use client-side repair tool instead of API
+      const data = await repairXMLFile(file)
       
       setRepairedFile(data.file)
       setRepairResults(data.results)
@@ -160,7 +146,7 @@ export function RepairReportUpload() {
       {isProcessing && (
         <div className="flex items-center justify-center space-x-2 text-sm text-muted-foreground">
           <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
-          <span>Processing XML file with repair tool...</span>
+          <span>Analyzing and repairing XML file...</span>
         </div>
       )}
 
