@@ -1,0 +1,1407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SASReport xmlns="http://www.sas.com/sasreportmodel/bird-4.45.0" label="Vertriebsreporting" features="promptModelV2" implicitInteractions="sectionPrompt reportPrompt sectionLink" createdLocale="de" createdVersion="4.1.2" dateCreated="2020-06-02T07:53:19Z" dateModified="2025-04-02T14:42:12Z" createdApplication="SAS Visual Analytics 8.3.1" lastModifiedApplication="SAS Visual Analytics 2020" nextUniqueNameIndex="4410">
+	<DataDefinitions>
+		<ParentDataDefinition childQueryRelationship="independent" status="incomplete" name="dd1144">
+			<DataDefinition type="relational" name="dd1145">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column"/>
+					</Axes>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="buttonBar" maxRowsBehavior="truncate" name="dd1146"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+	</DataDefinitions>
+	<DataSources>
+		<DataSource label="CH_VA_SLS_ORG_CADRE_EQ_RLS" type="relational" name="ds4282">
+			<CasResource server="cas-shared-default" library="CHMMAVE" table="CH_VA_SLS_ORG_CADRE_EQ_RLS" locale="de_DE"/>
+			<BusinessItemFolder>
+				<DataItem name="bi4283" xref="AT_RISK_TEAM_QUOTA_PCT"/>
+				<DataItem name="bi4284" xref="BALOISE_LIKE_TEAM_PTS"/>
+				<DataItem name="bi4285" xref="CADRE_AGG_ID"/>
+				<DataItem name="bi4286" xref="CREATE_RUN_ID"/>
+				<DataItem name="bi4287" xref="CREATED_DTTM"/>
+				<DataItem name="bi4288" xref="DISC_1_SMS_P_RANK"/>
+				<DataItem name="bi4289" xref="DISC_1_SMS_P_RANKING_PTS"/>
+				<DataItem name="bi4290" xref="DISC_1_WEIGHTING_FACTOR"/>
+				<DataItem name="bi4291" xref="DISC_2_NC_B_RANK"/>
+				<DataItem name="bi4292" xref="DISC_2_NC_B_RANKING_PTS"/>
+				<DataItem name="bi4293" xref="DISC_2_WEIGHTING_FACTOR"/>
+				<DataItem name="bi4294" xref="DISC_3_P_AND_A_RANK"/>
+				<DataItem name="bi4295" xref="DISC_3_P_AND_A_RANKING_PTS"/>
+				<DataItem name="bi4296" xref="DISC_3_WEIGHTING_FACTOR"/>
+				<DataItem name="bi4297" xref="DISC_4_AT_RISK_RANK"/>
+				<DataItem name="bi4298" xref="DISC_4_AT_RISK_RANKING_PTS"/>
+				<DataItem name="bi4299" xref="DISC_4_WEIGHTING_FACTOR"/>
+				<DataItem name="bi4300" xref="DISC_5_GROSS_COMP_RANK"/>
+				<DataItem name="bi4301" xref="DISC_5_GROSS_COMP_RANKING_PTS"/>
+				<DataItem name="bi4302" xref="DISC_5_WEIGHTING_FACTOR"/>
+				<DataItem name="bi4303" xref="FTE_CNT"/>
+				<DataItem name="bi4304" xref="FTE_FACTOR"/>
+				<DataItem name="bi4305" xref="FTE_NO_CADRE_CNT"/>
+				<DataItem name="bi4306" xref="GROSS_COMP_REL_AMT"/>
+				<DataItem name="bi4307" xref="GROSS_COMP_TOT_AMT"/>
+				<DataItem name="bi4308" xref="IL_MALUS_REL_CNT"/>
+				<DataItem name="bi4309" xref="IL_MALUS_TOT_CNT"/>
+				<DataItem name="bi4310" xref="INTERM_SUP_COMP_BANK_AMT"/>
+				<DataItem name="bi4311" xref="INTERM_SUP_COMP_INS_AMT"/>
+				<DataItem name="bi4312" xref="INTERM_SUP_COMP_TOT_AMT"/>
+				<DataItem name="bi4313" xref="LANGUAGE_CD"/>
+				<DataItem name="bi4314" xref="NC_B_REL_PTS"/>
+				<DataItem name="bi4315" xref="NC_B_TOTAL_PTS"/>
+				<DataItem name="bi4316" xref="PENSION_AND_ASSETS_REL_AMT"/>
+				<DataItem name="bi4317" xref="PENSION_AND_ASSETS_TOT_AMT"/>
+				<DataItem name="bi4318" xref="REPORTING_DT"/>
+				<DataItem name="bi4319" xref="REPORTING_MONTH_DT"/>
+				<DataItem name="bi4320" xref="RLS_ADGROUP"/>
+				<DataItem name="bi4321" xref="RLS_GLOBAL"/>
+				<DataItem name="bi4322" xref="RLS_SAPA_BEQ_CD"/>
+				<DataItem name="bi4323" xref="RLS_SAPA_BGA_CD"/>
+				<DataItem name="bi4324" xref="RLS_SAPA_BGD_CD"/>
+				<DataItem name="bi4325" xref="RLS_SAPA_BVW_CD"/>
+				<DataItem name="bi4326" xref="RLS_SAPA_HBM_CD"/>
+				<DataItem name="bi4327" xref="SAPA_BAG_CD"/>
+				<DataItem name="bi4328" xref="SAPA_BAG_TXT"/>
+				<DataItem name="bi4329" xref="SAPA_BEQ"/>
+				<DataItem name="bi4330" xref="SAPA_BEQ_CD"/>
+				<DataItem name="bi4331" xref="SAPA_BEQ_TXT"/>
+				<DataItem name="bi4332" xref="SAPA_BGA"/>
+				<DataItem name="bi4333" xref="SAPA_BGA_CD"/>
+				<DataItem name="bi4334" xref="SAPA_BGA_TXT"/>
+				<DataItem name="bi4335" xref="SAPA_BGD"/>
+				<DataItem name="bi4336" xref="SAPA_BGD_CD"/>
+				<DataItem name="bi4337" xref="SAPA_BGD_TXT"/>
+				<DataItem name="bi4338" xref="SAPA_BVW"/>
+				<DataItem name="bi4339" xref="SAPA_BVW_CD"/>
+				<DataItem name="bi4340" xref="SAPA_BVW_TXT"/>
+				<DataItem name="bi4341" xref="SAPA_CONTRACT_CD"/>
+				<DataItem name="bi4342" xref="SAPA_CONTRACT_TXT"/>
+				<DataItem name="bi4343" xref="SAPA_GROUP_CD"/>
+				<DataItem name="bi4344" xref="SAPA_GROUP_TXT"/>
+				<DataItem name="bi4345" xref="SAPA_HBM"/>
+				<DataItem name="bi4346" xref="SAPA_HBM_CD"/>
+				<DataItem name="bi4347" xref="SAPA_HBM_TXT"/>
+				<DataItem name="bi4348" xref="SAPA_STATUS_CD"/>
+				<DataItem name="bi4349" xref="SAPA_STATUS_TXT"/>
+				<DataItem name="bi4350" xref="sliceColumn"/>
+				<DataItem name="bi4351" xref="SMS_P_DISC_1_PTS_FACTOR"/>
+				<DataItem name="bi4352" xref="SMS_P_DISC_1_REL_PTS"/>
+				<DataItem name="bi4353" xref="SMS_P_DISC_1_TOTAL_PTS"/>
+				<DataItem name="bi4354" xref="SMS_P_DISC_1_WEIGHT_PTS"/>
+				<DataItem name="bi4355" xref="SMS_P_DISC_2_PTS_FACTOR"/>
+				<DataItem name="bi4356" xref="SMS_P_DISC_2_REL_PTS"/>
+				<DataItem name="bi4357" xref="SMS_P_DISC_2_TOTAL_PTS"/>
+				<DataItem name="bi4358" xref="SMS_P_DISC_2_WEIGHT_PTS"/>
+				<DataItem name="bi4359" xref="SMS_P_TOTAL_WEIGHT_PTS"/>
+				<DataItem name="bi4360" xref="TEAM_CD"/>
+				<DataItem name="bi4361" xref="TEAM_TXT"/>
+				<DataItem name="bi4362" xref="TOTAL_RANK"/>
+				<DataItem name="bi4363" xref="TOTAL_RANKING_PTS"/>
+				<PredefinedDataItem calculation="totalCount" name="bi4364" label="Häufigkeit" usage="quantitative" format="COMMA12."/>
+				<PredefinedDataItem calculation="totalCountPercent" name="bi4365" label="Häufigkeit in Prozent" usage="quantitative" format="PERCENT20.2"/>
+			</BusinessItemFolder>
+		</DataSource>
+	</DataSources>
+	<VisualElements>
+		<Text name="ve15" label="News &amp; wichtige Hinweise" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P><Span class="span3"><Span class="span4"><Span class="span52">News &amp; wichtige Hinweise</Span></Span></Span></P>
+		</Text>
+		<Text name="ve25" label="Entschädigung" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+				<Property key="specifyHeightSelected">true</Property>
+			</EditorProperties>
+			<P><Span class="span29"><Span class="span30"><Span class="span46">Entschädigung</Span></Span></Span></P>
+		</Text>
+		<Text name="ve30" label="Leistung und Verhalten" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+				<Property key="specifyHeightSelected">true</Property>
+			</EditorProperties>
+			<P><Span class="span9"><Span class="span10"><Span class="span47">Leistung &amp; Verhalten</Span></Span></Span></P>
+		</Text>
+		<Text name="ve37" label="Kunden und Bestand" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+				<Property key="specifyHeightSelected">true</Property>
+			</EditorProperties>
+			<P><Span class="span11"><Span class="span12"><Span class="span48">Kunden &amp; Bestand</Span></Span></Span></P>
+		</Text>
+		<Text name="ve42" label="Wettbewerbe" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+				<Property key="specifyHeightSelected">true</Property>
+			</EditorProperties>
+			<P><Span class="span37"><Span class="span38"><Span class="span49">Wettbewerbe</Span></Span></Span></P>
+		</Text>
+		<Text name="ve47" label="System Links " selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P><Span class="span1">Fragen zum Vertriebsreporting direkt an die Gruppenmailbox</Span></P>
+			<P><Span action="ac3461" class="span2">group.ch_SalesServices@baloise.ch</Span></P>
+			<P><Span class="span3"> </Span></P>
+			<P><Span class="span4">Bei technischen Problemen, bitte beim Helpdesk anrufen</Span></P>
+			<P><Span class="span5">058 285 77 77</Span></P>
+		</Text>
+		<Image scaleType="scaleToFit" file="/files/files/92ed731f-bbcf-433a-9b1d-32723fc42fe3" name="ve76" label="Entschädigung Bild" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+		</Image>
+		<Image scaleType="scaleToFit" file="/files/files/f62f7c00-388b-4021-88e5-7cb5fde6c017" name="ve90" label="Leistung und Verhalten Bild" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+		</Image>
+		<Text name="ve101" label="Leistung und Verhalten Links" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P><Span action="ac327" class="span1">Cumulus</Span></P>
+			<P><Span action="ac4105" class="span2">Cumulus (inklusive GA-Broker)</Span></P>
+			<P><Span action="ac4107" class="span3">Cumulus (incluant des courtiers AG)</Span></P>
+			<P><Span action="ac330" class="span4">EL Anträge</Span></P>
+			<P><Span action="ac3735" class="span5">Vertriebspartner Report</Span></P>
+			<P><Span action="ac3648" class="span6">Rapport Partenaires de distribution</Span></P>
+			<P><Span action="ac1019" class="span7">NPS</Span></P>
+			<P><Span action="ac3691" class="span8">Baloise like Umsetzung</Span></P>
+			<P><Span action="ac4238" class="span9">Stornoquote Kader</Span></P>
+			<P><Span action="ac4408" class="span10">Stornoquote Finanzpartner</Span></P>
+			<P><Span action="ac4239" class="span11">Taux d&apos;annulation Cadre</Span></P>
+			<P><Span action="ac4409" class="span12">Taux d&apos;annulation Partenaire financier</Span></P>
+		</Text>
+		<Image scaleType="scaleToFit" file="/files/files/3e1a03bc-4932-401f-810f-f7651b53d58e" name="ve105" label="Kunden und Bestand Bild" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+		</Image>
+		<Text name="ve112" label="Kunden und Bestand Links" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P><Span class="span1">Rabatte</Span></P>
+			<P><Span action="ac441" class="span2">Preismodell MF</Span></P>
+			<P><Span action="ac443" class="span3">Preismodell Gebäude</Span></P>
+			<P><Span action="ac695" class="span4">Preismodell Haushalt​</Span></P>
+			<P><Span action="ac701" class="span5">Preismodell Baloise KMU Geschäftsversicherung (für AD)</Span></P>
+			<P><Span action="ac3505" class="span6">Rabattcontrolling BKG (für VL, Gagt, LVE, VDir)</Span></P>
+			<P/>
+			<P><Span class="span7">Bankgeschäfte</Span></P>
+			<P><Span action="ac449" class="span8">Bestand</Span></P>
+			<P><Span action="ac451" class="span9">Kunden</Span></P>
+			<P/>
+			<P><Span class="span10">Bestandesstatistik</Span></P>
+			<P><Span action="ac933" class="span11">Bestandes-Selektionen</Span></P>
+		</Text>
+		<Image scaleType="scaleToFit" file="/files/files/6881ad83-53e7-40e6-ade4-c359c25ece2c" name="ve193" label="System Bild" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="isAutoLabel">true</Property>
+			</EditorProperties>
+		</Image>
+		<Image scaleType="scaleToFit" file="/files/files/82a761e7-44c9-48a0-a5d9-08bd11c6551a" name="ve250" label="News Bild" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="isAutoLabel">true</Property>
+			</EditorProperties>
+		</Image>
+		<Image scaleType="scaleToFit" file="/files/files/297e9c11-550c-4a60-8e48-7a3dd3e4e49b" name="ve334" label="Diverses Bild" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+		</Image>
+		<Text name="ve342" label="Diverses" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+				<Property key="specifyHeightSelected">true</Property>
+			</EditorProperties>
+			<P><Span class="span1"><Span class="span2">Links</Span></Span></P>
+		</Text>
+		<Text name="ve347" label="System" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+				<Property key="specifyHeightSelected">true</Property>
+			</EditorProperties>
+			<P><Span class="span1"><Span class="span2">Support</Span></Span></P>
+		</Text>
+		<Text name="ve364" label="Diverses Links" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P><Span action="ac390" class="span1">Reglemente</Span></P>
+			<P><Span action="ac3930" class="span2">Vertriebsreporting 2018 - 2023</Span></P>
+			<P><Span action="ac3836" class="span3">COMET</Span></P>
+			<P><Span action="ac3837" class="span4">HR Self Service</Span></P>
+		</Text>
+		<Text name="ve375" label="Wettbewerbe Links" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P><Span action="ac4061" class="span1">Top5 (alle Wettbewerbe)</Span></P>
+			<P><Span action="ac4151" class="span2">Top Banker Award</Span></P>
+		</Text>
+		<Image scaleType="scaleToFit" file="/files/files/d813f1df-4fd6-40f6-a36b-f8b7f86a10ff" name="ve379" label="Wettbewerbe Bild" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+		</Image>
+		<Text name="ve20" label="News" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+				<Property key="specifyHeightSelected">true</Property>
+			</EditorProperties>
+			<P><Span class="span1">Allfällige Rückfragen zum Cockpit werden durch die Verkaufsleiter oder Generalagenten an die Gruppenmailbox </Span><Span action="ac3973" class="span2">group.ch_SalesServices@baloise.ch</Span><Span class="span3"> weitergeleitet.</Span></P>
+		</Text>
+		<VisualContainer containerType="precision" name="ve843" label="Präzisionscontainer Links 2" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="isPrecision">true</Property>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<VisualContainer containerType="precision" name="ve845" label="Präzisionscontainer Links 1" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="isPrecision">true</Property>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<Prompt required="true" resultDefinitions="dd1146" name="ve1143" data="dd1144" label="Schaltflächenleiste - Stichtag" selectionDisabled="true" applyDynamicBrushes="promptsOnly">
+			<EditorProperties>
+				<Property key="autoChartCategory">CONTROL</Property>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<LinkBar orientation="horizontal"/>
+		</Prompt>
+		<VisualContainer containerType="precision" name="ve847" label="Präzisionscontainer News" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+				<Property key="isPrecision">true</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<Text name="ve80" label="Entschädigung Links" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P><Span action="ac3792" class="span1">Vertragsreporting Finanzpartner</Span></P>
+			<P><Span action="ac3790" class="span2">Vertragsreporting Kader</Span></P>
+			<P><Span action="ac4017" class="span3">Vertragsreporting Organisation</Span></P>
+			<P><Span action="ac325" class="span4">Brutto- und Bestandesentschädigung Versicherung</Span></P>
+			<P><Span action="ac326" class="span5">Brutto- und Bestandesentschädigung Bank</Span></P>
+			<P><Span action="ac3835" class="span6">Umbuchungsantrag Provisionskorrekturen</Span></P>
+			<P><Span action="ac4194" class="span7">HR Self Dashboard Finanzpartner</Span></P>
+			<P><Span action="ac4195" class="span8">HR Self Dashboard Kader</Span></P>
+			<P/>
+		</Text>
+	</VisualElements>
+	<View>
+		<Header>
+			<MediaContainer target="mt2">
+				<ResponsiveLayout orientation="horizontal" overflow="fit">
+					<Weights mediaTarget="mt5" unit="percent">
+						<Weight value="100%"/>
+					</Weights>
+					<Weights mediaTarget="mt4" unit="percent">
+						<Weight value="100%"/>
+					</Weights>
+					<Weights mediaTarget="mt3" unit="percent">
+						<Weight value="100%"/>
+					</Weights>
+				</ResponsiveLayout>
+			</MediaContainer>
+		</Header>
+		<Section name="vi6" label="Startseite">
+			<Header>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="horizontal" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+				</MediaContainer>
+			</Header>
+			<Body>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="vertical" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+					<Container ref="ve847" name="vi846">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="100%" flexibility="fixed"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="33%" flexibility="fixed"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+						<ResponsiveLayout orientation="vertical" overflow="fit">
+							<Weights mediaTarget="mt5" unit="percent">
+								<Weight value="100%"/>
+							</Weights>
+							<Weights mediaTarget="mt4" unit="percent">
+								<Weight value="100%"/>
+							</Weights>
+							<Weights mediaTarget="mt3" unit="percent">
+								<Weight value="100%"/>
+							</Weights>
+						</ResponsiveLayout>
+						<Visual ref="ve15" name="vi16">
+							<ResponsiveConstraint zIndex="1">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="100%" flexibility="shrinkable"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi846" offset="0%"/>
+								<HorizontalConstraint anchor="vi846" offset="0%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve250" name="vi249">
+							<ResponsiveConstraint zIndex="2">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="12.5%" flexibility="fixed"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="75%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi846" offset="15%"/>
+								<HorizontalConstraint anchor="vi846" offset="0%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve20" name="vi21">
+							<ResponsiveConstraint zIndex="3">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="87.5%" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="75%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi846" offset="15%"/>
+								<HorizontalConstraint anchor="vi846" offset="12.5%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve1143" name="vi1142">
+							<ResponsiveConstraint zIndex="4">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="0.01%" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="0.01%" flexibility="shrinkable"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi846" offset="85%"/>
+								<HorizontalConstraint anchor="vi846" offset="0%"/>
+							</ResponsiveConstraint>
+						</Visual>
+					</Container>
+					<Container ref="ve845" name="vi844">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="100%" flexibility="fixed"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="33%" flexibility="fixed"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+						<ResponsiveLayout orientation="vertical" overflow="fit">
+							<Weights mediaTarget="mt5" unit="percent">
+								<Weight value="100%"/>
+							</Weights>
+							<Weights mediaTarget="mt4" unit="percent">
+								<Weight value="100%"/>
+							</Weights>
+							<Weights mediaTarget="mt3" unit="percent">
+								<Weight value="100%"/>
+							</Weights>
+						</ResponsiveLayout>
+						<Visual ref="ve25" name="vi26">
+							<ResponsiveConstraint zIndex="1">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="33.33%" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="15%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi844" offset="0%"/>
+								<HorizontalConstraint anchor="vi844" offset="0%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve76" name="vi75">
+							<ResponsiveConstraint zIndex="2">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="honor" value="12.5%" flexibility="fixed"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="75%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi844" offset="15%"/>
+								<HorizontalConstraint anchor="vi844" offset="0%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve80" name="vi79">
+							<ResponsiveConstraint zIndex="3">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="20.17%" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="75%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi844" offset="15%"/>
+								<HorizontalConstraint anchor="vi844" offset="12.5%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve30" name="vi31">
+							<ResponsiveConstraint zIndex="4">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="32.67%" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="15%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi844" offset="0%"/>
+								<HorizontalConstraint anchor="vi844" offset="33.67%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve90" name="vi91">
+							<ResponsiveConstraint zIndex="5">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="honor" value="12.5%" flexibility="fixed"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="75%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi844" offset="15%"/>
+								<HorizontalConstraint anchor="vi844" offset="33.67%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve101" name="vi102">
+							<ResponsiveConstraint zIndex="6">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="20.17%" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="honor" value="75%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi844" offset="15%"/>
+								<HorizontalConstraint anchor="vi844" offset="46.17%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve37" name="vi38">
+							<ResponsiveConstraint zIndex="7">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="32.67%" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="15%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi844" offset="0%"/>
+								<HorizontalConstraint anchor="vi844" offset="67.33%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve105" name="vi106">
+							<ResponsiveConstraint zIndex="8">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="honor" value="12.5%" flexibility="fixed"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="75%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi844" offset="15%"/>
+								<HorizontalConstraint anchor="vi844" offset="67.33%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve112" name="vi113">
+							<ResponsiveConstraint zIndex="9">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="20.17%" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="75%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi844" offset="15%"/>
+								<HorizontalConstraint anchor="vi844" offset="79.83%"/>
+							</ResponsiveConstraint>
+						</Visual>
+					</Container>
+					<Container ref="ve843" name="vi842">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="100%" flexibility="fixed"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="33%" flexibility="fixed"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+						<ResponsiveLayout orientation="vertical" overflow="fit">
+							<Weights mediaTarget="mt5" unit="percent">
+								<Weight value="100%"/>
+							</Weights>
+							<Weights mediaTarget="mt4" unit="percent">
+								<Weight value="100%"/>
+							</Weights>
+							<Weights mediaTarget="mt3" unit="percent">
+								<Weight value="100%"/>
+							</Weights>
+						</ResponsiveLayout>
+						<Visual ref="ve42" name="vi43">
+							<ResponsiveConstraint zIndex="1">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="32.17%" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="15%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi842" offset="0%"/>
+								<HorizontalConstraint anchor="vi842" offset="0%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve379" name="vi380">
+							<ResponsiveConstraint zIndex="2">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="honor" value="12.5%" flexibility="fixed"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="75%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi842" offset="15%"/>
+								<HorizontalConstraint anchor="vi842" offset="0%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve375" name="vi376">
+							<ResponsiveConstraint zIndex="3">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="20.17%" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="75%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi842" offset="15%"/>
+								<HorizontalConstraint anchor="vi842" offset="12.5%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve342" name="vi343">
+							<ResponsiveConstraint zIndex="4">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="32.67%" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="15%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi842" offset="0%"/>
+								<HorizontalConstraint anchor="vi842" offset="33.67%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve334" name="vi335">
+							<ResponsiveConstraint zIndex="5">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="honor" value="12.5%" flexibility="fixed"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="75%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi842" offset="15%"/>
+								<HorizontalConstraint anchor="vi842" offset="33.67%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve364" name="vi365">
+							<ResponsiveConstraint zIndex="6">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="20.17%" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="75%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi842" offset="15%"/>
+								<HorizontalConstraint anchor="vi842" offset="46.17%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve347" name="vi348">
+							<ResponsiveConstraint zIndex="7">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="32.67%" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="15%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi842" offset="0%"/>
+								<HorizontalConstraint anchor="vi842" offset="67.33%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve193" name="vi192">
+							<ResponsiveConstraint zIndex="8">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="12.5%" flexibility="fixed"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="75%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi842" offset="15%"/>
+								<HorizontalConstraint anchor="vi842" offset="67.33%"/>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve47" name="vi48">
+							<ResponsiveConstraint zIndex="9">
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="20.17%" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="75%" flexibility="fixed"/>
+								</HeightConstraint>
+								<VerticalConstraint anchor="vi842" offset="15%"/>
+								<HorizontalConstraint anchor="vi842" offset="79.83%"/>
+							</ResponsiveConstraint>
+						</Visual>
+					</Container>
+				</MediaContainer>
+			</Body>
+		</Section>
+	</View>
+	<Actions>
+		<NavigationAction type="url" value="https://target.balgroupit.com/ibi_epp/WFServlet?IBIF_ex=redirect&amp;EPPTAB=AD_Reporting&amp;EPPFOLDER=CUMULUS&amp;EPPREPORT=WH_AD_KADER/fadkarep00.fex" label="Cumulus" name="ac327"/>
+		<NavigationAction type="url" value="https://va-ch.balgroupit.com/links/resources/report?uri=%2Freports%2Freports%2F4c0a41f0-614f-47d9-bb8d-fdbd825f9e98" label="EL Anträge" name="ac330"/>
+		<NavigationAction type="url" value="https://confluence.baloisenet.com/pages/viewpage.action?spaceKey=HRDIS&amp;title=Landingpage+2024" label="Reglemente" name="ac390"/>
+		<NavigationAction type="report" value="/reports/reports/5f22f718-bf8b-438b-b096-714e7fae2ac9" behavior="filter" label="Preismodell_MF" name="ac441">
+			</NavigationAction>
+		<NavigationAction type="report" value="/reports/reports/289d28fd-a80f-4ed3-b2ac-58592e46f9b4" behavior="filter" label="Preismodell_GB_V.5.8" name="ac443">
+			</NavigationAction>
+		<NavigationAction type="report" value="/reports/reports/8eea10f8-9fd7-45de-be0a-97d0d1064c58" behavior="filter" label="Bestand - Portfeuille - Stock" name="ac449">
+			</NavigationAction>
+		<NavigationAction type="report" value="/reports/reports/289c4bb2-8387-4df3-8ad4-44c08bf4cc8e" behavior="filter" label="Kunden - Clients - Clienti v4.7" name="ac451">
+			</NavigationAction>
+		<NavigationAction type="report" value="/reports/reports/37df8df5-55e0-4d32-a0d7-58a3a68e495a" behavior="filter" label="Preismodell_BCH" name="ac695">
+			</NavigationAction>
+		<NavigationAction type="report" value="/reports/reports/7126683c-6620-4985-addc-73dcb7262097" behavior="filter" label="Preismodell_BKG" name="ac701">
+			</NavigationAction>
+		<NavigationAction type="url" value="https://target.balgroupit.com/ibi_epp/WFServlet?IBIF_ex=redirect&amp;EPPTAB=AD_Reporting&amp;EPPFOLDER=Selektionen&amp;EPPREPORT=WH_BIS%2Ffassrep01.fex&amp;lang=de" label="Bestandes-Selektionen" name="ac933"/>
+		<NavigationAction type="url" value="https://baloise-dashboards.ch/KuBe/" label="NPS" name="ac1019"/>
+		<NavigationAction type="url" value="mailto:group.ch_SalesServices@baloise.ch" label="group.ch_SalesServices@baloise.ch" name="ac3461"/>
+		<NavigationAction type="report" value="/reports/reports/b8f811ac-3245-4d64-ae3e-31f3f3c5e3b5" behavior="filter" label="BKG Rabattcontrolling" name="ac3505">
+			</NavigationAction>
+		<NavigationAction type="report" value="/reports/reports/8b79c18d-270f-4e43-b1ab-ddca211c7ce1" behavior="filter" label="Rapport Partenaires de distribution" name="ac3646">
+			</NavigationAction>
+		<NavigationAction type="report" value="/reports/reports/8b79c18d-270f-4e43-b1ab-ddca211c7ce1" behavior="filter" label="Rapport Partenaires de distribution" name="ac3648">
+			</NavigationAction>
+		<NavigationAction type="url" value="https://baloise-dashboards.ch/BaloiseLike/" label="Baloise like Umsetzung" name="ac3691"/>
+		<NavigationAction type="report" value="/reports/reports/b54191a1-fa8e-44ae-adaf-675b3d319232" behavior="filter" label="Vertriebspartner Report" name="ac3735">
+			</NavigationAction>
+		<NavigationAction type="url" value="https://target.balgroupit.com/bsicrm/?dl=outline-31245&amp;i=arbeit" label="COMET" name="ac3836"/>
+		<NavigationAction type="url" value="https://hraccess9.baloisenet.com/hra-space/portal/root/employee" label="HR Self Service" name="ac3837"/>
+		<NavigationAction type="report" value="/reports/reports/d473ee6e-2261-456c-8148-12991301468c" behavior="filter" label="Vertriebsreporting" name="ac3881">
+			<NavigationAction type="section" value="vi6" label="Startseite" name="ac3880"/>
+		</NavigationAction>
+		<NavigationAction type="report" value="/reports/reports/d473ee6e-2261-456c-8148-12991301468c" behavior="filter" label="Vertriebsreporting" name="ac3883">
+			<NavigationAction type="section" value="vi6" label="Startseite" name="ac3882"/>
+		</NavigationAction>
+		<NavigationAction type="report" value="/reports/reports/9c5009bb-29b3-4b40-9ee4-6aa9791207a2" behavior="setHeaderValue" label="Vertriebsreporting" name="ac3930">
+			<NavigationAction type="section" value="vi6" label="Startseite" name="ac3929"/>
+		</NavigationAction>
+		<NavigationAction type="url" value="mailto:group.ch_SalesServices@baloise.ch" label="Sales Services" name="ac3973"/>
+		<NavigationAction type="report" value="/reports/reports/08c29bf2-5dc7-4184-91a1-76dd75455003" behavior="filter" label="Top5" name="ac4061">
+			</NavigationAction>
+		<NavigationAction type="report" value="/reports/reports/75a321c4-00b1-479a-9216-98df85ad9bce" behavior="filter" label="VD Report Cumulus" name="ac4105">
+			</NavigationAction>
+		<NavigationAction type="report" value="/reports/reports/76bdace4-d2b9-47c2-8902-43f1f7a011c5" behavior="filter" label="Rapport VD Cumulus" name="ac4107">
+			</NavigationAction>
+		<NavigationAction type="report" value="/reports/reports/59ec946a-76aa-4565-8667-f8ba02af90f4" behavior="filter" label="Top Banker Award" name="ac4151">
+			<NavigationAction type="section" value="vi6" label="D" name="ac4150"/>
+		</NavigationAction>
+		<NavigationAction type="url" value="https://va-ch.balgroupit.com/links/resources/report?uri=%2Freports%2Freports%2F227ee11f-e895-445f-a55a-fa9c884ed679" label="Stornoquote Kader" name="ac4238"/>
+		<NavigationAction type="url" value="https://va-ch.balgroupit.com/links/resources/report?uri=%2Freports%2Freports%2F5378df91-73ae-4462-ac1a-261acd715056" label="Taux d'annulation Cadre" name="ac4239"/>
+		<NavigationAction type="url" value="https://va-ch.balgroupit.com/links/resources/report?uri=%2Freports%2Freports%2F68660688-6360-4c49-be7d-8f806996b47c" label="Stornoquote Finanzpartner" name="ac4408"/>
+		<NavigationAction type="url" value="https://va-ch.balgroupit.com/links/resources/report?uri=%2Freports%2Freports%2Fbb0a083b-602e-4bb9-ad43-a509e67ed6fc" label="Taux d'annulation Partenaire financier" name="ac4409"/>
+		<NavigationAction type="report" value="/reports/reports/f46dbb1d-6018-4070-a2ee-74c66fedba46" behavior="filter" label="Vertragsreporting Finanzpartner" name="ac3792">
+			<NavigationAction type="section" value="vi6" label="Cockpit" name="ac3791"/>
+		</NavigationAction>
+		<NavigationAction type="report" value="/reports/reports/cea00dd3-66a8-4ae8-9275-4c755e892ac2" behavior="filter" label="Vertragsreporting Kader" name="ac3790">
+			<NavigationAction type="section" value="vi6" label="Cockpit" name="ac3789"/>
+		</NavigationAction>
+		<NavigationAction type="report" value="/reports/reports/a513636c-e863-404d-a30f-14792d4d76bc" behavior="filter" label="Vertragsreporting Organisation" name="ac4017">
+			<NavigationAction type="section" value="vi6" label="Goals Finance Partner" name="ac4016"/>
+		</NavigationAction>
+		<NavigationAction type="url" value="https://target.balgroupit.com/ibi_epp/WFServlet?IBIF_ex=redirect&amp;EPPTAB=AD_Reporting&amp;EPPFOLDER=PPIS&amp;EPPREPORT=WH_PPIS/fppstrep.fex" label="Brutto- und Bestandesentschädigung Versicherung" name="ac325"/>
+		<NavigationAction type="url" value="https://va-ch.balgroupit.com/links/resources/report?uri=%2Freports%2Freports%2F82176b63-9c37-4a7e-8745-617af69bf02d" label="Brutto- und Bestandesentschädigung Bank" name="ac326"/>
+		<NavigationAction type="url" value="https://apps.powerapps.com/play/e/b3a338f6-c2d2-e583-8371-90d69ff98243/a/e018ea27-42d8-4789-9bbd-860cd977eee4?tenantId=eb3c68b9-0935-4046-8550-8bcaa4167e2e&amp;hint=5c0f993b-4d66-4e4e-b327-2ed00d883199&amp;sourcetime=1712133386797" label="Umbuchungsantrag Provisionskorrekturen" name="ac3835"/>
+		<NavigationAction type="url" value="https://va-hr.balgroupit.com/SASVisualAnalytics/?appSwitcherMessage=%7B%22type%22%3A%22App.Open%22%2C%22data%22%3A%7B%22directive%22%3A%22SASVisualAnalytics%22%2C%22targetUri%22%3A%22%2Freports%2Freports%2F728d8dc2-643a-44d2-9370-f77c7c5af1e7%22%2C%22targetPublicType%22%3A%22report%22%7D%7D" label="HR Self Dashboard Finanzpartner" name="ac4194"/>
+		<NavigationAction type="url" value="https://va-hr.balgroupit.com/SASVisualAnalytics/?appSwitcherMessage=%7B%22type%22%3A%22App.Open%22%2C%22data%22%3A%7B%22directive%22%3A%22SASVisualAnalytics%22%2C%22targetUri%22%3A%22%2Freports%2Freports%2F6b460f59-36ae-4087-be2b-33514315063e%22%2C%22targetPublicType%22%3A%22report%22%7D%7D" label="HR Self Dashboard Kader" name="ac4195"/>
+	</Actions>
+	<Interactions>
+		<Interaction name="ia2427" type="filter" derived="false">
+			<InteractionElementReference purpose="source" ref="ve1143"/>
+			<InteractionElementReference purpose="target" ref="ve20"/>
+		</Interaction>
+	</Interactions>
+	<MediaSchemes>
+		<MediaScheme name="ms1">
+			<Stylesheet>
+
+#ve80 .Container {
+  background-color: #C7E3F9;
+  transparency: 0;
+}
+#ve375 .ReportElementContainer {
+  padding: 10px;
+}
+#ve342 .span1 {
+  color: #203399;
+  font-size: 14pt;
+}
+#ve342 .span2 {
+  font-weight: bold;
+}
+#ve42 .span49 {
+  color: #203399;
+}
+#ve347 .span2 {
+  font-weight: bold;
+}
+#ve42 .ReportElementContainer {
+  padding: 0px;
+}
+#ve347 .span1 {
+  color: #203399;
+  font-size: 14pt;
+}
+#ve25 .span46 {
+  color: #203399;
+}
+#ve30 .ReportElementContainer {
+  padding: 0px;
+}
+#ve101 .span8 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve250 .ReportElementContainer {
+  padding: 0px;
+}
+#ve47 .ReportElementContainer {
+  padding: 10px;
+}
+#ve76 .ReportElementContainer {
+  padding: 0px;
+}
+#ve101 .span9 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve101 .span11 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve101 .ReportElementContainer {
+  padding: 10px;
+}
+#ve101 .span12 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve20 .span3 {
+  color: #203399;
+  font-weight: bold;
+  font-size: 10.5pt;
+}
+#ve20 .span2 {
+  color: #203399;
+  font-weight: bold;
+  font-size: 10.5pt;
+}
+#ve37 .span12 {
+  font-size: 14pt;
+}
+#ve20 .span1 {
+  color: #203399;
+  font-weight: bold;
+  font-size: 10.5pt;
+}
+#ve37 .span11 {
+  font-weight: bold;
+}
+#ve364 .ReportElementContainer {
+  padding: 10px;
+}
+#ve101 .span10 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve15 .ReportElementContainer {
+  padding: 0px;
+}
+#ve112 .span11 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve80 .span1 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve42 .span37 {
+  font-weight: bold;
+}
+#ve42 .span38 {
+  font-size: 14pt;
+}
+#ve37 .span48 {
+  color: #203399;
+}
+#ve25 .span30 {
+  font-weight: bold;
+}
+#ve112 .span10 {
+  color: #023399;
+  font-weight: bold;
+  font-size: 10.5pt;
+}
+#ve112 .Container {
+  background-color: #C7E3F9;
+  transparency: 0;
+}
+#ve347 .ReportElementContainer {
+  padding: 0px;
+}
+#ve375 .span2 {
+  color: #203399;
+  font-size: 10.5pt;
+}
+#ve375 .span1 {
+  color: #203399;
+  font-size: 10.5pt;
+}
+#ve193 .ReportElementContainer {
+  padding: 0px;
+}
+#ve334 .ReportElementContainer {
+  padding: 0px;
+}
+#ve364 .span2 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve80 .span7 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve364 .span1 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve80 .span6 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve101 .Container {
+  background-color: #C7E3F9;
+  transparency: 0;
+}
+#ve112 .ReportElementContainer {
+  padding: 10px;
+}
+#ve80 .span8 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve80 .span3 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve80 .span2 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve364 .span4 {
+  color: #203399;
+  font-size: 10.5pt;
+}
+#ve80 .span5 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve364 .span3 {
+  color: #203399;
+  font-size: 10.5pt;
+}
+#ve80 .span4 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve379 .ReportElementContainer {
+  padding: 0px;
+}
+#ve30 .span9 {
+  font-weight: bold;
+}
+#ve47 .Container {
+  background-color: #C7E3F9;
+  transparency: 0;
+}
+#ve37 .ReportElementContainer {
+  padding: 0px;
+}
+#ve342 .ReportElementContainer {
+  padding: 0px;
+}
+#ve90 .ReportElementContainer {
+  padding: 0px;
+}
+#ve15 .span3 {
+  font-weight: bold;
+}
+#ve15 .span4 {
+  font-size: 14pt;
+}
+#ve25 .span29 {
+  font-size: 14pt;
+}
+#ve105 .ReportElementContainer {
+  padding: 0px;
+}
+#ve112 .span8 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve112 .span9 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve30 .span47 {
+  color: #203399;
+}
+#ve20 .ReportElementContainer {
+  padding: 10px;
+}
+#ve25 .ReportElementContainer {
+  padding: 0px;
+}
+#ve47 .span1 {
+  color: #203399;
+  font-weight: bold;
+  font-size: 10.5pt;
+}
+#ve112 .span1 {
+  color: #023399;
+  font-weight: bold;
+  font-size: 10.5pt;
+}
+#ve47 .span2 {
+  color: #203399;
+  font-size: 10.5pt;
+}
+#ve112 .span2 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve47 .span3 {
+  font-size: 10.5pt;
+}
+#ve112 .span3 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve47 .span4 {
+  color: #203399;
+  font-weight: bold;
+  font-size: 10.5pt;
+}
+#ve112 .span4 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve112 .span5 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve112 .span6 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve112 .span7 {
+  color: #023399;
+  font-weight: bold;
+  font-size: 10.5pt;
+}
+#ve101 .span2 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve101 .span3 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve375 .Container {
+  background-color: #C7E3F9;
+  transparency: 0;
+}
+#ve1143 .ButtonBar {
+  background-color: #C7E3F9;
+  selected-background-color: #C7E3F9;
+  selected-color: #C7E3F9;
+}
+#ve101 .span1 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve101 .span6 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve47 .span5 {
+  color: #203399;
+  text-decoration: underline;
+  font-size: 10.5pt;
+}
+#ve101 .span7 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve101 .span4 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve101 .span5 {
+  color: #023399;
+  font-size: 10.5pt;
+}
+#ve30 .span10 {
+  font-size: 14pt;
+}
+#ve15 .span52 {
+  color: #203399;
+}
+#ve80 .ReportElementContainer {
+  padding: 10px;
+}
+#ve20 .Container {
+  background-color: #C7E3F9;
+  transparency: 0;
+}
+#ve1143 .ReportElementContainer {
+  padding: 0px;
+}
+#ve364 .Container {
+  background-color: #C7E3F9;
+  transparency: 0;
+}
+
+			</Stylesheet>
+		</MediaScheme>
+	</MediaSchemes>
+	<MediaTargets>
+		<MediaTarget windowSize="default" scheme="ms1" name="mt2"/>
+		<MediaTarget windowSize="small" scheme="ms1" name="mt3"/>
+		<MediaTarget windowSize="medium" scheme="ms1" name="mt4"/>
+		<MediaTarget windowSize="large" scheme="ms1" name="mt5"/>
+	</MediaTargets>
+	<Properties>
+		<Property key="lastSection">vi6</Property>
+		<Property key="loadedFromXML">true</Property>
+		<Property key="displayDataSource">ds4282</Property>
+	</Properties>
+	<ExportProperties>
+		<Export destination="pdf">
+			<Property key="showCoverPage" value="true"/>
+			<Property key="showPageNumbers" value="true"/>
+		</Export>
+	</ExportProperties>
+	<Localization currentLocale="de">
+		<Locale locale="de">
+			<LocString target="vi6" attribute="label" value="Startseite"/>
+			<LocString target="ve15" attribute="label" value="News &amp; wichtige Hinweise"/>
+			<LocString target="ve15" attribute="P 1 Span 1.1.1.*" value="News &amp; wichtige Hinweise"/>
+			<LocString target="ve25" attribute="label" value="Entschädigung"/>
+			<LocString target="ve25" attribute="P 1 Span 1.1.1.*" value="Entschädigung"/>
+			<LocString target="ve30" attribute="label" value="Leistung und Verhalten"/>
+			<LocString target="ve30" attribute="P 1 Span 1.1.1.*" value="Leistung &amp; Verhalten"/>
+			<LocString target="ve37" attribute="label" value="Kunden und Bestand"/>
+			<LocString target="ve37" attribute="P 1 Span 1.1.1.*" value="Kunden &amp; Bestand"/>
+			<LocString target="ve42" attribute="label" value="Wettbewerbe"/>
+			<LocString target="ve42" attribute="P 1 Span 1.1.1.*" value="Wettbewerbe"/>
+			<LocString target="ve47" attribute="label" value="System Links "/>
+			<LocString target="ve47" attribute="P 1 Span 1.*" value="Fragen zum Vertriebsreporting direkt an die Gruppenmailbox"/>
+			<LocString target="ve47" attribute="P 2 Span 1.*" value="group.ch_SalesServices@baloise.ch"/>
+			<LocString target="ve47" attribute="P 3 Span 1.*" value=" "/>
+			<LocString target="ve47" attribute="P 4 Span 1.*" value="Bei technischen Problemen, bitte beim Helpdesk anrufen"/>
+			<LocString target="ve47" attribute="P 5 Span 1.*" value="058 285 77 77"/>
+			<LocString target="ve76" attribute="label" value="Entschädigung Bild"/>
+			<LocString target="ve90" attribute="label" value="Leistung und Verhalten Bild"/>
+			<LocString target="ve101" attribute="label" value="Leistung und Verhalten Links"/>
+			<LocString target="ve101" attribute="P 1 Span 1.*" value="Cumulus"/>
+			<LocString target="ve101" attribute="P 2 Span 1.*" value="Cumulus (inklusive GA-Broker)"/>
+			<LocString target="ve101" attribute="P 3 Span 1.*" value="Cumulus (incluant des courtiers AG)"/>
+			<LocString target="ve101" attribute="P 4 Span 1.*" value="EL Anträge"/>
+			<LocString target="ve101" attribute="P 5 Span 1.*" value="Vertriebspartner Report"/>
+			<LocString target="ve101" attribute="P 6 Span 1.*" value="Rapport Partenaires de distribution"/>
+			<LocString target="ve101" attribute="P 7 Span 1.*" value="NPS"/>
+			<LocString target="ve101" attribute="P 8 Span 1.*" value="Baloise like Umsetzung"/>
+			<LocString target="ve101" attribute="P 9 Span 1.*" value="Stornoquote Kader"/>
+			<LocString target="ve101" attribute="P 10 Span 1.*" value="Stornoquote Finanzpartner"/>
+			<LocString target="ve101" attribute="P 11 Span 1.*" value="Taux d'annulation Cadre"/>
+			<LocString target="ve101" attribute="P 12 Span 1.*" value="Taux d'annulation Partenaire financier"/>
+			<LocString target="ve105" attribute="label" value="Kunden und Bestand Bild"/>
+			<LocString target="ve112" attribute="label" value="Kunden und Bestand Links"/>
+			<LocString target="ve112" attribute="P 1 Span 1.*" value="Rabatte"/>
+			<LocString target="ve112" attribute="P 2 Span 1.*" value="Preismodell MF"/>
+			<LocString target="ve112" attribute="P 3 Span 1.*" value="Preismodell Gebäude"/>
+			<LocString target="ve112" attribute="P 4 Span 1.*" value="Preismodell Haushalt​"/>
+			<LocString target="ve112" attribute="P 5 Span 1.*" value="Preismodell Baloise KMU Geschäftsversicherung (für AD)"/>
+			<LocString target="ve112" attribute="P 6 Span 1.*" value="Rabattcontrolling BKG (für VL, Gagt, LVE, VDir)"/>
+			<LocString target="ve112" attribute="P 8 Span 1.*" value="Bankgeschäfte"/>
+			<LocString target="ve112" attribute="P 9 Span 1.*" value="Bestand"/>
+			<LocString target="ve112" attribute="P 10 Span 1.*" value="Kunden"/>
+			<LocString target="ve112" attribute="P 12 Span 1.*" value="Bestandesstatistik"/>
+			<LocString target="ve112" attribute="P 13 Span 1.*" value="Bestandes-Selektionen"/>
+			<LocString target="ve193" attribute="label" value="System Bild"/>
+			<LocString target="ve250" attribute="label" value="News Bild"/>
+			<LocString target="ve334" attribute="label" value="Diverses Bild"/>
+			<LocString target="ve342" attribute="label" value="Diverses"/>
+			<LocString target="ve342" attribute="P 1 Span 1.1.*" value="Links"/>
+			<LocString target="ve347" attribute="label" value="System"/>
+			<LocString target="ve347" attribute="P 1 Span 1.1.*" value="Support"/>
+			<LocString target="ve364" attribute="label" value="Diverses Links"/>
+			<LocString target="ve364" attribute="P 1 Span 1.*" value="Reglemente"/>
+			<LocString target="ve364" attribute="P 2 Span 1.*" value="Vertriebsreporting 2018 - 2023"/>
+			<LocString target="ve364" attribute="P 3 Span 1.*" value="COMET"/>
+			<LocString target="ve364" attribute="P 4 Span 1.*" value="HR Self Service"/>
+			<LocString target="ve375" attribute="label" value="Wettbewerbe Links"/>
+			<LocString target="ve375" attribute="P 1 Span 1.*" value="Top5 (alle Wettbewerbe)"/>
+			<LocString target="ve375" attribute="P 2 Span 1.*" value="Top Banker Award"/>
+			<LocString target="ve379" attribute="label" value="Wettbewerbe Bild"/>
+			<LocString target="ve20" attribute="label" value="News"/>
+			<LocString target="ve20" attribute="P 1 Span 1.*" value="Allfällige Rückfragen zum Cockpit werden durch die Verkaufsleiter oder Generalagenten an die Gruppenmailbox "/>
+			<LocString target="ve20" attribute="P 1 Span 2.*" value="group.ch_SalesServices@baloise.ch"/>
+			<LocString target="ve20" attribute="P 1 Span 3.*" value=" weitergeleitet."/>
+			<LocString target="ve843" attribute="label" value="Präzisionscontainer Links 2"/>
+			<LocString target="ve845" attribute="label" value="Präzisionscontainer Links 1"/>
+			<LocString target="ve1143" attribute="label" value="Schaltflächenleiste - Stichtag"/>
+			<LocString target="ve847" attribute="label" value="Präzisionscontainer News"/>
+			<LocString target="ve80" attribute="label" value="Entschädigung Links"/>
+			<LocString target="ve80" attribute="P 1 Span 1.*" value="Vertragsreporting Finanzpartner"/>
+			<LocString target="ve80" attribute="P 2 Span 1.*" value="Vertragsreporting Kader"/>
+			<LocString target="ve80" attribute="P 3 Span 1.*" value="Vertragsreporting Organisation"/>
+			<LocString target="ve80" attribute="P 4 Span 1.*" value="Brutto- und Bestandesentschädigung Versicherung"/>
+			<LocString target="ve80" attribute="P 5 Span 1.*" value="Brutto- und Bestandesentschädigung Bank"/>
+			<LocString target="ve80" attribute="P 6 Span 1.*" value="Umbuchungsantrag Provisionskorrekturen"/>
+			<LocString target="ve80" attribute="P 7 Span 1.*" value="HR Self Dashboard Finanzpartner"/>
+			<LocString target="ve80" attribute="P 8 Span 1.*" value="HR Self Dashboard Kader"/>
+		</Locale>
+		<Locale locale="fr">
+			<LocString target="vi6" attribute="label" value="Page d'accueil"/>
+			<LocString target="ve15" attribute="label" value="Nouveautés et informations importantes"/>
+			<LocString target="ve15" attribute="P 1 Span 1.1.1.*" value="Nouveautés et informations importantes"/>
+			<LocString target="ve25" attribute="label" value="Rémunération"/>
+			<LocString target="ve25" attribute="P 1 Span 1.1.1.*" value="Rémunération"/>
+			<LocString target="ve30" attribute="label" value="Performance et Comportement"/>
+			<LocString target="ve30" attribute="P 1 Span 1.1.1.*" value="Performance et Comportement"/>
+			<LocString target="ve37" attribute="label" value="Clients et Portefeuilles"/>
+			<LocString target="ve37" attribute="P 1 Span 1.1.1.*" value="Clients et Portefeuilles"/>
+			<LocString target="ve42" attribute="label" value="Concours"/>
+			<LocString target="ve42" attribute="P 1 Span 1.1.1.*" value="Concours"/>
+			<LocString target="ve47" attribute="label" value="Liens vers les systèmes"/>
+			<LocString target="ve47" attribute="P 1 Span 1.*" value="Questions sur le reporting de la distribution directement à la boîte aux lettres du groupe"/>
+			<LocString target="ve47" attribute="P 2 Span 1.*" value="group.ch_SalesServices@baloise.ch"/>
+			<LocString target="ve47" attribute="P 3 Span 1.*" value=" "/>
+			<LocString target="ve47" attribute="P 4 Span 1.*" value="Si vous rencontrez des problèmes techniques, veuillez contacter le Helpdesk"/>
+			<LocString target="ve47" attribute="P 5 Span 1.*" value="058 285 77 77"/>
+			<LocString target="ve76" attribute="label" value="Entschädigung Bild"/>
+			<LocString target="ve90" attribute="label" value="Performance et Comportement Bild"/>
+			<LocString target="ve101" attribute="label" value="Performance et Comportement Links"/>
+			<LocString target="ve101" attribute="P 1 Span 1.*" value="Cumulus"/>
+			<LocString target="ve101" attribute="P 2 Span 1.*" value="Cumulus (inklusive GA-Broker)"/>
+			<LocString target="ve101" attribute="P 3 Span 1.*" value="Cumulus (incluant des courtiers AG)"/>
+			<LocString target="ve101" attribute="P 4 Span 1.*" value="Propositions VI"/>
+			<LocString target="ve101" attribute="P 5 Span 1.*" value="Vertriebspartner Report"/>
+			<LocString target="ve101" attribute="P 6 Span 1.*" value="Rapport Partenaires de distribution"/>
+			<LocString target="ve101" attribute="P 7 Span 1.*" value="NPS"/>
+			<LocString target="ve101" attribute="P 8 Span 1.*" value="Mise en œuvre Baloise like"/>
+			<LocString target="ve101" attribute="P 9 Span 1.*" value="Stornoquote Kader"/>
+			<LocString target="ve101" attribute="P 10 Span 1.*" value="Stornoquote Finanzpartner"/>
+			<LocString target="ve101" attribute="P 11 Span 1.*" value="Taux d'annulation Cadre"/>
+			<LocString target="ve101" attribute="P 12 Span 1.*" value="Taux d'annulation Partenaire financier"/>
+			<LocString target="ve105" attribute="label" value="Clients et Portefeuilles Bild"/>
+			<LocString target="ve112" attribute="label" value="Clients et Portefeuilles Links"/>
+			<LocString target="ve112" attribute="P 1 Span 1.*" value="Rabais"/>
+			<LocString target="ve112" attribute="P 2 Span 1.*" value="modèle de prix VM"/>
+			<LocString target="ve112" attribute="P 3 Span 1.*" value="modèle de prix Bâtiment"/>
+			<LocString target="ve112" attribute="P 4 Span 1.*" value="modèle de prix Ménage​"/>
+			<LocString target="ve112" attribute="P 5 Span 1.*" value="modèle de prix ass. PME (pour SE)"/>
+			<LocString target="ve112" attribute="P 6 Span 1.*" value="Contrôle des rabais BKG (pour CVR, Agen, CDV, DirV)"/>
+			<LocString target="ve112" attribute="P 8 Span 1.*" value="Affaires bancaires"/>
+			<LocString target="ve112" attribute="P 9 Span 1.*" value="Portefeuille"/>
+			<LocString target="ve112" attribute="P 10 Span 1.*" value="Clients"/>
+			<LocString target="ve112" attribute="P 12 Span 1.*" value="Statistique du portefeuille"/>
+			<LocString target="ve112" attribute="P 13 Span 1.*" value="Sélection de portefeuille"/>
+			<LocString target="ve193" attribute="label" value="Système Bild"/>
+			<LocString target="ve250" attribute="label" value="Nouveautés Bild"/>
+			<LocString target="ve334" attribute="label" value="Divers Bild"/>
+			<LocString target="ve342" attribute="label" value="Divers"/>
+			<LocString target="ve342" attribute="P 1 Span 1.1.*" value="Liens"/>
+			<LocString target="ve347" attribute="label" value="Système"/>
+			<LocString target="ve347" attribute="P 1 Span 1.1.*" value="Support"/>
+			<LocString target="ve364" attribute="label" value="Divers"/>
+			<LocString target="ve364" attribute="P 1 Span 1.*" value="Règlements"/>
+			<LocString target="ve364" attribute="P 2 Span 1.*" value="Reporting de la distribution 2018 - 2023"/>
+			<LocString target="ve364" attribute="P 3 Span 1.*" value="COMET"/>
+			<LocString target="ve364" attribute="P 4 Span 1.*" value="HR Self Service"/>
+			<LocString target="ve375" attribute="label" value="Concours Links"/>
+			<LocString target="ve375" attribute="P 1 Span 1.*" value="Top5 (tous les concours)"/>
+			<LocString target="ve375" attribute="P 2 Span 1.*" value="Top Banker Award"/>
+			<LocString target="ve379" attribute="label" value="Concours Bild"/>
+			<LocString target="ve20" attribute="label" value="Nouveautés"/>
+			<LocString target="ve20" attribute="P 1 Span 1.*" value="Les demandes de précisions éventuelles concernant le cockpit sont transmises par les chefs de vente ou les agents généraux à la boîte mail du groupe "/>
+			<LocString target="ve20" attribute="P 1 Span 2.*" value="group.ch_SalesServices@baloise.ch"/>
+			<LocString target="ve20" attribute="P 1 Span 3.*" value="."/>
+			<LocString target="ve843" attribute="label" value="Präzisionscontainer Links 2"/>
+			<LocString target="ve845" attribute="label" value="Präzisionscontainer Links 1"/>
+			<LocString target="ve1143" attribute="label" value="Schaltflächenleiste - EOP_DT 1"/>
+			<LocString target="ve847" attribute="label" value="Präzisionscontainer News"/>
+			<LocString target="ve80" attribute="label" value="Entschädigung Links"/>
+			<LocString target="ve80" attribute="P 1 Span 1.*" value="Reporting des contrats Partenaire financier"/>
+			<LocString target="ve80" attribute="P 2 Span 1.*" value="Reporting des contrats Cadre"/>
+			<LocString target="ve80" attribute="P 3 Span 1.*" value="Reporting des contrats Organisation"/>
+			<LocString target="ve80" attribute="P 4 Span 1.*" value="Rémunération brutte et de portefeuille assurance"/>
+			<LocString target="ve80" attribute="P 5 Span 1.*" value="Rémunération brutte et de portefeuille banque"/>
+			<LocString target="ve80" attribute="P 6 Span 1.*" value="Transferts de commissions"/>
+			<LocString target="ve80" attribute="P 7 Span 1.*" value="RH Self Dashboard partenaire financier-ère"/>
+			<LocString target="ve80" attribute="P 8 Span 1.*" value="RH Self Dashboard cadre"/>
+		</Locale>
+		<Locale locale="it">
+			<LocString target="vi6" attribute="label" value="Pagina iniziale"/>
+			<LocString target="ve15" attribute="label" value="Notizie e informazioni importanti"/>
+			<LocString target="ve15" attribute="P 1 Span 1.1.1.*" value="Notizie e informazioni importanti"/>
+			<LocString target="ve25" attribute="label" value="Remunerazione"/>
+			<LocString target="ve25" attribute="P 1 Span 1.1.1.*" value="Remunerazione"/>
+			<LocString target="ve30" attribute="label" value="Performance e comportamento"/>
+			<LocString target="ve30" attribute="P 1 Span 1.1.1.*" value="Performance e comportamento"/>
+			<LocString target="ve37" attribute="label" value="Clienti e Portafogli"/>
+			<LocString target="ve37" attribute="P 1 Span 1.1.1.*" value="Clienti e Portafogli"/>
+			<LocString target="ve42" attribute="label" value="Concorsi"/>
+			<LocString target="ve42" attribute="P 1 Span 1.1.1.*" value="Concorsi"/>
+			<LocString target="ve47" attribute="label" value="Link ai sistemi"/>
+			<LocString target="ve47" attribute="P 1 Span 1.*" value="Domande sul rapporto di distribuzione direttamente alla casella di posta elettronica del gruppo"/>
+			<LocString target="ve47" attribute="P 2 Span 1.*" value="group.ch_SalesServices@baloise.ch"/>
+			<LocString target="ve47" attribute="P 3 Span 1.*" value=""/>
+			<LocString target="ve47" attribute="P 4 Span 1.*" value="In caso di problemi tecnici, chiamare l'Helpdesk"/>
+			<LocString target="ve47" attribute="P 5 Span 1.*" value="058 285 77 77"/>
+			<LocString target="ve76" attribute="label" value="Entschädigung Bild"/>
+			<LocString target="ve90" attribute="label" value="Performance e comportamento Bild"/>
+			<LocString target="ve101" attribute="label" value="Performance e comportamento Links"/>
+			<LocString target="ve101" attribute="P 1 Span 1.*" value="Cumulus"/>
+			<LocString target="ve101" attribute="P 2 Span 1.*" value="Cumulus (inklusive GA-Broker)"/>
+			<LocString target="ve101" attribute="P 3 Span 1.*" value="Cumulus (incluant des courtiers AG)"/>
+			<LocString target="ve101" attribute="P 4 Span 1.*" value="Proposte VI"/>
+			<LocString target="ve101" attribute="P 5 Span 1.*" value="Vertriebspartner Report"/>
+			<LocString target="ve101" attribute="P 6 Span 1.*" value="Rapport Partenaires de distribution"/>
+			<LocString target="ve101" attribute="P 7 Span 1.*" value="NPS"/>
+			<LocString target="ve101" attribute="P 8 Span 1.*" value="Messa in pratica Baloise like"/>
+			<LocString target="ve101" attribute="P 9 Span 1.*" value="Stornoquote Kader"/>
+			<LocString target="ve101" attribute="P 10 Span 1.*" value="Stornoquote Finanzpartner"/>
+			<LocString target="ve101" attribute="P 11 Span 1.*" value="Taux d'annulation Cadre"/>
+			<LocString target="ve101" attribute="P 12 Span 1.*" value="Taux d'annulation Partenaire financier"/>
+			<LocString target="ve105" attribute="label" value="Clienti e Portafogli Bild"/>
+			<LocString target="ve112" attribute="label" value="Clienti e Portafogli Links"/>
+			<LocString target="ve112" attribute="P 1 Span 1.*" value="Ribassi"/>
+			<LocString target="ve112" attribute="P 2 Span 1.*" value="modello di prezzo ass. VM"/>
+			<LocString target="ve112" attribute="P 3 Span 1.*" value="modello di prezzo Stabili"/>
+			<LocString target="ve112" attribute="P 4 Span 1.*" value="modello di prezzo economia domestica"/>
+			<LocString target="ve112" attribute="P 5 Span 1.*" value="modello di prezzo ass. PMI (per SE)"/>
+			<LocString target="ve112" attribute="P 6 Span 1.*" value="Controllo ribassi BKG (per RV, AG, RSV, DirV)"/>
+			<LocString target="ve112" attribute="P 8 Span 1.*" value="Affari bancari"/>
+			<LocString target="ve112" attribute="P 9 Span 1.*" value="Portafoglio"/>
+			<LocString target="ve112" attribute="P 10 Span 1.*" value="Clienti"/>
+			<LocString target="ve112" attribute="P 12 Span 1.*" value="Statistiche portafoglio"/>
+			<LocString target="ve112" attribute="P 13 Span 1.*" value="Selezione portafoglio"/>
+			<LocString target="ve193" attribute="label" value="Sistema Bild"/>
+			<LocString target="ve250" attribute="label" value="Notizie Bild"/>
+			<LocString target="ve334" attribute="label" value="Varie Bild"/>
+			<LocString target="ve342" attribute="label" value="Varie"/>
+			<LocString target="ve342" attribute="P 1 Span 1.1.*" value="Link"/>
+			<LocString target="ve347" attribute="label" value="Sistema"/>
+			<LocString target="ve347" attribute="P 1 Span 1.1.*" value="Supporto"/>
+			<LocString target="ve364" attribute="label" value="Varie Links"/>
+			<LocString target="ve364" attribute="P 1 Span 1.*" value="Reggolamenti"/>
+			<LocString target="ve364" attribute="P 2 Span 1.*" value="Rapporti di distribuzione 2018 - 2023"/>
+			<LocString target="ve364" attribute="P 3 Span 1.*" value="COMET"/>
+			<LocString target="ve364" attribute="P 4 Span 1.*" value="HR Self Service"/>
+			<LocString target="ve375" attribute="label" value="Concorsi Links"/>
+			<LocString target="ve375" attribute="P 1 Span 1.*" value="Top5 (tutti i concorsi)"/>
+			<LocString target="ve375" attribute="P 2 Span 1.*" value="Top Banker Award"/>
+			<LocString target="ve379" attribute="label" value="Concorsi Bild"/>
+			<LocString target="ve20" attribute="label" value="Notizie"/>
+			<LocString target="ve20" attribute="P 1 Span 1.*" value="Tutte le domande relative alla cockpit vengono inoltrate alla casella di posta elettronica del gruppo "/>
+			<LocString target="ve20" attribute="P 1 Span 2.*" value="group.ch_SalesServices@baloise.ch"/>
+			<LocString target="ve20" attribute="P 1 Span 3.*" value=" dal responsabile vendite o dall'agente generale."/>
+			<LocString target="ve843" attribute="label" value="Präzisionscontainer Links 2"/>
+			<LocString target="ve845" attribute="label" value="Präzisionscontainer Links 1"/>
+			<LocString target="ve1143" attribute="label" value="Schaltflächenleiste - EOP_DT 1"/>
+			<LocString target="ve847" attribute="label" value="Präzisionscontainer News"/>
+			<LocString target="ve80" attribute="label" value="Entschädigung Links"/>
+			<LocString target="ve80" attribute="P 1 Span 1.*" value="Reporting del contratto Partner finanziario"/>
+			<LocString target="ve80" attribute="P 2 Span 1.*" value="Reporting del contratto Quadro"/>
+			<LocString target="ve80" attribute="P 3 Span 1.*" value="Reporting del contratto Organizzazione"/>
+			<LocString target="ve80" attribute="P 4 Span 1.*" value="Remunerazione lorda e di portafoglio assicurazione"/>
+			<LocString target="ve80" attribute="P 5 Span 1.*" value="Remunerazione lorda e di portafoglio banca"/>
+			<LocString target="ve80" attribute="P 6 Span 1.*" value="Richiesta di rimborso commissione"/>
+			<LocString target="ve80" attribute="P 7 Span 1.*" value="HR Self Dashboard partner finanziario/a"/>
+			<LocString target="ve80" attribute="P 8 Span 1.*" value="HR Self Dashboard quadro"/>
+		</Locale>
+	</Localization>
+	<History>
+		<Versions>
+			<Version key="4.1.2" lastDate="2020-06-02T07:53:19Z"/>
+			<Version key="4.2.4" lastDate="2023-06-23T06:05:38Z"/>
+			<Version key="4.32.0" lastDate="2023-09-19T08:11:46Z"/>
+			<Version key="4.33.0" lastDate="2023-11-13T13:29:08Z"/>
+			<Version key="4.34.0" lastDate="2023-11-24T16:09:05Z"/>
+			<Version key="4.36.0" lastDate="2024-01-21T13:36:32Z"/>
+			<Version key="4.39.0" lastDate="2024-04-26T12:22:41Z"/>
+			<Version key="4.40.0" lastDate="2024-07-23T14:31:38Z"/>
+			<Version key="4.45.0" lastDate="2024-11-21T07:15:01Z"/>
+			<Version key="4.48.0" lastDate="2025-03-06T07:52:34Z"/>
+		</Versions>
+		<Conversions>
+			<Conversion startVersion="4.1.2" finalVersion="4.2.4" date="2020-08-31T09:29:34Z"/>
+			<Conversion startVersion="4.2.4" finalVersion="4.32.0" date="2023-09-19T08:06:45Z"/>
+			<Conversion startVersion="4.32.0" finalVersion="4.33.0" date="2023-11-13T13:25:10Z"/>
+			<Conversion startVersion="4.33.0" finalVersion="4.34.0" date="2023-11-24T16:01:13Z"/>
+			<Conversion startVersion="4.34.0" finalVersion="4.36.0" date="2024-01-21T13:36:32Z"/>
+			<Conversion startVersion="4.36.0" finalVersion="4.39.0" date="2024-04-26T12:19:43Z"/>
+			<Conversion startVersion="4.39.0" finalVersion="4.40.0" date="2024-07-23T14:16:45Z"/>
+			<Conversion startVersion="4.40.0" finalVersion="4.45.0" date="2024-11-21T06:57:27Z"/>
+			<Conversion startVersion="4.45.0" finalVersion="4.48.0" date="2025-03-06T07:22:21Z"/>
+		</Conversions>
+		<Editors>
+			<Editor applicationName="VA">
+				<Revision editorVersion="8.5.1" lastDate="2021-12-15T12:59:20.208Z"/>
+				<Revision editorVersion="8.5.2" lastDate="2023-06-23T06:05:38.484Z"/>
+				<Revision editorVersion="2023.08" lastDate="2023-11-09T10:01:40.372Z"/>
+				<Revision editorVersion="2023.09" lastDate="2023-11-17T07:37:15.583Z"/>
+				<Revision editorVersion="2023.10" lastDate="2024-01-03T12:42:56.338Z"/>
+				<Revision editorVersion="2023.12" lastDate="2024-04-23T05:11:48.038Z"/>
+				<Revision editorVersion="2024.03" lastDate="2024-05-07T13:57:04.930Z"/>
+				<Revision editorVersion="2024.04" lastDate="2024-07-25T10:56:26.548Z"/>
+				<Revision editorVersion="2024.10" lastDate="2025-02-13T07:42:48.667Z"/>
+				<Revision editorVersion="2025.01" lastDate="2025-04-02T14:42:12.061Z"/>
+			</Editor>
+		</Editors>
+	</History>
+	<SASReportState date="2023-11-24T16:08:55Z">
+		<VisualElements>
+			<PromptState element="ve1143"/>
+		</VisualElements>
+		<View/>
+	</SASReportState>
+</SASReport>

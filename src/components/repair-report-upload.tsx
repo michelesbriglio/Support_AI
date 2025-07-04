@@ -133,7 +133,15 @@ function fixXmlReport(xmlText: string): { xml: string, results: RepairResultsDat
   const xml = serializer.serializeToString(xmlDoc);
   return {
     xml,
-    results: { duplicates, prompts, hasDuplicates, hasPrompts }
+    results: { 
+      duplicates, 
+      prompts, 
+      nullCandidates: 0, 
+      hasDuplicates, 
+      hasPrompts, 
+      hasNullCandidates: false,
+      totalObjects: 0
+    }
   };
 }
 
@@ -150,7 +158,7 @@ export function RepairReportUpload() {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0]
-    if (selectedFile && selectedFile.type === "text/xml") {
+    if (selectedFile && (selectedFile.type === "text/xml" || selectedFile.type === "application/json" || selectedFile.name.endsWith('.xml') || selectedFile.name.endsWith('.json'))) {
       setFile(selectedFile)
       setFileName(selectedFile.name)
       setIsCompleted(false)
@@ -159,7 +167,7 @@ export function RepairReportUpload() {
       setRepairResults(null)
       setAnalysisOutput("")
     } else if (selectedFile) {
-      setError("Please select a valid XML file")
+      setError("Please select a valid XML or JSON file")
     }
   }
 
@@ -174,7 +182,7 @@ export function RepairReportUpload() {
       formData.append('file', file)
 
       // Call the API endpoint
-      const response = await fetch('/api/repair-report', {
+      const response = await fetch('/Support_AI/api/repair-report', {
         method: 'POST',
         body: formData,
       })
@@ -232,14 +240,14 @@ export function RepairReportUpload() {
       {/* File Upload */}
       <div className="space-y-2">
         <Label htmlFor="xml-file" className="text-sm font-medium">
-          Upload XML File
+          Upload XML or JSON File
         </Label>
         <div className="flex items-center space-x-2">
           <Input
             ref={fileInputRef}
             id="xml-file"
             type="file"
-            accept=".xml"
+            accept=".xml,.json"
             onChange={handleFileChange}
             className="flex-1"
           />

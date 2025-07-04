@@ -8,7 +8,7 @@ A modern Next.js application with AI-powered support tools, featuring a beautifu
 
 - **Modern UI**: Built with Next.js 15 and styled with Tailwind CSS
 - **Dark Theme**: Elegant dark mode with theme toggle
-- **Repair Report OLD Tool**: Enhanced tool that repairs XML files containing null candidates, duplicate items, unused prompts, and corrupted structure
+- **Repair VA Report Tool**: Enhanced tool that repairs XML files containing null candidates, duplicate items, unused prompts, and corrupted structure
 - **Responsive Design**: Works perfectly on desktop and mobile devices
 - **GitHub Pages**: Automatically deployed to GitHub Pages
 
@@ -74,9 +74,9 @@ npm run dev
 
 ## 📝 Usage
 
-### Repair Report OLD Tool
+### Repair VA Report Tool
 
-1. Click on the "Repair Report OLD" card
+1. Click on the "Repair VA Report" card
 2. Upload an XML file using the file input
 3. The system will automatically process the file using the enhanced Python script
 4. View the comprehensive repair results including:

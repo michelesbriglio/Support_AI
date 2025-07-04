@@ -19,9 +19,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 });
     }
 
-    // Check if it's an XML file
-    if (!file.name.endsWith('.xml')) {
-      return NextResponse.json({ error: 'File must be an XML file' }, { status: 400 });
+    // Check if it's an XML or JSON file
+    if (!file.name.endsWith('.xml') && !file.name.endsWith('.json')) {
+      return NextResponse.json({ error: 'File must be an XML or JSON file' }, { status: 400 });
     }
 
     // Create temporary file paths
