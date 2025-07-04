@@ -1,6 +1,6 @@
 /**
  * Smart Repair Dispatcher
- * Uses server-side API on Vercel, client-side tool on GitHub Pages/local
+ * Uses server-side API on Vercel and locally, client-side tool on GitHub Pages
  */
 
 import { repairXMLFile } from './xml-repair';
@@ -15,14 +15,23 @@ function isVercel() {
 }
 
 /**
+ * Detect if we're running locally
+ */
+function isLocal() {
+  return typeof window !== 'undefined' && 
+         (window.location.hostname === 'localhost' || 
+          window.location.hostname === '127.0.0.1');
+}
+
+/**
  * Smart repair function that chooses the best method based on environment
  */
 export async function repairReportSmart(file) {
-  // Use server-side API on Vercel for better accuracy
-  if (isVercel()) {
+  // Use server-side API on Vercel and locally for better accuracy
+  if (isVercel() || isLocal()) {
     return await repairWithServerAPI(file);
   } else {
-    // Use client-side tool on GitHub Pages/local
+    // Use client-side tool on GitHub Pages
     return await repairXMLFile(file);
   }
 }
