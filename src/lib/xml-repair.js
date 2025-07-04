@@ -42,15 +42,6 @@ export class XMLRepairTool {
         hasRepairs = true;
       }
 
-      // Count actual repairs made
-      let repairCount = 0;
-      if (analysis.nullCandidates > 0) {
-        repairCount += analysis.nullCandidates;
-      }
-      if (analysis.prompts > 0) {
-        repairCount += analysis.prompts;
-      }
-
       // Store the original analysis for reporting
       const originalAnalysis = { ...analysis };
 
@@ -282,7 +273,6 @@ export class XMLRepairTool {
    * Repair unused prompts by removing prompt definitions that are not referenced
    */
   repairUnusedPrompts(doc) {
-    const analysis = this.analyzeXML(doc);
     const idCheck = /[a-z]{2}[0-9]+/;
     const promptIds = new Set();
     const referencedPromptIds = new Set();
