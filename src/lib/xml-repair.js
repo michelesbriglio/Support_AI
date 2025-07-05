@@ -399,7 +399,10 @@ export async function repairXMLFile(file) {
           // Handle as XML file
           const repairTool = new XMLRepairTool();
           const result = await repairTool.repairXML(content);
-          resolve(result);
+          resolve({
+            ...result,
+            filename: `repaired_${file.name}`
+          });
         }
       } catch (error) {
         reject(error);
