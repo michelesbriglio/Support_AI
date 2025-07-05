@@ -338,36 +338,12 @@ export async function POST(request: NextRequest) {
     tempInputPath = path.join(tempDir, `input_${timestamp}_${file.name}`);
     tempOutputPath = path.join(tempDir, `output_${timestamp}_${file.name}`);
 
-    // Write uploaded file to temporary location
-    const bytes = await file.arrayBuffer();
-    await writeFile(tempInputPath, Buffer.from(bytes));
-
-    // Get the path to the Python script
-    const scriptPath = path.join(process.cwd(), 'tools', 'sas_va_xml_repair.py');
-
-    // Execute the Python script
-    console.log('Executing Python script:', scriptPath);
-    console.log('Input file:', tempInputPath);
-    console.log('Working directory:', process.cwd());
-    
-    const { stdout, stderr } = await execAsync(`python3 "${scriptPath}" "${tempInputPath}"`, {
-      cwd: process.cwd(), // Run from project root so repaired files are created there
-      timeout: 30000 // 30 second timeout
-    });
-    
-    console.log('Python script stdout:', stdout);
-    if (stderr) console.log('Python script stderr:', stderr);
-
-    // Check if the script executed successfully
-    if (stderr && !stderr.includes('INFO')) {
-      console.error('Python script stderr:', stderr);
-      return NextResponse.json({ error: 'Failed to process XML file' }, { status: 500 });
-    }
-
-    // Read the repaired file
+    // Declare variables that will be used in both branches
     let repairedContent: string;
     const repairedFileName: string = file.name;
     let repairedFilePath: string;
+    let stdout: string = '';
+    let stderr: string = '';
 
     if (file.name.endsWith('.json')) {
       // Use JavaScript-based JSON processing for Vercel compatibility
@@ -407,6 +383,36 @@ export async function POST(request: NextRequest) {
         }, { status: 500 });
       }
     } else {
+      // For XML files, use Python script
+      // Write uploaded file to temporary location
+      const bytes = await file.arrayBuffer();
+      await writeFile(tempInputPath, Buffer.from(bytes));
+
+      // Get the path to the Python script
+      const scriptPath = path.join(process.cwd(), 'tools', 'sas_va_xml_repair.py');
+
+      // Execute the Python script
+      console.log('Executing Python script:', scriptPath);
+      console.log('Input file:', tempInputPath);
+      console.log('Working directory:', process.cwd());
+      
+      const result = await execAsync(`python3 "${scriptPath}" "${tempInputPath}"`, {
+        cwd: process.cwd(), // Run from project root so repaired files are created there
+        timeout: 30000 // 30 second timeout
+      });
+      
+      stdout = result.stdout;
+      stderr = result.stderr;
+      
+      console.log('Python script stdout:', stdout);
+      if (stderr) console.log('Python script stderr:', stderr);
+
+      // Check if the script executed successfully
+      if (stderr && !stderr.includes('INFO')) {
+        console.error('Python script stderr:', stderr);
+        return NextResponse.json({ error: 'Failed to process XML file' }, { status: 500 });
+      }
+
       // For XML input, use the old logic
       repairedFilePath = tempInputPath.replace('.xml', '_repaired.xml');
       try {
