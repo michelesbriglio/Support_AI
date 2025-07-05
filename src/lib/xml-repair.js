@@ -447,7 +447,7 @@ async function processJSONFile(jsonContent, fileName) {
                 }
                 const decompressed = pako.inflate(uint8Array, { to: 'string' });
                 byteDecompressed = decompressed;
-              } catch (zlibError) {
+              } catch {
                 byteDecompressed = byteDecoded;
               }
             } else {
@@ -469,7 +469,7 @@ async function processJSONFile(jsonContent, fileName) {
                 };
               }
             }
-          } catch (error) {
+          } catch {
             continue;
           }
         }

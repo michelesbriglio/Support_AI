@@ -49,7 +49,7 @@ async function processJSONWithJavaScript(jsonContent: string) {
               try {
                 const zlib = await import('zlib');
                 byteDecompressed = zlib.inflateSync(byteDecoded);
-              } catch (zlibError) {
+              } catch {
                 // Fallback: try to use the compressed data as-is
                 byteDecompressed = byteDecoded;
               }
@@ -67,7 +67,7 @@ async function processJSONWithJavaScript(jsonContent: string) {
                 return await analyzeXMLContent(xmlContent);
               }
             }
-          } catch (error) {
+          } catch {
             // Continue to next transfer detail
             continue;
           }
