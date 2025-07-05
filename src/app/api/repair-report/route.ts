@@ -40,10 +40,17 @@ export async function POST(request: NextRequest) {
     const scriptPath = path.join(process.cwd(), 'tools', 'sas_va_xml_repair.py');
 
     // Execute the Python script
+    console.log('Executing Python script:', scriptPath);
+    console.log('Input file:', tempInputPath);
+    console.log('Working directory:', process.cwd());
+    
     const { stdout, stderr } = await execAsync(`python3 "${scriptPath}" "${tempInputPath}"`, {
       cwd: process.cwd(), // Run from project root so repaired files are created there
       timeout: 30000 // 30 second timeout
     });
+    
+    console.log('Python script stdout:', stdout);
+    if (stderr) console.log('Python script stderr:', stderr);
 
     // Check if the script executed successfully
     if (stderr && !stderr.includes('INFO')) {
@@ -65,13 +72,31 @@ export async function POST(request: NextRequest) {
       // Look for files ending with _repaired.xml in the project root
       const repairedXmls = files.filter((f: string) => f.endsWith('_repaired.xml'));
       
+      console.log('Project root:', projectRoot);
+      console.log('Files in project root:', files);
+      console.log('Repaired XMLs found:', repairedXmls);
+      
       if (repairedXmls.length === 0) {
-        return NextResponse.json({ error: 'No repaired XML file generated from JSON' }, { status: 500 });
+        // Try to find any XML files that might have been created
+        const allXmlFiles = files.filter((f: string) => f.endsWith('.xml'));
+        console.log('All XML files found:', allXmlFiles);
+        
+        if (allXmlFiles.length === 0) {
+          return NextResponse.json({ 
+            error: 'No repaired XML file generated from JSON. Python script may have failed to execute properly.' 
+          }, { status: 500 });
+        }
+        
+        // Use the first XML file found (fallback)
+        repairedFileName = allXmlFiles[0];
+        repairedFilePath = path.join(projectRoot, repairedFileName);
+        console.log('Using fallback XML file:', repairedFilePath);
+      } else {
+        // Use the first repaired XML file
+        repairedFileName = repairedXmls[0];
+        repairedFilePath = path.join(projectRoot, repairedFileName);
       }
       
-      // Use the first repaired XML file
-      repairedFileName = repairedXmls[0];
-      repairedFilePath = path.join(projectRoot, repairedFileName);
       repairedContent = await readFile(repairedFilePath, 'utf-8');
     } else {
       // For XML input, use the old logic
