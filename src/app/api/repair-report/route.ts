@@ -347,10 +347,13 @@ export async function POST(request: NextRequest) {
 
     if (file.name.endsWith('.json')) {
       // Use JavaScript-based JSON processing for Vercel compatibility
-      console.log('Processing JSON file with JavaScript (no Python required)');
+      const debugLogs: string[] = [];
+      debugLogs.push('Processing JSON file with JavaScript (no Python required)');
       
       try {
         const jsonContent = await file.text();
+        debugLogs.push('=== JavaScript JSON Processing Started ===');
+        debugLogs.push('JSON content length: ' + jsonContent.length);
         const result = await processJSONWithJavaScript(jsonContent);
         
         // Parse the analysis to extract null candidates count
@@ -360,7 +363,8 @@ export async function POST(request: NextRequest) {
         const totalObjectsMatch = result.analysis.match(/Total Objects: (\d+)/);
         const totalObjects = totalObjectsMatch ? parseInt(totalObjectsMatch[1]) : 0;
         
-        console.log('Parsed results - nullCandidates:', nullCandidates, 'totalObjects:', totalObjects);
+        debugLogs.push('Parsed results - nullCandidates: ' + nullCandidates + ' totalObjects: ' + totalObjects);
+        debugLogs.push('Raw analysis string: ' + result.analysis);
         
         return NextResponse.json({
           file: result.content,
@@ -374,12 +378,14 @@ export async function POST(request: NextRequest) {
             totalObjects: totalObjects
           },
           analysis: result.analysis,
-          hasRepairs: false
+          hasRepairs: false,
+          debug: debugLogs
         });
       } catch (error) {
-        console.error('Error processing JSON with JavaScript:', error);
+        debugLogs.push('Error processing JSON with JavaScript: ' + (error instanceof Error ? error.message : String(error)));
         return NextResponse.json({ 
-          error: `Failed to process JSON: ${error instanceof Error ? error.message : 'Unknown error'}` 
+          error: `Failed to process JSON: ${error instanceof Error ? error.message : 'Unknown error'}` ,
+          debug: debugLogs
         }, { status: 500 });
       }
     } else {
