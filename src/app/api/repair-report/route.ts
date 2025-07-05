@@ -350,7 +350,7 @@ export async function POST(request: NextRequest) {
             totalObjects: totalObjects
           },
           analysis: result.analysis,
-          filename: `repaired_${file.name}`,
+          filename: `repaired_${file.name.replace('.json', '.xml')}`,
           hasRepairs: false
         });
       } catch (error) {

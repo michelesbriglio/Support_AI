@@ -465,7 +465,7 @@ async function processJSONFile(jsonContent, fileName) {
                 const result = await repairTool.repairXML(xmlContent);
                 return {
                   ...result,
-                  filename: `repaired_${fileName}`
+                  filename: `repaired_${fileName.replace('.json', '.xml')}`
                 };
               }
             }

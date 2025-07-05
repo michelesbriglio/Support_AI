@@ -81,7 +81,11 @@ export function RepairReportUpload() {
     const url = URL.createObjectURL(blob)
     const a = document.createElement("a")
     a.href = url
-    a.download = `repaired_${fileName}`
+    // If original file was JSON, download as XML
+    const downloadName = fileName.endsWith('.json') 
+      ? `repaired_${fileName.replace('.json', '.xml')}`
+      : `repaired_${fileName}`
+    a.download = downloadName
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
