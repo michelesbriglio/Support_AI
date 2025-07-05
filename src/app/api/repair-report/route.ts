@@ -46,7 +46,7 @@ async function processJSONWithJavaScript(jsonContent: string) {
             
             if (compress) {
               // Decompress with zlib
-              const zlib = require('zlib');
+              const zlib = await import('zlib');
               byteDecompressed = zlib.inflateSync(byteDecoded);
             } else {
               byteDecompressed = byteDecoded;
@@ -62,8 +62,8 @@ async function processJSONWithJavaScript(jsonContent: string) {
                 return await analyzeXMLContent(xmlContent);
               }
             }
-          } catch (e) {
-            console.log('Error processing transferObject.content with ReportExtractor logic:', e);
+          } catch (error) {
+            console.log('Error processing transferObject.content with ReportExtractor logic:', error);
             // Continue to next transfer detail
             continue;
           }
@@ -305,7 +305,7 @@ export async function POST(request: NextRequest) {
 
     // Read the repaired file
     let repairedContent: string;
-    let repairedFileName: string = file.name;
+    const repairedFileName: string = file.name;
     let repairedFilePath: string;
 
     if (file.name.endsWith('.json')) {
