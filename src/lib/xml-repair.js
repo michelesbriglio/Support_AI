@@ -3,6 +3,8 @@
  * This is a simplified version that can run in the browser
  */
 
+import pako from 'pako';
+
 export class XMLRepairTool {
   constructor() {
     this.xmlContent = "";
@@ -386,10 +388,18 @@ export async function repairXMLFile(file) {
     
     reader.onload = async (e) => {
       try {
-        const xmlContent = e.target.result;
-        const repairTool = new XMLRepairTool();
-        const result = await repairTool.repairXML(xmlContent);
-        resolve(result);
+        const content = e.target.result;
+        
+        // Check if it's a JSON file
+        if (file.name.endsWith('.json')) {
+          const result = await processJSONFile(content, file.name);
+          resolve(result);
+        } else {
+          // Handle as XML file
+          const repairTool = new XMLRepairTool();
+          const result = await repairTool.repairXML(content);
+          resolve(result);
+        }
       } catch (error) {
         reject(error);
       }
@@ -398,4 +408,100 @@ export async function repairXMLFile(file) {
     reader.onerror = () => reject(new Error('Failed to read file'));
     reader.readAsText(file);
   });
+}
+
+/**
+ * Process JSON file to extract and analyze XML content
+ */
+async function processJSONFile(jsonContent, fileName) {
+  console.log('=== Client-side JSON Processing Started ===');
+  console.log('JSON content length:', jsonContent.length);
+  
+  try {
+    const jsonData = JSON.parse(jsonContent);
+    console.log('JSON parsed successfully, keys:', Object.keys(jsonData));
+    
+    // Handle Paket.json structure using the same logic as server-side
+    if (jsonData.transferDetails) {
+      console.log('Processing transferDetails structure...');
+      for (const detail of jsonData.transferDetails) {
+        if (detail.transferObject && detail.transferObject.content) {
+          try {
+            console.log('Found transferObject.content, processing...');
+            const content = detail.transferObject.content;
+            let realContent = content;
+            let compress = false;
+            
+            if (content.startsWith("TRUE###")) {
+              realContent = content.substring(7);
+              compress = true;
+              console.log('Content is compressed (TRUE###)');
+            } else if (content.startsWith("FALSE###")) {
+              realContent = content.substring(8);
+              console.log('Content is uncompressed (FALSE###)');
+            } else {
+              console.log('Content has no compression prefix');
+            }
+            
+            // Decode base64
+            const byteDecoded = atob(realContent);
+            let byteDecompressed;
+            
+            if (compress) {
+              // Decompress using pako
+              try {
+                const uint8Array = new Uint8Array(byteDecoded.length);
+                for (let i = 0; i < byteDecoded.length; i++) {
+                  uint8Array[i] = byteDecoded.charCodeAt(i);
+                }
+                const decompressed = pako.inflate(uint8Array, { to: 'string' });
+                byteDecompressed = decompressed;
+                console.log('Content decompressed successfully');
+              } catch (zlibError) {
+                console.log('Decompression failed, using raw content:', zlibError);
+                byteDecompressed = byteDecoded;
+              }
+            } else {
+              byteDecompressed = byteDecoded;
+            }
+            
+            // Parse JSON
+            const objectJson = JSON.parse(byteDecompressed);
+            console.log('JSON parsed successfully, looking for transferableContent...');
+            
+            // Extract XML content
+            if (objectJson.transferableContent && objectJson.transferableContent.content) {
+              const xmlContent = objectJson.transferableContent.content;
+              console.log('Found transferableContent.content, checking for XML...');
+              if (xmlContent.includes('<') && xmlContent.includes('>')) {
+                console.log('XML content found, analyzing...');
+                const repairTool = new XMLRepairTool();
+                const result = await repairTool.repairXML(xmlContent);
+                return {
+                  ...result,
+                  filename: `repaired_${fileName}`,
+                  debug: [
+                    '=== Client-side JSON Processing ===',
+                    'JSON content length: ' + jsonContent.length,
+                    'XML extracted successfully',
+                    'Null candidates found: ' + result.results.nullCandidates
+                  ]
+                };
+              }
+            }
+          } catch (error) {
+            console.log('Error processing transferObject.content:', error);
+            continue;
+          }
+        }
+      }
+    }
+    
+    // If no XML found, return error
+    throw new Error('No XML content found in JSON file');
+    
+  } catch (error) {
+    console.error('Error processing JSON with client-side tool:', error);
+    throw new Error(`Failed to process JSON: ${error.message}`);
+  }
 } 
