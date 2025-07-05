@@ -10,8 +10,11 @@ const execAsync = promisify(exec);
 
 // JavaScript-based JSON processing for Vercel compatibility
 async function processJSONWithJavaScript(jsonContent: string) {
+  console.log('=== JavaScript JSON Processing Started ===');
+  console.log('JSON content length:', jsonContent.length);
   try {
     const jsonData = JSON.parse(jsonContent);
+    console.log('JSON parsed successfully, keys:', Object.keys(jsonData));
     
     // Look for reports in the JSON structure
     let reports = [];
@@ -51,10 +54,16 @@ async function processJSONWithJavaScript(jsonContent: string) {
             let byteDecompressed;
             
             if (compress) {
-              // Decompress with zlib
-              const zlib = await import('zlib');
-              byteDecompressed = zlib.inflateSync(byteDecoded);
-              console.log('Content decompressed successfully');
+              // Decompress with zlib - use require for serverless compatibility
+              try {
+                const zlib = require('zlib');
+                byteDecompressed = zlib.inflateSync(byteDecoded);
+                console.log('Content decompressed successfully');
+              } catch (zlibError) {
+                console.log('Zlib decompression failed, trying alternative method:', zlibError);
+                // Fallback: try to use the compressed data as-is
+                byteDecompressed = byteDecoded;
+              }
             } else {
               byteDecompressed = byteDecoded;
             }
@@ -368,17 +377,25 @@ export async function POST(request: NextRequest) {
         const jsonContent = await file.text();
         const result = await processJSONWithJavaScript(jsonContent);
         
+        // Parse the analysis to extract null candidates count
+        const nullCandidatesMatch = result.analysis.match(/Null Candidates: (\d+)/);
+        const nullCandidates = nullCandidatesMatch ? parseInt(nullCandidatesMatch[1]) : 0;
+        
+        const totalObjectsMatch = result.analysis.match(/Total Objects: (\d+)/);
+        const totalObjects = totalObjectsMatch ? parseInt(totalObjectsMatch[1]) : 0;
+        
+        console.log('Parsed results - nullCandidates:', nullCandidates, 'totalObjects:', totalObjects);
+        
         return NextResponse.json({
           file: result.content,
           results: {
             duplicates: 0,
             prompts: 0,
-            nullCandidates: result.analysis.includes('Found') ? 
-              parseInt(result.analysis.match(/Found (\d+) null candidates/)?.[1] || '0') : 0,
+            nullCandidates: nullCandidates,
             hasDuplicates: false,
             hasPrompts: false,
-            hasNullCandidates: result.analysis.includes('Found'),
-            totalObjects: parseInt(result.analysis.match(/Total Objects: (\d+)/)?.[1] || '0')
+            hasNullCandidates: nullCandidates > 0,
+            totalObjects: totalObjects
           },
           analysis: result.analysis,
           hasRepairs: false
