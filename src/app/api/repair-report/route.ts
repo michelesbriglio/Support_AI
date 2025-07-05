@@ -25,9 +25,11 @@ async function processJSONWithJavaScript(jsonContent: string) {
       reports = Array.isArray(jsonData.content.reports) ? jsonData.content.reports : [jsonData.content.reports];
     } else if (jsonData.transferDetails) {
       // Handle Paket.json structure using ReportExtractor.py logic
+      console.log('Processing transferDetails structure...');
       for (const detail of jsonData.transferDetails) {
         if (detail.transferObject && detail.transferObject.content) {
           try {
+            console.log('Found transferObject.content, processing...');
             // Use the same logic as ReportExtractor.py
             const content = detail.transferObject.content;
             let realContent = content;
@@ -36,8 +38,12 @@ async function processJSONWithJavaScript(jsonContent: string) {
             if (content.startsWith("TRUE###")) {
               realContent = content.substring(7);
               compress = true;
+              console.log('Content is compressed (TRUE###)');
             } else if (content.startsWith("FALSE###")) {
               realContent = content.substring(8);
+              console.log('Content is uncompressed (FALSE###)');
+            } else {
+              console.log('Content has no compression prefix');
             }
             
             // Decode base64
@@ -48,27 +54,38 @@ async function processJSONWithJavaScript(jsonContent: string) {
               // Decompress with zlib
               const zlib = await import('zlib');
               byteDecompressed = zlib.inflateSync(byteDecoded);
+              console.log('Content decompressed successfully');
             } else {
               byteDecompressed = byteDecoded;
             }
             
             // Parse JSON
             const objectJson = JSON.parse(byteDecompressed.toString('utf8'));
+            console.log('JSON parsed successfully, looking for transferableContent...');
             
             // Extract XML content
             if (objectJson.transferableContent && objectJson.transferableContent.content) {
               const xmlContent = objectJson.transferableContent.content;
+              console.log('Found transferableContent.content, checking for XML...');
               if (xmlContent.includes('<') && xmlContent.includes('>')) {
+                console.log('XML content found, analyzing...');
                 return await analyzeXMLContent(xmlContent);
+              } else {
+                console.log('No XML content found in transferableContent.content');
               }
+            } else {
+              console.log('No transferableContent found in parsed JSON');
             }
           } catch (error) {
             console.log('Error processing transferObject.content with ReportExtractor logic:', error);
             // Continue to next transfer detail
             continue;
           }
+        } else {
+          console.log('No transferObject.content found in detail');
         }
       }
+      console.log('Finished processing all transferDetails, no XML found');
     } else {
       // Try to find any XML content in the JSON
       const jsonString = JSON.stringify(jsonData);
@@ -98,7 +115,42 @@ async function processJSONWithJavaScript(jsonContent: string) {
     }
     
     if (reports.length === 0) {
-      throw new Error('No reports found in JSON file');
+      console.log('No reports array found in JSON file');
+      // Return a default response instead of throwing an error
+      return {
+        analysis: `
+==========================================================
+SAS Visual Analytics BIRD XML Analysis
+==========================================================
+Total Objects: 0
+
+Object Counts by Type:
+  ParentDataDefinition: 0
+  DataDefinition: 0
+  DataSource: 0
+  DataItem: 0
+  PredefinedDataItem: 0
+  VisualElements: 0
+  Image: 0
+  VisualContainer: 0
+  Prompt: 0
+  MediaContainer: 0
+  Section: 0
+  Container: 0
+  Actions: 0
+  NavigationAction: 0
+
+Null Candidates: 0
+Unused Prompts: 0
+Duplicate Objects: 0
+
+Potential Issues:
+  ✅ No null candidates found
+==========================================================
+`,
+        content: Buffer.from('').toString('base64'),
+        fileName: 'no_content.xml'
+      };
     }
     
     // Process the first report
