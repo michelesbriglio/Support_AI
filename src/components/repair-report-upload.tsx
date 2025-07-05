@@ -31,7 +31,6 @@ export function RepairReportUpload() {
   const [repairedFile, setRepairedFile] = useState<string | null>(null)
   const [repairResults, setRepairResults] = useState<RepairResultsData | null>(null)
   const [analysisOutput, setAnalysisOutput] = useState<string>("")
-  const [debugLogs, setDebugLogs] = useState<string[]>([])
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,7 +60,6 @@ export function RepairReportUpload() {
       setRepairedFile(data.file)
       setRepairResults(data.results)
       setAnalysisOutput(data.analysis || "")
-      setDebugLogs(data.debug || [])
       setIsCompleted(true)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred')
@@ -92,7 +90,6 @@ export function RepairReportUpload() {
     setRepairedFile(null)
     setRepairResults(null)
     setAnalysisOutput("")
-    setDebugLogs([])
     setFile(null)
     setFileName("")
     setError("")
@@ -155,7 +152,7 @@ export function RepairReportUpload() {
 
       {/* Repair Results */}
       {isCompleted && repairResults && (
-        <RepairResults results={repairResults} debug={debugLogs} />
+        <RepairResults results={repairResults} />
       )}
 
       {/* Analysis Output */}

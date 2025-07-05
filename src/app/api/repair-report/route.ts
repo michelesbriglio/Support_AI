@@ -10,11 +10,8 @@ const execAsync = promisify(exec);
 
 // JavaScript-based JSON processing for Vercel compatibility
 async function processJSONWithJavaScript(jsonContent: string) {
-  console.log('=== JavaScript JSON Processing Started ===');
-  console.log('JSON content length:', jsonContent.length);
   try {
     const jsonData = JSON.parse(jsonContent);
-    console.log('JSON parsed successfully, keys:', Object.keys(jsonData));
     
     // Look for reports in the JSON structure
     let reports = [];
@@ -28,11 +25,9 @@ async function processJSONWithJavaScript(jsonContent: string) {
       reports = Array.isArray(jsonData.content.reports) ? jsonData.content.reports : [jsonData.content.reports];
     } else if (jsonData.transferDetails) {
       // Handle Paket.json structure using ReportExtractor.py logic
-      console.log('Processing transferDetails structure...');
       for (const detail of jsonData.transferDetails) {
         if (detail.transferObject && detail.transferObject.content) {
           try {
-            console.log('Found transferObject.content, processing...');
             // Use the same logic as ReportExtractor.py
             const content = detail.transferObject.content;
             let realContent = content;
@@ -41,12 +36,8 @@ async function processJSONWithJavaScript(jsonContent: string) {
             if (content.startsWith("TRUE###")) {
               realContent = content.substring(7);
               compress = true;
-              console.log('Content is compressed (TRUE###)');
             } else if (content.startsWith("FALSE###")) {
               realContent = content.substring(8);
-              console.log('Content is uncompressed (FALSE###)');
-            } else {
-              console.log('Content has no compression prefix');
             }
             
             // Decode base64
@@ -58,9 +49,7 @@ async function processJSONWithJavaScript(jsonContent: string) {
               try {
                 const zlib = await import('zlib');
                 byteDecompressed = zlib.inflateSync(byteDecoded);
-                console.log('Content decompressed successfully');
               } catch (zlibError) {
-                console.log('Zlib decompression failed, trying alternative method:', zlibError);
                 // Fallback: try to use the compressed data as-is
                 byteDecompressed = byteDecoded;
               }
@@ -70,31 +59,20 @@ async function processJSONWithJavaScript(jsonContent: string) {
             
             // Parse JSON
             const objectJson = JSON.parse(byteDecompressed.toString('utf8'));
-            console.log('JSON parsed successfully, looking for transferableContent...');
             
             // Extract XML content
             if (objectJson.transferableContent && objectJson.transferableContent.content) {
               const xmlContent = objectJson.transferableContent.content;
-              console.log('Found transferableContent.content, checking for XML...');
               if (xmlContent.includes('<') && xmlContent.includes('>')) {
-                console.log('XML content found, analyzing...');
                 return await analyzeXMLContent(xmlContent);
-              } else {
-                console.log('No XML content found in transferableContent.content');
               }
-            } else {
-              console.log('No transferableContent found in parsed JSON');
             }
           } catch (error) {
-            console.log('Error processing transferObject.content with ReportExtractor logic:', error);
             // Continue to next transfer detail
             continue;
           }
-        } else {
-          console.log('No transferObject.content found in detail');
         }
       }
-      console.log('Finished processing all transferDetails, no XML found');
     } else {
       // Try to find any XML content in the JSON
       const jsonString = JSON.stringify(jsonData);
@@ -196,10 +174,6 @@ Potential Issues:
 // Analyze XML content using JavaScript (similar to the client-side tool)
 async function analyzeXMLContent(xmlContent: string) {
   try {
-    console.log('=== analyzeXMLContent START ===');
-    console.log('XML content length:', xmlContent.length);
-    console.log('XML preview:', xmlContent.substring(0, 200) + '...');
-    
     // Simple XML parsing and analysis
     const analysis = {
       totalObjects: 0,
@@ -214,8 +188,6 @@ async function analyzeXMLContent(xmlContent: string) {
     const tagPattern = /<([a-zA-Z][a-zA-Z0-9]*)/g;
     const matches = xmlContent.match(tagPattern);
     
-    console.log('Tag matches found:', matches ? matches.length : 0);
-    
     if (matches) {
       for (const match of matches) {
         const tagName = match.slice(1); // Remove the '<'
@@ -224,72 +196,45 @@ async function analyzeXMLContent(xmlContent: string) {
       }
     }
     
-    console.log('Total objects counted:', analysis.totalObjects);
-    console.log('Object types found:', Object.keys(analysis.objectTypes).length);
-    
     // Find null candidates using regex patterns
     const idCheck = /^[a-z]{2}[0-9]+$/;
     const definedIds = new Set<string>();
     const referencedIds = new Set<string>();
     
-    console.log('=== NULL CANDIDATE ANALYSIS ===');
-    
     // Find defined IDs (name attributes)
     const namePattern = /name="([^"]+)"/g;
     let nameMatch;
-    let nameCount = 0;
     while ((nameMatch = namePattern.exec(xmlContent)) !== null) {
       const name = nameMatch[1];
-      nameCount++;
       if (idCheck.test(name)) {
         definedIds.add(name);
       }
     }
-    console.log('Name attributes found:', nameCount);
-    console.log('Valid defined IDs found:', definedIds.size);
     
     // Find referenced IDs in value attributes
     const valuePattern = /value="([^"]+)"/g;
     let valueMatch;
-    let valueCount = 0;
     while ((valueMatch = valuePattern.exec(xmlContent)) !== null) {
       const value = valueMatch[1].trim();
-      valueCount++;
       if (idCheck.test(value)) {
         referencedIds.add(value);
       }
     }
-    console.log('Value attributes found:', valueCount);
-    console.log('Valid referenced IDs found:', referencedIds.size);
     
     // Null candidates are referenced but not defined
     const nullCandidates = new Set([...referencedIds].filter(id => !definedIds.has(id)));
-    console.log('Raw null candidates (before filtering):', nullCandidates.size);
-    console.log('Raw null candidate IDs:', Array.from(nullCandidates).slice(0, 10));
     
     // Apply filtering (same as Python script)
     const filteredCandidates = new Set<string>();
     for (const candidate of nullCandidates) {
-      if (candidate.length < 3) {
-        console.log('Filtered out (too short):', candidate);
-        continue;
-      }
-      if (/^[a-fA-F0-9]{6}$/.test(candidate)) {
-        console.log('Filtered out (hex color):', candidate);
-        continue;
-      }
-      if (['bi1', 'label', 'title'].includes(candidate.toLowerCase())) {
-        console.log('Filtered out (excluded):', candidate);
-        continue;
-      }
+      if (candidate.length < 3) continue;
+      if (/^[a-fA-F0-9]{6}$/.test(candidate)) continue;
+      if (['bi1', 'label', 'title'].includes(candidate.toLowerCase())) continue;
       filteredCandidates.add(candidate);
     }
     
     analysis.nullCandidates = filteredCandidates.size;
     analysis.nullCandidateIds = filteredCandidates;
-    
-    console.log('Final filtered null candidates:', analysis.nullCandidates);
-    console.log('Final null candidate IDs:', Array.from(analysis.nullCandidateIds));
     
     // Generate analysis report
     const targetTypes = [
@@ -335,12 +280,7 @@ ${analysis.nullCandidates > 0 ? `  ⚠️  Found ${analysis.nullCandidates} null
 ==========================================================
 `;
     
-    console.log('=== FINAL ANALYSIS REPORT ===');
-    console.log('Analysis report length:', analysisReport.length);
-    console.log('Analysis report preview:', analysisReport.substring(0, 300) + '...');
-    console.log('Final nullCandidates value:', analysis.nullCandidates);
-    console.log('Final totalObjects value:', analysis.totalObjects);
-    console.log('=== analyzeXMLContent END ===');
+
     
     return {
       analysis: analysisReport,
@@ -387,21 +327,8 @@ export async function POST(request: NextRequest) {
 
     if (file.name.endsWith('.json')) {
       // Use JavaScript-based JSON processing for Vercel compatibility
-      const debugLogs: string[] = [];
-      debugLogs.push('=== ENVIRONMENT DEBUG ===');
-      debugLogs.push('Node version: ' + process.version);
-      debugLogs.push('Platform: ' + process.platform);
-      debugLogs.push('Architecture: ' + process.arch);
-      debugLogs.push('Current working directory: ' + process.cwd());
-      debugLogs.push('Processing JSON file with JavaScript (no Python required)');
-      
       try {
         const jsonContent = await file.text();
-        debugLogs.push('=== JavaScript JSON Processing Started ===');
-        debugLogs.push('JSON content length: ' + jsonContent.length);
-        debugLogs.push('File name: ' + file.name);
-        debugLogs.push('File size: ' + file.size + ' bytes');
-        
         const result = await processJSONWithJavaScript(jsonContent);
         
         // Parse the analysis to extract null candidates count
@@ -411,44 +338,24 @@ export async function POST(request: NextRequest) {
         const totalObjectsMatch = result.analysis.match(/Total Objects: (\d+)/);
         const totalObjects = totalObjectsMatch ? parseInt(totalObjectsMatch[1]) : 0;
         
-        debugLogs.push('=== PARSING RESULTS ===');
-        debugLogs.push('Null candidates match: ' + (nullCandidatesMatch ? nullCandidatesMatch[0] : 'NO MATCH'));
-        debugLogs.push('Total objects match: ' + (totalObjectsMatch ? totalObjectsMatch[0] : 'NO MATCH'));
-        debugLogs.push('Parsed nullCandidates: ' + nullCandidates);
-        debugLogs.push('Parsed totalObjects: ' + totalObjects);
-        debugLogs.push('Analysis length: ' + result.analysis.length);
-        debugLogs.push('Analysis preview: ' + result.analysis.substring(0, 200) + '...');
-        
-        // Force the values to be numbers and add validation
-        const finalNullCandidates = Number(nullCandidates) || 0;
-        const finalTotalObjects = Number(totalObjects) || 0;
-        
-        debugLogs.push('=== FINAL VALUES ===');
-        debugLogs.push('Final nullCandidates: ' + finalNullCandidates + ' (type: ' + typeof finalNullCandidates + ')');
-        debugLogs.push('Final totalObjects: ' + finalTotalObjects + ' (type: ' + typeof finalTotalObjects + ')');
-        debugLogs.push('hasNullCandidates: ' + (finalNullCandidates > 0));
-        
         return NextResponse.json({
           file: result.content,
           results: {
             duplicates: 0,
             prompts: 0,
-            nullCandidates: finalNullCandidates,
+            nullCandidates: nullCandidates,
             hasDuplicates: false,
             hasPrompts: false,
-            hasNullCandidates: finalNullCandidates > 0,
-            totalObjects: finalTotalObjects
+            hasNullCandidates: nullCandidates > 0,
+            totalObjects: totalObjects
           },
           analysis: result.analysis,
           filename: `repaired_${file.name}`,
-          hasRepairs: false,
-          debug: debugLogs
+          hasRepairs: false
         });
       } catch (error) {
-        debugLogs.push('Error processing JSON with JavaScript: ' + (error instanceof Error ? error.message : String(error)));
         return NextResponse.json({ 
-          error: `Failed to process JSON: ${error instanceof Error ? error.message : 'Unknown error'}` ,
-          debug: debugLogs
+          error: `Failed to process JSON: ${error instanceof Error ? error.message : 'Unknown error'}` 
         }, { status: 500 });
       }
     } else {
