@@ -74,6 +74,9 @@ export class XMLRepairTool {
    * Analyze XML structure
    */
   analyzeXML(doc) {
+    console.log('=== Client-side XML Analysis START ===');
+    console.log('Document root element:', doc.documentElement.tagName);
+    
     const analysis = {
       totalObjects: 0,
       nullCandidates: 0,
@@ -85,60 +88,89 @@ export class XMLRepairTool {
 
     // Count objects by type
     const allElements = doc.getElementsByTagName('*');
+    console.log('Total elements found:', allElements.length);
+    
     for (let elem of allElements) {
       const tagName = elem.tagName;
       analysis.objectTypes[tagName] = (analysis.objectTypes[tagName] || 0) + 1;
       analysis.totalObjects++;
     }
+    
+    console.log('Total objects counted:', analysis.totalObjects);
+    console.log('Object types found:', Object.keys(analysis.objectTypes).length);
 
     // Find null candidates using conservative approach to match Python script exactly
     const idCheck = /^[a-z]{2}[0-9]+$/;  // Exact match for ID pattern (e.g., vi1645)
     const definedIds = new Set();
     const referencedIds = new Set();
 
+    console.log('=== Client-side NULL CANDIDATE ANALYSIS ===');
+
     // First pass: collect all defined IDs (name attributes only)
+    let nameCount = 0;
     for (let elem of allElements) {
       const name = elem.getAttribute('name');
+      nameCount++;
       if (name && idCheck.test(name)) {
         definedIds.add(name);
       }
     }
+    console.log('Name attributes checked:', nameCount);
+    console.log('Valid defined IDs found:', definedIds.size);
 
     // Second pass: collect referenced IDs from specific attributes only
     // Focus on attributes that typically contain object references
     const referenceAttributes = ['value', 'ref', 'target', 'id', 'object'];
+    let valueCount = 0;
     
     for (let elem of allElements) {
       for (let attr of elem.attributes) {
         if (referenceAttributes.includes(attr.name.toLowerCase())) {
           const val = attr.value.trim();
+          valueCount++;
           if (idCheck.test(val)) {
             referencedIds.add(val);
           }
         }
       }
     }
+    console.log('Value attributes checked:', valueCount);
+    console.log('Valid referenced IDs found:', referencedIds.size);
 
     // Null candidates are referenced but not defined
     const nullCandidates = new Set([...referencedIds].filter(id => !definedIds.has(id)));
+    console.log('Raw null candidates (before filtering):', nullCandidates.size);
+    console.log('Raw null candidate IDs:', Array.from(nullCandidates).slice(0, 10));
 
     // Apply the same filtering as Python script
     const filteredCandidates = new Set();
     for (let candidate of nullCandidates) {
       // Skip very short IDs
-      if (candidate.length < 3) continue;
+      if (candidate.length < 3) {
+        console.log('Filtered out (too short):', candidate);
+        continue;
+      }
       
       // Skip if it looks like a color code
-      if (/^[a-fA-F0-9]{6}$/.test(candidate)) continue;
+      if (/^[a-fA-F0-9]{6}$/.test(candidate)) {
+        console.log('Filtered out (hex color):', candidate);
+        continue;
+      }
       
       // Skip special cases
-      if (['bi1', 'label', 'title'].includes(candidate.toLowerCase())) continue;
+      if (['bi1', 'label', 'title'].includes(candidate.toLowerCase())) {
+        console.log('Filtered out (excluded):', candidate);
+        continue;
+      }
       
       filteredCandidates.add(candidate);
     }
 
     analysis.nullCandidates = filteredCandidates.size;
     analysis.nullCandidateIds = filteredCandidates;
+    
+    console.log('Final filtered null candidates:', analysis.nullCandidates);
+    console.log('Final null candidate IDs:', Array.from(analysis.nullCandidateIds));
 
     // Find unused prompts (simplified)
     const promptIds = new Set();
@@ -414,20 +446,30 @@ export async function repairXMLFile(file) {
  * Process JSON file to extract and analyze XML content
  */
 async function processJSONFile(jsonContent, fileName) {
-  console.log('=== Client-side JSON Processing Started ===');
-  console.log('JSON content length:', jsonContent.length);
+  const debugLogs = [];
+  debugLogs.push('=== CLIENT-SIDE ENVIRONMENT DEBUG ===');
+  debugLogs.push('User Agent: ' + navigator.userAgent);
+  debugLogs.push('Platform: ' + navigator.platform);
+  debugLogs.push('Client-side JSON Processing Started');
+  debugLogs.push('JSON content length: ' + jsonContent.length);
+  debugLogs.push('File name: ' + fileName);
   
   try {
     const jsonData = JSON.parse(jsonContent);
-    console.log('JSON parsed successfully, keys:', Object.keys(jsonData));
+    debugLogs.push('JSON parsed successfully, keys: ' + Object.keys(jsonData).join(', '));
     
     // Handle Paket.json structure using the same logic as server-side
     if (jsonData.transferDetails) {
-      console.log('Processing transferDetails structure...');
-      for (const detail of jsonData.transferDetails) {
+      debugLogs.push('Processing transferDetails structure...');
+      debugLogs.push('Number of transferDetails: ' + jsonData.transferDetails.length);
+      
+      for (let i = 0; i < jsonData.transferDetails.length; i++) {
+        const detail = jsonData.transferDetails[i];
+        debugLogs.push(`Processing transferDetail[${i}]...`);
+        
         if (detail.transferObject && detail.transferObject.content) {
           try {
-            console.log('Found transferObject.content, processing...');
+            debugLogs.push('Found transferObject.content, processing...');
             const content = detail.transferObject.content;
             let realContent = content;
             let compress = false;
@@ -435,13 +477,15 @@ async function processJSONFile(jsonContent, fileName) {
             if (content.startsWith("TRUE###")) {
               realContent = content.substring(7);
               compress = true;
-              console.log('Content is compressed (TRUE###)');
+              debugLogs.push('Content is compressed (TRUE###)');
             } else if (content.startsWith("FALSE###")) {
               realContent = content.substring(8);
-              console.log('Content is uncompressed (FALSE###)');
+              debugLogs.push('Content is uncompressed (FALSE###)');
             } else {
-              console.log('Content has no compression prefix');
+              debugLogs.push('Content has no compression prefix');
             }
+            
+            debugLogs.push('Real content length: ' + realContent.length);
             
             // Decode base64
             const byteDecoded = atob(realContent);
@@ -456,9 +500,10 @@ async function processJSONFile(jsonContent, fileName) {
                 }
                 const decompressed = pako.inflate(uint8Array, { to: 'string' });
                 byteDecompressed = decompressed;
-                console.log('Content decompressed successfully');
+                debugLogs.push('Content decompressed successfully');
+                debugLogs.push('Decompressed length: ' + byteDecompressed.length);
               } catch (zlibError) {
-                console.log('Decompression failed, using raw content:', zlibError);
+                debugLogs.push('Decompression failed, using raw content: ' + zlibError.message);
                 byteDecompressed = byteDecoded;
               }
             } else {
@@ -467,41 +512,55 @@ async function processJSONFile(jsonContent, fileName) {
             
             // Parse JSON
             const objectJson = JSON.parse(byteDecompressed);
-            console.log('JSON parsed successfully, looking for transferableContent...');
+            debugLogs.push('JSON parsed successfully, looking for transferableContent...');
+            debugLogs.push('Parsed JSON keys: ' + Object.keys(objectJson).join(', '));
             
             // Extract XML content
             if (objectJson.transferableContent && objectJson.transferableContent.content) {
               const xmlContent = objectJson.transferableContent.content;
-              console.log('Found transferableContent.content, checking for XML...');
+              debugLogs.push('Found transferableContent.content, checking for XML...');
+              debugLogs.push('XML content length: ' + xmlContent.length);
+              debugLogs.push('XML preview: ' + xmlContent.substring(0, 200) + '...');
+              
               if (xmlContent.includes('<') && xmlContent.includes('>')) {
-                console.log('XML content found, analyzing...');
+                debugLogs.push('XML content found, analyzing...');
                 const repairTool = new XMLRepairTool();
                 const result = await repairTool.repairXML(xmlContent);
+                
+                debugLogs.push('=== CLIENT-SIDE ANALYSIS RESULTS ===');
+                debugLogs.push('Null candidates found: ' + result.results.nullCandidates);
+                debugLogs.push('Total objects: ' + result.results.totalObjects);
+                debugLogs.push('Analysis length: ' + result.analysis.length);
+                
                 return {
                   ...result,
                   filename: `repaired_${fileName}`,
-                  debug: [
-                    '=== Client-side JSON Processing ===',
-                    'JSON content length: ' + jsonContent.length,
-                    'XML extracted successfully',
-                    'Null candidates found: ' + result.results.nullCandidates
-                  ]
+                  debug: debugLogs
                 };
+              } else {
+                debugLogs.push('No XML tags found in transferableContent.content');
               }
+            } else {
+              debugLogs.push('No transferableContent found in parsed JSON');
             }
           } catch (error) {
-            console.log('Error processing transferObject.content:', error);
+            debugLogs.push('Error processing transferObject.content: ' + error.message);
             continue;
           }
+        } else {
+          debugLogs.push('No transferObject.content found in detail');
         }
       }
+      debugLogs.push('Finished processing all transferDetails, no XML found');
+    } else {
+      debugLogs.push('No transferDetails found in JSON');
     }
     
     // If no XML found, return error
     throw new Error('No XML content found in JSON file');
     
   } catch (error) {
-    console.error('Error processing JSON with client-side tool:', error);
+    debugLogs.push('Error processing JSON with client-side tool: ' + error.message);
     throw new Error(`Failed to process JSON: ${error.message}`);
   }
 } 
