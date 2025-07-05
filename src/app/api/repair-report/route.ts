@@ -54,9 +54,9 @@ async function processJSONWithJavaScript(jsonContent: string) {
             let byteDecompressed;
             
             if (compress) {
-              // Decompress with zlib - use require for serverless compatibility
+              // Decompress with zlib - use dynamic import for compatibility
               try {
-                const zlib = require('zlib');
+                const zlib = await import('zlib');
                 byteDecompressed = zlib.inflateSync(byteDecoded);
                 console.log('Content decompressed successfully');
               } catch (zlibError) {
