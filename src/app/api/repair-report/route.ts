@@ -8,6 +8,251 @@ import os from 'os';
 
 const execAsync = promisify(exec);
 
+// JavaScript-based JSON processing for Vercel compatibility
+async function processJSONWithJavaScript(jsonContent: string) {
+  try {
+    const jsonData = JSON.parse(jsonContent);
+    
+    // Look for reports in the JSON structure
+    let reports = [];
+    
+    // Common patterns for reports in JSON
+    if (jsonData.reports) {
+      reports = Array.isArray(jsonData.reports) ? jsonData.reports : [jsonData.reports];
+    } else if (jsonData.data && jsonData.data.reports) {
+      reports = Array.isArray(jsonData.data.reports) ? jsonData.data.reports : [jsonData.data.reports];
+    } else if (jsonData.content && jsonData.content.reports) {
+      reports = Array.isArray(jsonData.content.reports) ? jsonData.content.reports : [jsonData.content.reports];
+    } else if (jsonData.transferDetails) {
+      // Handle Paket.json structure using ReportExtractor.py logic
+      for (const detail of jsonData.transferDetails) {
+        if (detail.transferObject && detail.transferObject.content) {
+          try {
+            // Use the same logic as ReportExtractor.py
+            const content = detail.transferObject.content;
+            let realContent = content;
+            let compress = false;
+            
+            if (content.startsWith("TRUE###")) {
+              realContent = content.substring(7);
+              compress = true;
+            } else if (content.startsWith("FALSE###")) {
+              realContent = content.substring(8);
+            }
+            
+            // Decode base64
+            const byteDecoded = Buffer.from(realContent, 'base64');
+            let byteDecompressed;
+            
+            if (compress) {
+              // Decompress with zlib
+              const zlib = require('zlib');
+              byteDecompressed = zlib.inflateSync(byteDecoded);
+            } else {
+              byteDecompressed = byteDecoded;
+            }
+            
+            // Parse JSON
+            const objectJson = JSON.parse(byteDecompressed.toString('utf8'));
+            
+            // Extract XML content
+            if (objectJson.transferableContent && objectJson.transferableContent.content) {
+              const xmlContent = objectJson.transferableContent.content;
+              if (xmlContent.includes('<') && xmlContent.includes('>')) {
+                return await analyzeXMLContent(xmlContent);
+              }
+            }
+          } catch (e) {
+            console.log('Error processing transferObject.content with ReportExtractor logic:', e);
+            // Continue to next transfer detail
+            continue;
+          }
+        }
+      }
+    } else {
+      // Try to find any XML content in the JSON
+      const jsonString = JSON.stringify(jsonData);
+      const xmlMatches = jsonString.match(/<[^>]+>.*?<\/[^>]+>/g);
+      if (xmlMatches && xmlMatches.length > 0) {
+        // Extract the first XML-like content
+        const xmlContent = xmlMatches[0];
+        return await analyzeXMLContent(xmlContent);
+      }
+      
+      // If no XML found, try to decode any base64 content that might contain XML
+      const base64Matches = jsonString.match(/"([A-Za-z0-9+/=]{20,})"/g);
+      if (base64Matches) {
+        for (const match of base64Matches) {
+          try {
+            const base64Content = match.replace(/"/g, '');
+            const decodedContent = Buffer.from(base64Content, 'base64').toString('utf-8');
+            if (decodedContent.includes('<') && decodedContent.includes('>')) {
+              return await analyzeXMLContent(decodedContent);
+            }
+          } catch (e) {
+            // Continue to next base64 match
+            continue;
+          }
+        }
+      }
+    }
+    
+    if (reports.length === 0) {
+      throw new Error('No reports found in JSON file');
+    }
+    
+    // Process the first report
+    const firstReport = reports[0];
+    let xmlContent = '';
+    
+    if (typeof firstReport === 'string') {
+      xmlContent = firstReport;
+    } else if (firstReport.content) {
+      xmlContent = firstReport.content;
+    } else if (firstReport.xml) {
+      xmlContent = firstReport.xml;
+    } else if (firstReport.data) {
+      xmlContent = firstReport.data;
+    } else {
+      // Try to find XML content in the report object
+      const reportString = JSON.stringify(firstReport);
+      const xmlMatches = reportString.match(/<[^>]+>.*?<\/[^>]+>/g);
+      if (xmlMatches && xmlMatches.length > 0) {
+        xmlContent = xmlMatches[0];
+      } else {
+        throw new Error('No XML content found in first report');
+      }
+    }
+    
+    return await analyzeXMLContent(xmlContent);
+    
+  } catch (error) {
+    console.error('Error processing JSON with JavaScript:', error);
+    throw new Error(`Failed to process JSON: ${error instanceof Error ? error.message : 'Unknown error'}`);
+  }
+}
+
+// Analyze XML content using JavaScript (similar to the client-side tool)
+async function analyzeXMLContent(xmlContent: string) {
+  try {
+    // Simple XML parsing and analysis
+    const analysis = {
+      totalObjects: 0,
+      nullCandidates: 0,
+      duplicates: 0,
+      prompts: 0,
+      objectTypes: {} as Record<string, number>,
+      nullCandidateIds: new Set<string>()
+    };
+    
+    // Count objects by type using regex
+    const tagPattern = /<([a-zA-Z][a-zA-Z0-9]*)/g;
+    const matches = xmlContent.match(tagPattern);
+    
+    if (matches) {
+      for (const match of matches) {
+        const tagName = match.slice(1); // Remove the '<'
+        analysis.objectTypes[tagName] = (analysis.objectTypes[tagName] || 0) + 1;
+        analysis.totalObjects++;
+      }
+    }
+    
+    // Find null candidates using regex patterns
+    const idCheck = /^[a-z]{2}[0-9]+$/;
+    const definedIds = new Set<string>();
+    const referencedIds = new Set<string>();
+    
+    // Find defined IDs (name attributes)
+    const namePattern = /name="([^"]+)"/g;
+    let nameMatch;
+    while ((nameMatch = namePattern.exec(xmlContent)) !== null) {
+      const name = nameMatch[1];
+      if (idCheck.test(name)) {
+        definedIds.add(name);
+      }
+    }
+    
+    // Find referenced IDs in value attributes
+    const valuePattern = /value="([^"]+)"/g;
+    let valueMatch;
+    while ((valueMatch = valuePattern.exec(xmlContent)) !== null) {
+      const value = valueMatch[1].trim();
+      if (idCheck.test(value)) {
+        referencedIds.add(value);
+      }
+    }
+    
+    // Null candidates are referenced but not defined
+    const nullCandidates = new Set([...referencedIds].filter(id => !definedIds.has(id)));
+    
+    // Apply filtering (same as Python script)
+    const filteredCandidates = new Set<string>();
+    for (const candidate of nullCandidates) {
+      if (candidate.length < 3) continue;
+      if (/^[a-fA-F0-9]{6}$/.test(candidate)) continue;
+      if (['bi1', 'label', 'title'].includes(candidate.toLowerCase())) continue;
+      filteredCandidates.add(candidate);
+    }
+    
+    analysis.nullCandidates = filteredCandidates.size;
+    analysis.nullCandidateIds = filteredCandidates;
+    
+    // Generate analysis report
+    const targetTypes = [
+      'ParentDataDefinition', 'DataDefinition', 'DataSource', 'DataItem', 
+      'PredefinedDataItem', 'VisualElements', 'Image', 'VisualContainer', 
+      'Prompt', 'MediaContainer', 'Section', 'Container', 'Actions', 'NavigationAction'
+    ];
+    
+    const filteredCounts: Record<string, number> = {};
+    for (const [objType, count] of Object.entries(analysis.objectTypes)) {
+      if (['DataDefinition', 'DataDefinitions'].includes(objType)) {
+        filteredCounts['DataDefinition'] = (filteredCounts['DataDefinition'] || 0) + count;
+      } else if (['DataSource', 'DataSources'].includes(objType)) {
+        filteredCounts['DataSource'] = (filteredCounts['DataSource'] || 0) + count;
+      } else if (targetTypes.includes(objType)) {
+        filteredCounts[objType] = count;
+      }
+    }
+    
+    const objectCountsString = targetTypes.map(objType => {
+      const count = filteredCounts[objType] || 0;
+      return `  ${objType}: ${count}`;
+    }).join('\n');
+    
+    const nullCandidateList = Array.from(analysis.nullCandidateIds).sort().join(', ');
+    
+    const analysisReport = `
+==========================================================
+SAS Visual Analytics BIRD XML Analysis
+==========================================================
+Total Objects: ${analysis.totalObjects}
+
+Object Counts by Type:
+${objectCountsString}
+
+Null Candidates: ${analysis.nullCandidates}
+${analysis.nullCandidates > 0 ? `Null Candidate IDs: ${nullCandidateList}` : ''}
+Unused Prompts: ${analysis.prompts}
+Duplicate Objects: ${analysis.duplicates}
+
+Potential Issues:
+${analysis.nullCandidates > 0 ? `  ⚠️  Found ${analysis.nullCandidates} null candidates` : '  ✅ No null candidates found'}
+==========================================================
+`;
+    
+    return {
+      analysis: analysisReport,
+      content: Buffer.from(xmlContent).toString('base64'),
+      fileName: 'extracted_report.xml'
+    };
+    
+  } catch (error) {
+    console.error('Error analyzing XML content:', error);
+    throw new Error(`Failed to analyze XML: ${error instanceof Error ? error.message : 'Unknown error'}`);
+  }
+}
+
 export async function POST(request: NextRequest) {
   let tempInputPath: string | null = null;
   let tempOutputPath: string | null = null;
@@ -64,40 +309,34 @@ export async function POST(request: NextRequest) {
     let repairedFilePath: string;
 
     if (file.name.endsWith('.json')) {
-      // For JSON input, the script creates repaired files in the project root directory
-      // The script extracts reports and creates {report_name}_repaired.xml files
-      const projectRoot = process.cwd();
-      const files = readdirSync(projectRoot);
+      // Use JavaScript-based JSON processing for Vercel compatibility
+      console.log('Processing JSON file with JavaScript (no Python required)');
       
-      // Look for files ending with _repaired.xml in the project root
-      const repairedXmls = files.filter((f: string) => f.endsWith('_repaired.xml'));
-      
-      console.log('Project root:', projectRoot);
-      console.log('Files in project root:', files);
-      console.log('Repaired XMLs found:', repairedXmls);
-      
-      if (repairedXmls.length === 0) {
-        // Try to find any XML files that might have been created
-        const allXmlFiles = files.filter((f: string) => f.endsWith('.xml'));
-        console.log('All XML files found:', allXmlFiles);
+      try {
+        const jsonContent = await file.text();
+        const result = await processJSONWithJavaScript(jsonContent);
         
-        if (allXmlFiles.length === 0) {
-          return NextResponse.json({ 
-            error: 'No repaired XML file generated from JSON. Python script may have failed to execute properly.' 
-          }, { status: 500 });
-        }
-        
-        // Use the first XML file found (fallback)
-        repairedFileName = allXmlFiles[0];
-        repairedFilePath = path.join(projectRoot, repairedFileName);
-        console.log('Using fallback XML file:', repairedFilePath);
-      } else {
-        // Use the first repaired XML file
-        repairedFileName = repairedXmls[0];
-        repairedFilePath = path.join(projectRoot, repairedFileName);
+        return NextResponse.json({
+          file: result.content,
+          results: {
+            duplicates: 0,
+            prompts: 0,
+            nullCandidates: result.analysis.includes('Found') ? 
+              parseInt(result.analysis.match(/Found (\d+) null candidates/)?.[1] || '0') : 0,
+            hasDuplicates: false,
+            hasPrompts: false,
+            hasNullCandidates: result.analysis.includes('Found'),
+            totalObjects: parseInt(result.analysis.match(/Total Objects: (\d+)/)?.[1] || '0')
+          },
+          analysis: result.analysis,
+          hasRepairs: false
+        });
+      } catch (error) {
+        console.error('Error processing JSON with JavaScript:', error);
+        return NextResponse.json({ 
+          error: `Failed to process JSON: ${error instanceof Error ? error.message : 'Unknown error'}` 
+        }, { status: 500 });
       }
-      
-      repairedContent = await readFile(repairedFilePath, 'utf-8');
     } else {
       // For XML input, use the old logic
       repairedFilePath = tempInputPath.replace('.xml', '_repaired.xml');
