@@ -31,6 +31,7 @@ export function RepairReportUpload() {
   const [repairedFile, setRepairedFile] = useState<string | null>(null)
   const [repairResults, setRepairResults] = useState<RepairResultsData | null>(null)
   const [analysisOutput, setAnalysisOutput] = useState<string>("")
+  const [repairedFileName, setRepairedFileName] = useState<string>("")
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,6 +63,7 @@ export function RepairReportUpload() {
       setRepairedFile(data.file)
       setRepairResults(data.results)
       setAnalysisOutput(data.analysis || "")
+      setRepairedFileName(data.filename || "")
       setIsCompleted(true)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred')
@@ -72,7 +74,7 @@ export function RepairReportUpload() {
   }
 
   const handleDownload = () => {
-    if (!repairedFile || !fileName) return
+    if (!repairedFile || !repairedFileName) return
     const binaryString = atob(repairedFile)
     const len = binaryString.length
     const bytes = new Uint8Array(len)
@@ -83,11 +85,8 @@ export function RepairReportUpload() {
     const url = URL.createObjectURL(blob)
     const a = document.createElement("a")
     a.href = url
-    // If original file was JSON, download as XML
-    const downloadName = fileName.endsWith('.json') 
-      ? `repaired_${fileName.replace('.json', '.xml')}`
-      : `repaired_${fileName}`
-    a.download = downloadName
+    console.log('Downloading with filename:', repairedFileName);
+    a.download = repairedFileName
     document.body.appendChild(a)
     a.click()
     document.body.removeChild(a)
@@ -96,6 +95,7 @@ export function RepairReportUpload() {
     setRepairedFile(null)
     setRepairResults(null)
     setAnalysisOutput("")
+    setRepairedFileName("")
     setFile(null)
     setFileName("")
     setError("")
