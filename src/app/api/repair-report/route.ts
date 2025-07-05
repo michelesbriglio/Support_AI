@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import { writeFile, readFile, unlink } from 'fs/promises';
+import { readdirSync } from 'fs';
 import path from 'path';
 import os from 'os';
 
@@ -58,9 +59,8 @@ export async function POST(request: NextRequest) {
     if (file.name.endsWith('.json')) {
       // For JSON input, the script creates repaired files in the same directory as the input file
       // The script extracts reports and creates {report_name}_repaired.xml files
-      const fs = require('fs');
       const inputDir = path.dirname(tempInputPath);
-      const files = fs.readdirSync(inputDir);
+      const files = readdirSync(inputDir);
       
       // Look for files ending with _repaired.xml in the input directory
       const repairedXmls = files.filter((f: string) => f.endsWith('_repaired.xml'));
@@ -117,11 +117,10 @@ export async function POST(request: NextRequest) {
       
       // Clean up repaired files
       if (tempInputPath) {
-        const fs = require('fs');
         const inputDir = path.dirname(tempInputPath);
         
         try {
-          const files = fs.readdirSync(inputDir);
+          const files = readdirSync(inputDir);
           const repairedFiles = files.filter((f: string) => f.endsWith('_repaired.xml'));
           
           for (const repairedFile of repairedFiles) {
