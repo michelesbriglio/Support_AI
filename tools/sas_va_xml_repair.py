@@ -737,7 +737,6 @@ class BIRDXMLRepair:
         print("="*60)
         print(f"File: {self.xml_file_path}")
         print(f"Total Objects: {analysis['total_objects']}")
-        print(f"Next Unique Name Index: {self.next_unique_name_index}")
         
         # Define the specific object types to show
         target_types = [
