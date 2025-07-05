@@ -303,6 +303,53 @@ export class XMLRepairTool {
   generateAnalysisReport(analysis) {
     const nullCandidateList = analysis.nullCandidateIds ? Array.from(analysis.nullCandidateIds).sort().join(', ') : '';
     
+    // Define the specific object types to show
+    const targetTypes = [
+      'ParentDataDefinition',
+      'DataDefinition', 
+      'DataSource',
+      'DataItem',
+      'PredefinedDataItem',
+      'VisualElements',
+      'Image',
+      'VisualContainer',
+      'Prompt',
+      'MediaContainer',
+      'Section',
+      'Container',
+      'Actions',
+      'NavigationAction'
+    ];
+    
+    // Create a filtered and summed object counts dictionary
+    const filteredCounts = {};
+    for (const [objType, count] of Object.entries(analysis.objectTypes)) {
+      // Handle DataDefinition/DataDefinitions summing
+      if (['DataDefinition', 'DataDefinitions'].includes(objType)) {
+        if (!filteredCounts['DataDefinition']) {
+          filteredCounts['DataDefinition'] = 0;
+        }
+        filteredCounts['DataDefinition'] += count;
+      }
+      // Handle DataSource/DataSources summing
+      else if (['DataSource', 'DataSources'].includes(objType)) {
+        if (!filteredCounts['DataSource']) {
+          filteredCounts['DataSource'] = 0;
+        }
+        filteredCounts['DataSource'] += count;
+      }
+      // Add other target types
+      else if (targetTypes.includes(objType)) {
+        filteredCounts[objType] = count;
+      }
+    }
+    
+    // Generate the filtered object counts string
+    const objectCountsString = targetTypes.map(objType => {
+      const count = filteredCounts[objType] || 0;
+      return `  ${objType}: ${count}`;
+    }).join('\n');
+    
     return `
 ==========================================================
 SAS Visual Analytics BIRD XML Analysis
@@ -310,7 +357,7 @@ SAS Visual Analytics BIRD XML Analysis
 Total Objects: ${analysis.totalObjects}
 
 Object Counts by Type:
-${Object.entries(analysis.objectTypes).map(([type, count]) => `  ${type}: ${count}`).join('\n')}
+${objectCountsString}
 
 Null Candidates: ${analysis.nullCandidates}
 ${analysis.nullCandidates > 0 ? `Null Candidate IDs: ${nullCandidateList}` : ''}

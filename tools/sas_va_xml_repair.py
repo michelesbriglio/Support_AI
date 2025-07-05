@@ -739,9 +739,47 @@ class BIRDXMLRepair:
         print(f"Total Objects: {analysis['total_objects']}")
         print(f"Next Unique Name Index: {self.next_unique_name_index}")
         
-        print("\nObject Counts by Type:")
+        # Define the specific object types to show
+        target_types = [
+            'ParentDataDefinition',
+            'DataDefinition', 
+            'DataSource',
+            'DataItem',
+            'PredefinedDataItem',
+            'VisualElements',
+            'Image',
+            'VisualContainer',
+            'Prompt',
+            'MediaContainer',
+            'Section',
+            'Container',
+            'Actions',
+            'NavigationAction'
+        ]
+        
+        # Create a filtered and summed object counts dictionary
+        filtered_counts = {}
         for obj_type, count in analysis['object_counts'].items():
-            print(f"  {obj_type}: {count}")
+            # Handle DataDefinition/DataDefinitions summing
+            if obj_type in ['DataDefinition', 'DataDefinitions']:
+                if 'DataDefinition' not in filtered_counts:
+                    filtered_counts['DataDefinition'] = 0
+                filtered_counts['DataDefinition'] += count
+            # Handle DataSource/DataSources summing
+            elif obj_type in ['DataSource', 'DataSources']:
+                if 'DataSource' not in filtered_counts:
+                    filtered_counts['DataSource'] = 0
+                filtered_counts['DataSource'] += count
+            # Add other target types
+            elif obj_type in target_types:
+                filtered_counts[obj_type] = count
+        
+        print("\nObject Counts by Type:")
+        for obj_type in target_types:
+            if obj_type in filtered_counts:
+                print(f"  {obj_type}: {filtered_counts[obj_type]}")
+            else:
+                print(f"  {obj_type}: 0")
         
         if analysis['duplicate_objects']:
             print(f"\nDuplicate Objects ({len(analysis['duplicate_objects'])}):")
