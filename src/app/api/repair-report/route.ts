@@ -57,12 +57,12 @@ export async function POST(request: NextRequest) {
     let repairedFilePath: string;
 
     if (file.name.endsWith('.json')) {
-      // For JSON input, the script creates repaired files in the same directory as the input file
+      // For JSON input, the script creates repaired files in the project root directory
       // The script extracts reports and creates {report_name}_repaired.xml files
-      const inputDir = path.dirname(tempInputPath);
-      const files = readdirSync(inputDir);
+      const projectRoot = process.cwd();
+      const files = readdirSync(projectRoot);
       
-      // Look for files ending with _repaired.xml in the input directory
+      // Look for files ending with _repaired.xml in the project root
       const repairedXmls = files.filter((f: string) => f.endsWith('_repaired.xml'));
       
       if (repairedXmls.length === 0) {
@@ -71,7 +71,7 @@ export async function POST(request: NextRequest) {
       
       // Use the first repaired XML file
       repairedFileName = repairedXmls[0];
-      repairedFilePath = path.join(inputDir, repairedFileName);
+      repairedFilePath = path.join(projectRoot, repairedFileName);
       repairedContent = await readFile(repairedFilePath, 'utf-8');
     } else {
       // For XML input, use the old logic
@@ -117,15 +117,15 @@ export async function POST(request: NextRequest) {
       
       // Clean up repaired files
       if (tempInputPath) {
-        const inputDir = path.dirname(tempInputPath);
+        const projectRoot = process.cwd();
         
         try {
-          const files = readdirSync(inputDir);
+          const files = readdirSync(projectRoot);
           const repairedFiles = files.filter((f: string) => f.endsWith('_repaired.xml'));
           
           for (const repairedFile of repairedFiles) {
             try {
-              await unlink(path.join(inputDir, repairedFile));
+              await unlink(path.join(projectRoot, repairedFile));
             } catch {
               // Ignore errors if file doesn't exist
             }
