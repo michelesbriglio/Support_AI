@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
 
     // Execute the Python script
     const { stdout, stderr } = await execAsync(`python3 "${scriptPath}" "${tempInputPath}"`, {
-      cwd: path.dirname(scriptPath),
+      cwd: process.cwd(), // Run from project root so repaired files are created there
       timeout: 30000 // 30 second timeout
     });
 
