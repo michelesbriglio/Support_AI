@@ -10,10 +10,11 @@ const execAsync = promisify(exec);
 export async function POST(request: NextRequest) {
   let tempInputPath: string | null = null;
   let tempOutputPath: string | null = null;
+  let file: File | null = null;
 
   try {
     const formData = await request.formData();
-    const file = formData.get('file') as File;
+    file = formData.get('file') as File;
 
     if (!file) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 });
@@ -50,14 +51,37 @@ export async function POST(request: NextRequest) {
     }
 
     // Read the repaired file
-    const repairedFilePath = tempInputPath.replace('.xml', '_repaired.xml');
     let repairedContent: string;
-    
-    try {
+    let repairedFileName: string = file.name;
+    let repairedFilePath: string;
+
+    if (file.name.endsWith('.json')) {
+      // For JSON input, the script creates repaired files in the same directory as the input file
+      // The script extracts reports and creates {report_name}_repaired.xml files
+      const fs = require('fs');
+      const inputDir = path.dirname(tempInputPath);
+      const files = fs.readdirSync(inputDir);
+      
+      // Look for files ending with _repaired.xml in the input directory
+      const repairedXmls = files.filter((f: string) => f.endsWith('_repaired.xml'));
+      
+      if (repairedXmls.length === 0) {
+        return NextResponse.json({ error: 'No repaired XML file generated from JSON' }, { status: 500 });
+      }
+      
+      // Use the first repaired XML file
+      repairedFileName = repairedXmls[0];
+      repairedFilePath = path.join(inputDir, repairedFileName);
       repairedContent = await readFile(repairedFilePath, 'utf-8');
-    } catch {
-      // If repaired file doesn't exist, use original file
-      repairedContent = await readFile(tempInputPath, 'utf-8');
+    } else {
+      // For XML input, use the old logic
+      repairedFilePath = tempInputPath.replace('.xml', '_repaired.xml');
+      try {
+        repairedContent = await readFile(repairedFilePath, 'utf-8');
+      } catch {
+        // If repaired file doesn't exist, use original file
+        repairedContent = await readFile(tempInputPath, 'utf-8');
+      }
     }
 
     // Parse the output to extract analysis results
@@ -69,7 +93,7 @@ export async function POST(request: NextRequest) {
     return new NextResponse(JSON.stringify({
       file: base64Content,
       results: analysisResults,
-      filename: `repaired_${file.name}`,
+      filename: `repaired_${repairedFileName}`,
       analysis: stdout
     }), {
       headers: {
@@ -79,8 +103,10 @@ export async function POST(request: NextRequest) {
 
   } catch (error) {
     console.error('Error processing file:', error);
+    console.error('File name:', file?.name);
+    console.error('Error details:', error instanceof Error ? error.message : String(error));
     return NextResponse.json(
-      { error: 'Failed to process file' },
+      { error: `Failed to process file: ${error instanceof Error ? error.message : 'Unknown error'}` },
       { status: 500 }
     );
   } finally {
@@ -88,13 +114,25 @@ export async function POST(request: NextRequest) {
     try {
       if (tempInputPath) await unlink(tempInputPath);
       if (tempOutputPath) await unlink(tempOutputPath);
-      // Also clean up the repaired file if it exists
+      
+      // Clean up repaired files
       if (tempInputPath) {
-        const repairedFilePath = tempInputPath.replace('.xml', '_repaired.xml');
+        const fs = require('fs');
+        const inputDir = path.dirname(tempInputPath);
+        
         try {
-          await unlink(repairedFilePath);
+          const files = fs.readdirSync(inputDir);
+          const repairedFiles = files.filter((f: string) => f.endsWith('_repaired.xml'));
+          
+          for (const repairedFile of repairedFiles) {
+            try {
+              await unlink(path.join(inputDir, repairedFile));
+            } catch {
+              // Ignore errors if file doesn't exist
+            }
+          }
         } catch {
-          // Ignore errors if file doesn't exist
+          // Ignore errors if directory doesn't exist
         }
       }
     } catch (cleanupError) {
