@@ -378,6 +378,7 @@ export async function POST(request: NextRequest) {
             totalObjects: totalObjects
           },
           analysis: result.analysis,
+          filename: `repaired_${file.name}`,
           hasRepairs: false,
           debug: debugLogs
         });
