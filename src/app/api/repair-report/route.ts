@@ -89,7 +89,7 @@ async function processJSONWithJavaScript(jsonContent: string) {
             if (decodedContent.includes('<') && decodedContent.includes('>')) {
               return await analyzeXMLContent(decodedContent);
             }
-          } catch (e) {
+          } catch (error) {
             // Continue to next base64 match
             continue;
           }
