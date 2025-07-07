@@ -132,9 +132,18 @@ export class XMLRepairTool {
         // Debug: log all text content found
         if (textContent && textContent.length > 0) {
           console.log('Text content found:', textContent, 'in element:', elem.tagName);
-          if (idCheck.test(textContent)) {
-            referencedIds.add(textContent);
-            console.log('Found null candidate in text content:', textContent, 'in element:', elem.tagName);
+          // Use a more flexible approach to match IDs in text content
+          // Look for ID patterns within the text content, not exact matches
+          const idPattern = /[a-z]{2}[0-9]+/g;
+          const matches = textContent.match(idPattern);
+          if (matches) {
+            for (let match of matches) {
+              // Additional validation: make sure it's not too short and not a color code
+              if (match.length >= 3 && !/^[a-fA-F0-9]{6}$/.test(match)) {
+                referencedIds.add(match);
+                console.log('Found null candidate in text content:', match, 'in element:', elem.tagName);
+              }
+            }
           }
         }
       }
