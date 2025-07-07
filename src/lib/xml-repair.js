@@ -22,21 +22,26 @@ export class XMLRepairTool {
       this.xmlContent = xmlContent;
       
       // Parse the XML
-      const doc = this.parser.parseFromString(xmlContent, "text/xml");
+      let doc = this.parser.parseFromString(xmlContent, "text/xml");
       
       if (doc.documentElement.nodeName === "parsererror") {
         throw new Error("Invalid XML format");
       }
 
       // Always analyze first to get the unique null candidate count
-      const analysis = this.analyzeXML(doc);
+      let analysis = this.analyzeXML(doc);
       let repairedContent = xmlContent;
       let hasRepairs = false;
 
-      // Perform repairs if needed
-      if (analysis.nullCandidates > 0) {
+      // --- Iterative null candidate repair ---
+      let nullCandidateLoopCount = 0;
+      while (analysis.nullCandidates > 0 && nullCandidateLoopCount < 10) { // safety limit
+        doc = this.parser.parseFromString(repairedContent, "text/xml");
         repairedContent = this.repairNullCandidates(doc, analysis.nullCandidateIds);
+        doc = this.parser.parseFromString(repairedContent, "text/xml");
+        analysis = this.analyzeXML(doc);
         hasRepairs = true;
+        nullCandidateLoopCount++;
       }
 
       // Repair unused prompts if needed
@@ -193,7 +198,107 @@ export class XMLRepairTool {
     const unusedPrompts = new Set([...promptIds].filter(id => !referencedPromptIds.has(id)));
     analysis.prompts = unusedPrompts.size;
 
+    // Find duplicate objects (problematic duplicates only)
+    const duplicateObjects = this.findDuplicateObjects(doc);
+    analysis.duplicates = duplicateObjects.size;
+    analysis.duplicateObjects = duplicateObjects;
+
     return analysis;
+  }
+
+  /**
+   * Find problematic duplicate object IDs in the XML
+   * Returns a Map of object IDs to their references
+   */
+  findDuplicateObjects(doc) {
+    const duplicates = new Map();
+    const allElements = doc.getElementsByTagName('*');
+    
+    // Find all name attributes in the XML
+    for (let elem of allElements) {
+      const name = elem.getAttribute('name');
+      if (name) {
+        if (!duplicates.has(name)) {
+          duplicates.set(name, []);
+        }
+        
+        // Determine object type based on element tag
+        const objType = elem.tagName;
+        const location = this.getElementLocation(elem);
+        
+        duplicates.get(name).push({
+          objectType: objType,
+          objectId: name,
+          location: location,
+          element: elem
+        });
+      }
+    }
+    
+    // Filter to only include problematic duplicates
+    const problematicDuplicates = new Map();
+    for (const [objId, references] of duplicates) {
+      if (references.length > 1) {
+        // Check if these are legitimate duplicates (like DynVar with same name)
+        // or problematic duplicates (like actual object IDs)
+        
+        // Skip if all references are DynVar elements with the same name
+        // (these are legitimate dynamic variables used in different contexts)
+        if (references.every(ref => ref.objectType === 'DynVar')) {
+          console.log(`Skipping legitimate DynVar duplicates for ${objId}`);
+          continue;
+        }
+        
+        // Skip if all references are Category elements in stylesheet
+        // (these are legitimate CSS category definitions)
+        if (references.every(ref => ref.objectType === 'Category')) {
+          console.log(`Skipping legitimate Category duplicates for ${objId}`);
+          continue;
+        }
+        
+        // Skip if all references are Property elements with the same key
+        // (these are legitimate property definitions)
+        if (references.every(ref => ref.objectType === 'Property')) {
+          console.log(`Skipping legitimate Property duplicates for ${objId}`);
+          continue;
+        }
+        
+        // Skip if all references are KeyValue elements with the same name
+        // (these are legitimate key-value components used in different contexts)
+        if (references.every(ref => ref.objectType === 'KeyValue')) {
+          console.log(`Skipping legitimate KeyValue duplicates for ${objId}`);
+          continue;
+        }
+        
+        // Skip if all references are HistogramParm elements with the same name
+        // (these are legitimate histogram parameter components used in different contexts)
+        if (references.every(ref => ref.objectType === 'HistogramParm')) {
+          console.log(`Skipping legitimate HistogramParm duplicates for ${objId}`);
+          continue;
+        }
+        
+        // Include other types of duplicates as problematic
+        console.log(`Including problematic duplicates for ${objId}: ${references.map(ref => ref.objectType)}`);
+        problematicDuplicates.set(objId, references);
+      }
+    }
+    
+    return problematicDuplicates;
+  }
+
+  /**
+   * Get a human-readable location description for an element
+   */
+  getElementLocation(elem) {
+    const path = [];
+    let current = elem;
+    while (current && current.parentNode) {
+      if (current.tagName) {
+        path.unshift(current.tagName);
+      }
+      current = current.parentNode;
+    }
+    return path.slice(0, 3).join(' > '); // Limit to first 3 levels
   }
 
   /**

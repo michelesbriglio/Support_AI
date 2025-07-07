@@ -371,35 +371,44 @@ class BIRDXMLRepair:
         problematic_duplicates = {}
         for obj_id, references in duplicates.items():
             if len(references) > 1:
+                # Debug: log what we're checking
+                logger.debug(f"Checking duplicates for {obj_id}: {[ref.object_type for ref in references]}")
+                
                 # Check if these are legitimate duplicates (like DynVar with same name)
                 # or problematic duplicates (like actual object IDs)
                 
                 # Skip if all references are DynVar elements with the same name
                 # (these are legitimate dynamic variables used in different contexts)
                 if all(ref.object_type == 'DynVar' for ref in references):
+                    logger.debug(f"Skipping legitimate DynVar duplicates for {obj_id}")
                     continue
                 
                 # Skip if all references are Category elements in stylesheet
                 # (these are legitimate CSS category definitions)
                 if all(ref.object_type == 'Category' for ref in references):
+                    logger.debug(f"Skipping legitimate Category duplicates for {obj_id}")
                     continue
                 
                 # Skip if all references are Property elements with the same key
                 # (these are legitimate property definitions)
                 if all(ref.object_type == 'Property' for ref in references):
+                    logger.debug(f"Skipping legitimate Property duplicates for {obj_id}")
                     continue
                 
                 # Skip if all references are KeyValue elements with the same name
                 # (these are legitimate key-value components used in different contexts)
                 if all(ref.object_type == 'KeyValue' for ref in references):
+                    logger.debug(f"Skipping legitimate KeyValue duplicates for {obj_id}")
                     continue
                 
                 # Skip if all references are HistogramParm elements with the same name
                 # (these are legitimate histogram parameter components used in different contexts)
                 if all(ref.object_type == 'HistogramParm' for ref in references):
+                    logger.debug(f"Skipping legitimate HistogramParm duplicates for {obj_id}")
                     continue
                 
                 # Include other types of duplicates as problematic
+                logger.debug(f"Including problematic duplicates for {obj_id}: {[ref.object_type for ref in references]}")
                 problematic_duplicates[obj_id] = references
         
         return problematic_duplicates
@@ -471,24 +480,30 @@ class BIRDXMLRepair:
         if self.root is None:
             return False
         
-        # Build a mapping of child -> parent for easy removal
-        parent_map = {}
-        for parent in self.root.iter():
-            for child in parent:
-                parent_map[child] = parent
-        
         removed_count = 0
         
         # Remove unused prompt definitions
         for prompt_id in unused_prompts:
             # Find all elements with this prompt ID as name attribute
+            elements_to_remove = []
             for elem in self.root.iter():
                 if elem.get('name') == prompt_id:
-                    parent = parent_map.get(elem)
-                    if parent is not None:
-                        parent.remove(elem)
+                    elements_to_remove.append(elem)
+            
+            # Remove the elements (we need to do this separately to avoid modifying the tree while iterating)
+            for elem in elements_to_remove:
+                # Find the parent by searching through all elements
+                parent_found = False
+                for potential_parent in self.root.iter():
+                    if elem in list(potential_parent):
+                        potential_parent.remove(elem)
                         removed_count += 1
                         logger.info(f"Removed unused prompt: {prompt_id}")
+                        parent_found = True
+                        break
+                
+                if not parent_found:
+                    logger.warning(f"Could not find parent for unused prompt: {prompt_id}")
         
         # Update the XML content to reflect changes
         self.xml_content = ET.tostring(self.root, encoding='unicode')
