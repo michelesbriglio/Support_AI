@@ -1,6 +1,7 @@
 /**
  * Client-side XML Repair Tool for SAS Visual Analytics BIRD XML files
  * This is a simplified version that can run in the browser
+ * Version: 2025-01-07-v2 (Fixed null candidate detection)
  */
 
 import pako from 'pako';
