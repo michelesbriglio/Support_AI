@@ -128,28 +128,25 @@ export class XMLRepairTool {
         }
       }
       
-      // Check text content for references (important for Property elements)
+      // Check text content for references (match Python logic exactly)
       if (elem.textContent && elem.textContent.trim()) {
         const textContent = elem.textContent.trim();
-        // Use a more restrictive approach to match Python behavior
-        // Only check specific element types that are likely to contain references
-        const elementTypesToCheck = ['Property', 'Expression', 'Value', 'Text'];
-        if (elementTypesToCheck.includes(elem.tagName)) {
-          let match;
-          const regex = /[a-z]{2}[0-9]+/g;
-          while ((match = regex.exec(textContent)) !== null) {
-            const matchText = match[0];
-            const matchIndex = match.index;
-            const beforeChar = matchIndex > 0 ? textContent[matchIndex - 1] : '';
-            const afterChar = matchIndex + matchText.length < textContent.length ? textContent[matchIndex + matchText.length] : '';
-            
-            // Match Python logic: exclude alphanumeric and # characters
-            const beforeValid = !beforeChar.match(/[A-Za-z0-9#]/);
-            const afterValid = !afterChar.match(/[A-Za-z0-9#]/);
-            
-            if (beforeValid && afterValid) {
-              referencedIds.add(matchText);
-            }
+        // Use the same regex as Python: (?<![A-Za-z0-9#])[a-z]{2}[0-9]+
+        // Since JavaScript doesn't support lookbehind in all browsers, we'll use a different approach
+        let match;
+        const regex = /[a-z]{2}[0-9]+/g;
+        while ((match = regex.exec(textContent)) !== null) {
+          const matchText = match[0];
+          const matchIndex = match.index;
+          const beforeChar = matchIndex > 0 ? textContent[matchIndex - 1] : '';
+          const afterChar = matchIndex + matchText.length < textContent.length ? textContent[matchIndex + matchText.length] : '';
+          
+          // Match Python logic: exclude alphanumeric and # characters
+          const beforeValid = !beforeChar.match(/[A-Za-z0-9#]/);
+          const afterValid = !afterChar.match(/[A-Za-z0-9#]/);
+          
+          if (beforeValid && afterValid) {
+            referencedIds.add(matchText);
           }
         }
       }
