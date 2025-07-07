@@ -211,13 +211,23 @@ async function analyzeXMLContent(xmlContent: string) {
       }
     }
     
-    // Find referenced IDs in value attributes
+    // Find referenced IDs in value attributes and text content
     const valuePattern = /value="([^"]+)"/g;
     let valueMatch;
     while ((valueMatch = valuePattern.exec(xmlContent)) !== null) {
       const value = valueMatch[1].trim();
       if (idCheck.test(value)) {
         referencedIds.add(value);
+      }
+    }
+    
+    // Find referenced IDs in text content (important for Property elements)
+    const textContentPattern = />([^<]+)</g;
+    let textMatch;
+    while ((textMatch = textContentPattern.exec(xmlContent)) !== null) {
+      const textContent = textMatch[1].trim();
+      if (idCheck.test(textContent)) {
+        referencedIds.add(textContent);
       }
     }
     

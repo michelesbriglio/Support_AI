@@ -58,8 +58,6 @@ export function RepairReportUpload() {
       // Use smart dispatcher (server-side on Vercel, client-side elsewhere)
       const data = await repairReportSmart(file)
       
-      console.log('Received data from repair:', data);
-      console.log('Filename from repair:', data.filename);
       setRepairedFile(data.file)
       setRepairResults(data.results)
       setAnalysisOutput(data.analysis || "")
@@ -85,7 +83,6 @@ export function RepairReportUpload() {
     const url = URL.createObjectURL(blob)
     const a = document.createElement("a")
     a.href = url
-    console.log('Downloading with filename:', repairedFileName);
     a.download = repairedFileName
     document.body.appendChild(a)
     a.click()
