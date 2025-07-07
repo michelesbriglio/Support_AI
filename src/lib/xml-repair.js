@@ -100,7 +100,6 @@ export class XMLRepairTool {
     // Find null candidates using conservative approach to match Python script exactly
     const idCheck = /^[a-z]{2}[0-9]+$/;  // Exact match for ID pattern (e.g., vi1645)
     // Note: JavaScript doesn't support lookbehind in all browsers, so we need a different approach
-    const idInText = /[a-z]{2}[0-9]+/g;  // Match IDs in text content (simplified for browser compatibility)
     const definedIds = new Set();
     const referencedIds = new Set();
 
