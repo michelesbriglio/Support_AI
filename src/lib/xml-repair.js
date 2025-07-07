@@ -168,11 +168,24 @@ export class XMLRepairTool {
       }
     }
 
-    // Collect referenced prompt IDs from value attributes
+    // Collect referenced prompt IDs from all attributes (except name) and text content
     for (let elem of allElements) {
-      const value = elem.getAttribute('value');
-      if (value && promptIds.has(value)) {
-        referencedPromptIds.add(value);
+      // Check all attributes except 'name'
+      for (let attr of elem.attributes) {
+        if (attr.name !== 'name') {
+          const val = attr.value;
+          if (promptIds.has(val)) {
+            referencedPromptIds.add(val);
+          }
+        }
+      }
+      // Check text content for prompt references
+      if (elem.textContent) {
+        for (let promptId of promptIds) {
+          if (elem.textContent.includes(promptId)) {
+            referencedPromptIds.add(promptId);
+          }
+        }
       }
     }
 
@@ -262,7 +275,7 @@ export class XMLRepairTool {
    * Repair unused prompts by removing prompt definitions that are not referenced
    */
   repairUnusedPrompts(doc) {
-    const idCheck = /[a-z]{2}[0-9]+/;
+    const idCheck = /^[a-z]{2}[0-9]+$/;
     const promptIds = new Set();
     const referencedPromptIds = new Set();
     const allElements = doc.getElementsByTagName('*');
@@ -275,9 +288,9 @@ export class XMLRepairTool {
       }
     }
 
-    // Collect referenced prompt IDs
+    // Collect referenced prompt IDs from all attributes (except name) and text content
     for (let elem of allElements) {
-      // Check attributes (except name)
+      // Check all attributes except 'name'
       for (let attr of elem.attributes) {
         if (attr.name !== 'name') {
           const val = attr.value;
@@ -286,8 +299,7 @@ export class XMLRepairTool {
           }
         }
       }
-
-      // Check element text
+      // Check text content for prompt references
       if (elem.textContent) {
         for (let promptId of promptIds) {
           if (elem.textContent.includes(promptId)) {
@@ -300,14 +312,20 @@ export class XMLRepairTool {
     // Unused prompts are defined but not referenced
     const unusedPrompts = new Set([...promptIds].filter(id => !referencedPromptIds.has(id)));
 
-    // Remove unused prompt definitions
+    // Remove unused prompt definitions robustly
     for (let promptId of unusedPrompts) {
+      // Collect elements to remove first (to avoid modifying the tree while iterating)
+      const elementsToRemove = [];
       for (let elem of allElements) {
         if (elem.getAttribute('name') === promptId) {
-          const parent = elem.parentNode;
-          if (parent) {
-            parent.removeChild(elem);
-          }
+          elementsToRemove.push(elem);
+        }
+      }
+      // Remove each element from its parent
+      for (let elem of elementsToRemove) {
+        const parent = elem.parentNode;
+        if (parent) {
+          parent.removeChild(elem);
         }
       }
     }
