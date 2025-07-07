@@ -130,7 +130,7 @@ export class XMLRepairTool {
       // Check text content for references (important for Property elements)
       if (elem.textContent && elem.textContent.trim()) {
         const textContent = elem.textContent.trim();
-        // Use a more robust approach that doesn't rely on lookbehind
+        // Use a simpler approach similar to Python: find all matches and filter
         let match;
         const regex = /[a-z]{2}[0-9]+/g;
         while ((match = regex.exec(textContent)) !== null) {
@@ -139,9 +139,9 @@ export class XMLRepairTool {
           const beforeChar = matchIndex > 0 ? textContent[matchIndex - 1] : '';
           const afterChar = matchIndex + matchText.length < textContent.length ? textContent[matchIndex + matchText.length] : '';
           
-          // Check if the characters before and after are not alphanumeric or #
-          const beforeValid = !beforeChar.match(/[A-Za-z0-9#]/);
-          const afterValid = !afterChar.match(/[A-Za-z0-9#]/);
+          // More permissive boundary check: allow some common separators
+          const beforeValid = !beforeChar.match(/[A-Za-z0-9]/); // Allow # and other chars
+          const afterValid = !afterChar.match(/[A-Za-z0-9]/);   // Allow # and other chars
           
           if (beforeValid && afterValid) {
             referencedIds.add(matchText);
@@ -153,20 +153,36 @@ export class XMLRepairTool {
     // Null candidates are referenced but not defined
     const nullCandidates = new Set([...referencedIds].filter(id => !definedIds.has(id)));
 
+    // Debug logging
+    console.log('Debug - Defined IDs count:', definedIds.size);
+    console.log('Debug - Referenced IDs count:', referencedIds.size);
+    console.log('Debug - Raw null candidates:', Array.from(nullCandidates).sort());
+
     // Apply the same filtering as Python script
     const filteredCandidates = new Set();
     for (let candidate of nullCandidates) {
       // Skip if it looks like an HTML color code
-      if (/^[a-fA-F0-9]{6}$/.test(candidate)) continue;
+      if (/^[a-fA-F0-9]{6}$/.test(candidate)) {
+        console.log('Debug - Filtered out color code:', candidate);
+        continue;
+      }
       
       // Skip if it's a common label pattern
-      if (['label', 'title', 'name', 'id'].includes(candidate.toLowerCase())) continue;
+      if (['label', 'title', 'name', 'id'].includes(candidate.toLowerCase())) {
+        console.log('Debug - Filtered out label:', candidate);
+        continue;
+      }
       
       // Skip if it's 'bi1' (special case to ignore)
-      if (candidate === 'bi1') continue;
+      if (candidate === 'bi1') {
+        console.log('Debug - Filtered out bi1:', candidate);
+        continue;
+      }
       
       filteredCandidates.add(candidate);
     }
+
+    console.log('Debug - Final filtered candidates:', Array.from(filteredCandidates).sort());
 
     analysis.nullCandidates = filteredCandidates.size;
     analysis.nullCandidateIds = filteredCandidates;
