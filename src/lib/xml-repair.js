@@ -99,6 +99,8 @@ export class XMLRepairTool {
 
     // Find null candidates using conservative approach to match Python script exactly
     const idCheck = /^[a-z]{2}[0-9]+$/;  // Exact match for ID pattern (e.g., vi1645)
+    // Note: JavaScript doesn't support lookbehind in all browsers, so we need a different approach
+    const idInText = /[a-z]{2}[0-9]+/g;  // Match IDs in text content (simplified for browser compatibility)
     const definedIds = new Set();
     const referencedIds = new Set();
 
@@ -110,40 +112,40 @@ export class XMLRepairTool {
       }
     }
 
-    // Second pass: collect referenced IDs from specific attributes and text content
-    // Focus on attributes that typically contain object references
-    const referenceAttributes = ['value', 'ref', 'target', 'id', 'object'];
-    
+    // Second pass: collect referenced IDs from attributes and text content
     for (let elem of allElements) {
-      // Check attributes for references
+      // Check attributes (except name attributes) - match Python logic
       for (let attr of elem.attributes) {
-        if (referenceAttributes.includes(attr.name.toLowerCase())) {
-          const val = attr.value.trim();
-          if (idCheck.test(val)) {
-            referencedIds.add(val);
+        if (attr.name !== 'name') {
+          const val = attr.value;
+          // Split by whitespace and check each word
+          const words = val.split(/\s+/);
+          for (let word of words) {
+            if (idCheck.test(word)) {
+              referencedIds.add(word);
+            }
           }
         }
       }
       
       // Check text content for references (important for Property elements)
-      // Use a more robust approach similar to server-side API
       if (elem.textContent && elem.textContent.trim()) {
         const textContent = elem.textContent.trim();
-        // Debug: log all text content found
-        if (textContent && textContent.length > 0) {
-          console.log('Text content found:', textContent, 'in element:', elem.tagName);
-          // Use a more flexible approach to match IDs in text content
-          // Look for ID patterns within the text content, not exact matches
-          const idPattern = /[a-z]{2}[0-9]+/g;
-          const matches = textContent.match(idPattern);
-          if (matches) {
-            for (let match of matches) {
-              // Additional validation: make sure it's not too short and not a color code
-              if (match.length >= 3 && !/^[a-fA-F0-9]{6}$/.test(match)) {
-                referencedIds.add(match);
-                console.log('Found null candidate in text content:', match, 'in element:', elem.tagName);
-              }
-            }
+        // Use a more robust approach that doesn't rely on lookbehind
+        let match;
+        const regex = /[a-z]{2}[0-9]+/g;
+        while ((match = regex.exec(textContent)) !== null) {
+          const matchText = match[0];
+          const matchIndex = match.index;
+          const beforeChar = matchIndex > 0 ? textContent[matchIndex - 1] : '';
+          const afterChar = matchIndex + matchText.length < textContent.length ? textContent[matchIndex + matchText.length] : '';
+          
+          // Check if the characters before and after are not alphanumeric or #
+          const beforeValid = !beforeChar.match(/[A-Za-z0-9#]/);
+          const afterValid = !afterChar.match(/[A-Za-z0-9#]/);
+          
+          if (beforeValid && afterValid) {
+            referencedIds.add(matchText);
           }
         }
       }
@@ -155,14 +157,14 @@ export class XMLRepairTool {
     // Apply the same filtering as Python script
     const filteredCandidates = new Set();
     for (let candidate of nullCandidates) {
-      // Skip very short IDs
-      if (candidate.length < 3) continue;
-      
-      // Skip if it looks like a color code
+      // Skip if it looks like an HTML color code
       if (/^[a-fA-F0-9]{6}$/.test(candidate)) continue;
       
-      // Skip special cases
-      if (['bi1', 'label', 'title'].includes(candidate.toLowerCase())) continue;
+      // Skip if it's a common label pattern
+      if (['label', 'title', 'name', 'id'].includes(candidate.toLowerCase())) continue;
+      
+      // Skip if it's 'bi1' (special case to ignore)
+      if (candidate === 'bi1') continue;
       
       filteredCandidates.add(candidate);
     }
@@ -520,18 +522,19 @@ Total Objects: ${analysis.totalObjects}
 Object Counts by Type:
 ${objectCountsString}
 
-Null Candidates: ${analysis.nullCandidates}
-${analysis.nullCandidates > 0 ? `Null Candidate IDs: ${nullCandidateList}` : ''}
+${analysis.nullCandidates > 0 ? `Null Candidates (${analysis.nullCandidates}):` : 'Null Candidates: 0'}
+${analysis.nullCandidates > 0 ? nullCandidateList.split(', ').map(id => `  ${id}: Referenced but not defined`).join('\n') : ''}
 Unused Prompts: ${analysis.prompts}
 Duplicate Objects: ${analysis.duplicates}
 
 Potential Issues:
-${analysis.nullCandidates > 0 ? `  ⚠️  Found ${analysis.nullCandidates} null candidates` : '  ✅ No null candidates found'}
-${analysis.prompts > 0 ? `  ⚠️  Found ${analysis.prompts} unused prompts` : '  ✅ No unused prompts found'}
-${analysis.duplicates > 0 ? `  ⚠️  Found ${analysis.duplicates} duplicate objects` : '  ✅ No duplicate objects found'}
+${analysis.nullCandidates > 0 ? `  ⚠️  Found ${analysis.nullCandidates} null candidates` : ''}
+${analysis.prompts > 0 ? `  ⚠️  Found ${analysis.prompts} unused prompts` : ''}
+${analysis.duplicates > 0 ? `  ⚠️  Found ${analysis.duplicates} duplicate objects` : ''}
+${!analysis.nullCandidates && !analysis.prompts && !analysis.duplicates ? '  ✅ No obvious issues detected' : ''}
 
 Repair Summary:
-${analysis.nullCandidates > 0 ? `  🔧 Removed ${analysis.nullCandidates} null candidate references` : ''}
+${analysis.nullCandidates > 0 ? `  🔧 Repaired ${analysis.nullCandidates} null candidates` : ''}
 ${analysis.prompts > 0 ? `  🔧 Removed ${analysis.prompts} unused prompt definitions` : ''}
 ==========================================================
 `;
