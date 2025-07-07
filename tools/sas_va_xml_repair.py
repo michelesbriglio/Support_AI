@@ -215,50 +215,13 @@ class BIRDXMLRepair:
         if self.root is None:
             return False
         
-        # Phase 1: Remove elements that directly reference null candidates
-        elements_to_remove = []
-        
+        # Phase 1: Clean up expressions and attributes that contain null candidate references
+        # (More conservative approach - don't remove entire elements, just clean content)
         for elem in self.root.iter():
-            should_remove = False
-            
-            # Check all attributes for null candidate references
-            for key, value in elem.attrib.items():
-                if value in self.null_candidates:
-                    should_remove = True
-                    logger.info(f"Marked element {elem.tag} for removal due to null candidate in {key}: {value}")
-                    break
-            
-            # Check text content for null candidate references
-            if elem.text is not None and any(nc in elem.text for nc in self.null_candidates):
-                should_remove = True
-                logger.info(f"Marked element {elem.tag} for removal due to null candidate in text content")
-            
-            if should_remove:
-                elements_to_remove.append(elem)
-        
-        # Remove marked elements
-        for elem in elements_to_remove:
-            # For ElementTree, we need to find the parent manually
-            parent = None
-            for potential_parent in self.root.iter():
-                if elem in list(potential_parent):
-                    parent = potential_parent
-                    break
-            
-            if parent is not None:
-                parent.remove(elem)
-            else:
-                # If no parent, clear the element
-                elem.clear()
-                elem.tag = 'RemovedElement'
-                elem.text = '<!-- Removed due to null candidate reference -->'
-        
-        # Phase 2: Clean up expressions and attributes that contain null candidate references
-        for elem in self.root.iter():
-            # Clean all attributes
+            # Clean all attributes (except name attributes)
             attrs_to_update = {}
             for key, value in elem.attrib.items():
-                if value and any(nc in value for nc in self.null_candidates):
+                if key != 'name' and value and any(nc in value for nc in self.null_candidates):
                     cleaned_value = self._remove_null_candidate_references(value)
                     if cleaned_value != value:
                         attrs_to_update[key] = cleaned_value
@@ -268,7 +231,7 @@ class BIRDXMLRepair:
             for key, value in attrs_to_update.items():
                 elem.attrib[key] = value
             
-            # Clean text content
+            # Clean text content (don't remove the element, just clean the text)
             if elem.text is not None and any(nc in elem.text for nc in self.null_candidates):
                 cleaned_text = self._remove_null_candidate_references(elem.text)
                 if cleaned_text != elem.text:
@@ -282,7 +245,7 @@ class BIRDXMLRepair:
                     elem.tail = cleaned_tail
                     logger.info(f"Cleaned tail content in {elem.tag}")
         
-        # Phase 3: Remove empty or invalid expressions
+        # Phase 2: Remove empty or invalid expressions
         for elem in self.root.iter():
             # Remove elements with empty expressions
             if elem.attrib.get('expression') in ['', '()', '${}']:
@@ -300,7 +263,7 @@ class BIRDXMLRepair:
         # Update the XML content to reflect changes
         self.xml_content = ET.tostring(self.root, encoding='unicode')
         
-        # Phase 4: Iterative cleanup until no more null candidates
+        # Phase 3: Iterative cleanup until no more null candidates
         max_iterations = 5
         iteration = 0
         
@@ -377,7 +340,7 @@ class BIRDXMLRepair:
     
     def find_duplicate_objects(self) -> Dict[str, List[ObjectReference]]:
         """
-        Find all duplicate object IDs in the XML
+        Find problematic duplicate object IDs in the XML
         Returns a dictionary mapping object IDs to their references
         """
         duplicates = {}
@@ -404,8 +367,42 @@ class BIRDXMLRepair:
                     line_number=self._get_line_number(elem)
                 ))
         
-        # Filter to only include duplicates
-        return {k: v for k, v in duplicates.items() if len(v) > 1}
+        # Filter to only include problematic duplicates
+        problematic_duplicates = {}
+        for obj_id, references in duplicates.items():
+            if len(references) > 1:
+                # Check if these are legitimate duplicates (like DynVar with same name)
+                # or problematic duplicates (like actual object IDs)
+                
+                # Skip if all references are DynVar elements with the same name
+                # (these are legitimate dynamic variables used in different contexts)
+                if all(ref.object_type == 'DynVar' for ref in references):
+                    continue
+                
+                # Skip if all references are Category elements in stylesheet
+                # (these are legitimate CSS category definitions)
+                if all(ref.object_type == 'Category' for ref in references):
+                    continue
+                
+                # Skip if all references are Property elements with the same key
+                # (these are legitimate property definitions)
+                if all(ref.object_type == 'Property' for ref in references):
+                    continue
+                
+                # Skip if all references are KeyValue elements with the same name
+                # (these are legitimate key-value components used in different contexts)
+                if all(ref.object_type == 'KeyValue' for ref in references):
+                    continue
+                
+                # Skip if all references are HistogramParm elements with the same name
+                # (these are legitimate histogram parameter components used in different contexts)
+                if all(ref.object_type == 'HistogramParm' for ref in references):
+                    continue
+                
+                # Include other types of duplicates as problematic
+                problematic_duplicates[obj_id] = references
+        
+        return problematic_duplicates
     
     def find_unused_prompts(self) -> Set[str]:
         """
