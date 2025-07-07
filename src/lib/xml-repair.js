@@ -105,16 +105,31 @@ export class XMLRepairTool {
       }
     }
 
-    // Second pass: collect referenced IDs from specific attributes only
+    // Second pass: collect referenced IDs from specific attributes and text content
     // Focus on attributes that typically contain object references
     const referenceAttributes = ['value', 'ref', 'target', 'id', 'object'];
     
     for (let elem of allElements) {
+      // Check attributes for references
       for (let attr of elem.attributes) {
         if (referenceAttributes.includes(attr.name.toLowerCase())) {
           const val = attr.value.trim();
           if (idCheck.test(val)) {
             referencedIds.add(val);
+          }
+        }
+      }
+      
+      // Check text content for references (important for Property elements)
+      // Use a more robust approach similar to server-side API
+      if (elem.textContent && elem.textContent.trim()) {
+        const textContent = elem.textContent.trim();
+        // Debug: log all text content found
+        if (textContent && textContent.length > 0) {
+          console.log('Text content found:', textContent, 'in element:', elem.tagName);
+          if (idCheck.test(textContent)) {
+            referencedIds.add(textContent);
+            console.log('Found null candidate in text content:', textContent, 'in element:', elem.tagName);
           }
         }
       }
@@ -393,21 +408,16 @@ export async function repairXMLFile(file) {
         
         // Check if it's a JSON file
         if (file.name.endsWith('.json')) {
-          console.log('Processing JSON file:', file.name);
           const result = await processJSONFile(content, file.name);
-          console.log('JSON result filename:', result.filename);
           resolve(result);
         } else {
           // Handle as XML file
-          console.log('Processing XML file:', file.name);
           const repairTool = new XMLRepairTool();
           const result = await repairTool.repairXML(content);
-          const finalResult = {
+          resolve({
             ...result,
             filename: `repaired_${file.name}`
-          };
-          console.log('XML result filename:', finalResult.filename);
-          resolve(finalResult);
+          });
         }
       } catch (error) {
         reject(error);
@@ -471,12 +481,10 @@ async function processJSONFile(jsonContent, fileName) {
               if (xmlContent.includes('<') && xmlContent.includes('>')) {
                 const repairTool = new XMLRepairTool();
                 const result = await repairTool.repairXML(xmlContent);
-                const finalResult = {
+                return {
                   ...result,
                   filename: `repaired_${fileName.replace('.json', '.xml')}`
                 };
-                console.log('processJSONFile returning filename:', finalResult.filename);
-                return finalResult;
               }
             }
           } catch {
