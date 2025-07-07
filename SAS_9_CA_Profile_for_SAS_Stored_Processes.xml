@@ -1,0 +1,2015 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SASReport xmlns="http://www.sas.com/sasreportmodel/bird-4.50.0" label="SAS_9_CA_Profile_for_SAS_Stored_Processes" features="promptModelV2" implicitInteractions="sectionPrompt reportPrompt sectionLink" createdLocale="en" createdVersion="4.1.2" dateCreated="2018-06-20T20:34:10Z" dateModified="2025-07-02T07:08:08Z" createdApplication="SAS Visual Analytics 8.3" lastModifiedApplication="SAS Visual Analytics 2025.03" nextUniqueNameIndex="136434">
+	<DataDefinitions>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds91977" name="dd131950">
+			<BusinessItems>
+				<RelationalDataItem name="bi131986" base="bi98739"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds91977" type="relational" name="dd131951">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi131986"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi131986" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="buttonBar" maxRowsBehavior="truncate" name="dd131952"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds91977" name="dd132643">
+			<BusinessItems>
+				<RelationalDataItem name="bi132640" base="bi131525"/>
+				<RelationalDataItem name="bi132641" base="bi132400"/>
+				<RelationalDataItem name="bi132642" base="bi132411"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds91977" type="multidimensional" name="dd132644">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi132640"/>
+						</Axis>
+						<Axis type="row">
+							<BusinessItem ref="bi132641"/>
+							<BusinessItem ref="bi132642"/>
+						</Axis>
+					</Axes>
+					<ColumnSortItems>
+						<MeasureSortItem ref="bi132642" sortDirection="descending"/>
+						<MeasureSortItem ref="bi132641" sortDirection="descending"/>
+						<SortItem ref="bi132640" sortDirection="ascending"/>
+					</ColumnSortItems>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="graphDefault" maxRowsBehavior="truncate" name="dd132639"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters/>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds91977" name="dd132650">
+			<BusinessItems>
+				<RelationalDataItem name="bi132649" base="bi91984"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds91977" type="multidimensional" name="dd132651">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column"/>
+						<Axis type="row">
+							<BusinessItem ref="bi132649"/>
+						</Axis>
+					</Axes>
+					<ColumnSortItems>
+						<MeasureSortItem ref="bi132649" sortDirection="descending"/>
+					</ColumnSortItems>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" name="dd132648"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds91977" name="dd132657">
+			<BusinessItems>
+				<RelationalDataItem name="bi132656" base="bi131763"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds91977" type="multidimensional" name="dd132658">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column"/>
+						<Axis type="row">
+							<BusinessItem ref="bi132656"/>
+						</Axis>
+					</Axes>
+					<ColumnSortItems>
+						<MeasureSortItem ref="bi132656" sortDirection="descending"/>
+					</ColumnSortItems>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" name="dd132655"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds91977" name="dd132664">
+			<BusinessItems>
+				<RelationalDataItem name="bi132663" base="bi131762"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds91977" type="multidimensional" name="dd132665">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column"/>
+						<Axis type="row">
+							<BusinessItem ref="bi132663"/>
+						</Axis>
+					</Axes>
+					<ColumnSortItems>
+						<MeasureSortItem ref="bi132663" sortDirection="descending"/>
+					</ColumnSortItems>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" name="dd132662"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds91977" name="dd132698">
+			<BusinessItems>
+				<RelationalDataItem name="bi132697" base="bi132445"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds91977" type="relational" name="dd132699">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi132697"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi132697" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="dropdown" maxRowsBehavior="truncate" name="dd132696"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds91977" name="dd132718">
+			<BusinessItems>
+				<RelationalDataItem name="bi132716" base="bi91979"/>
+				<RelationalDataItem name="bi132714" base="bi131526"/>
+				<RelationalDataItem name="bi132715" base="bi91980"/>
+				<RelationalDataItem name="bi133793" base="bi133765"/>
+				<RelationalDataItem name="bi134195" base="bi123899"/>
+				<RelationalFilterItem label="Is Embedded Stored Process" name="bi135398">
+					<EditorProperties>
+						<Property key="complexity">ADVANCED</Property>
+					</EditorProperties>
+					<Expression>notMissing(${bi132714,binned})</Expression>
+				</RelationalFilterItem>
+				<RelationalDataItem name="bi136407" base="bi132445"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds91977" type="relational" name="dd132719">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi132714"/>
+							<BusinessItem ref="bi132716"/>
+							<BusinessItem ref="bi133793"/>
+							<BusinessItem ref="bi134195"/>
+							<BusinessItem ref="bi132715"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi132715" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="listTable" maxRowsBehavior="truncate" name="dd132713"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters>
+				<DetailFilters>
+					<BusinessItem ref="bi135398"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds91977" name="dd133059">
+			<BusinessItems>
+				<RelationalDataItem binOption="formatBin" name="bi133057" base="bi91987" usage="quantitative" aggregation="min"/>
+				<RelationalDataItem binOption="formatBin" name="bi133058" base="bi91987" usage="quantitative" aggregation="max"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds91977" type="relational" name="dd133060">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi133057"/>
+							<BusinessItem ref="bi133058"/>
+						</Axis>
+					</Axes>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" name="dd133056"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds91977" name="dd133067">
+			<BusinessItems>
+				<RelationalDataItem binOption="formatBin" name="bi133065" base="bi91987"/>
+				<RelationalDataItem name="bi133066" base="bi91982"/>
+				<RelationalDataItem name="bi136408" base="bi91980"/>
+				<RelationalDataItem name="bi136409" base="bi91979"/>
+				<RelationalDataItem name="bi136410" base="bi91978"/>
+				<RelationalDataItem name="bi136411" base="bi91981"/>
+				<RelationalDataItem name="bi136412" base="bi98739"/>
+				<RelationalDataItem name="bi136413" base="bi123900"/>
+				<RelationalDataItem name="bi136414" base="bi126617"/>
+				<RelationalDataItem name="bi136415" base="bi91987"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds91977" type="multidimensional" name="dd133068">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi133065"/>
+						</Axis>
+						<Axis type="row">
+							<BusinessItem ref="bi133066"/>
+						</Axis>
+					</Axes>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="timeSeries" maxRowsBehavior="noData" name="dd133064"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds91977" name="dd133077">
+			<BusinessItems>
+				<RelationalDataItem name="bi133073" base="bi93534"/>
+				<SyntheticDataItem name="bi133074"/>
+				<SyntheticDataItem name="bi133075"/>
+				<RelationalDataItem name="bi133076" base="bi91982"/>
+				<RelationalDataItem name="bi136416" base="bi91980"/>
+				<RelationalDataItem name="bi136417" base="bi91979"/>
+				<RelationalDataItem name="bi136418" base="bi91978"/>
+				<RelationalDataItem name="bi136419" base="bi91981"/>
+				<RelationalDataItem name="bi136420" base="bi98739"/>
+				<RelationalDataItem name="bi136421" base="bi123900"/>
+				<RelationalDataItem name="bi136422" base="bi126617"/>
+				<RelationalDataItem name="bi136423" base="bi91987"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds91977" type="procedural" name="dd133078">
+				<ProceduralQuery type="histogram">
+					<Arguments>
+						<Argument purpose="binType">
+							<StringValue>defaultBinEdges</StringValue>
+						</Argument>
+						<Argument purpose="inputVariable">
+							<ReferenceValue>bi133073</ReferenceValue>
+						</Argument>
+						<Argument purpose="lowerBound">
+							<ReferenceValue>bi133074</ReferenceValue>
+						</Argument>
+						<Argument purpose="upperBound">
+							<ReferenceValue>bi133075</ReferenceValue>
+						</Argument>
+						<Argument purpose="aggregatedMeasure">
+							<ReferenceValue>bi133076</ReferenceValue>
+						</Argument>
+					</Arguments>
+				</ProceduralQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" name="dd133072"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds91977" name="dd133087">
+			<BusinessItems>
+				<RelationalDataItem name="bi133083" base="bi91982"/>
+				<RelationalDataItem name="bi133084" base="bi93719"/>
+				<SyntheticDataItem name="bi133085"/>
+				<SyntheticDataItem name="bi133086"/>
+				<RelationalDataItem name="bi136424" base="bi91980"/>
+				<RelationalDataItem name="bi136425" base="bi91979"/>
+				<RelationalDataItem name="bi136426" base="bi91978"/>
+				<RelationalDataItem name="bi136427" base="bi91981"/>
+				<RelationalDataItem name="bi136428" base="bi98739"/>
+				<RelationalDataItem name="bi136429" base="bi123900"/>
+				<RelationalDataItem name="bi136430" base="bi126617"/>
+				<RelationalDataItem name="bi136431" base="bi91987"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds91977" type="procedural" name="dd133088">
+				<ProceduralQuery type="histogram">
+					<Arguments>
+						<Argument purpose="binType">
+							<StringValue>defaultBinEdges</StringValue>
+						</Argument>
+						<Argument purpose="aggregatedMeasure">
+							<ReferenceValue>bi133083</ReferenceValue>
+						</Argument>
+						<Argument purpose="inputVariable">
+							<ReferenceValue>bi133084</ReferenceValue>
+						</Argument>
+						<Argument purpose="lowerBound">
+							<ReferenceValue>bi133085</ReferenceValue>
+						</Argument>
+						<Argument purpose="upperBound">
+							<ReferenceValue>bi133086</ReferenceValue>
+						</Argument>
+					</Arguments>
+				</ProceduralQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" name="dd133082"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds91977" name="dd133107">
+			<BusinessItems>
+				<RelationalDataItem name="bi133099" base="bi91980"/>
+				<RelationalDataItem name="bi133100" base="bi91979"/>
+				<RelationalDataItem name="bi133101" base="bi91978"/>
+				<RelationalDataItem name="bi133102" base="bi91981"/>
+				<RelationalDataItem name="bi133103" base="bi93534"/>
+				<RelationalDataItem name="bi133104" base="bi98739"/>
+				<RelationalDataItem name="bi133105" base="bi123900"/>
+				<RelationalDataItem name="bi133106" base="bi126617"/>
+				<RelationalDataItem name="bi136432" base="bi91987"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds91977" type="relational" name="dd133108">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi133104"/>
+							<BusinessItem ref="bi133105"/>
+							<BusinessItem ref="bi133106"/>
+							<BusinessItem ref="bi133099"/>
+							<BusinessItem ref="bi133103"/>
+							<BusinessItem ref="bi133101"/>
+							<BusinessItem ref="bi133102"/>
+							<BusinessItem ref="bi133100"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi133099" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="listTable" maxRowsBehavior="truncate" name="dd133098"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds91977" name="dd132709">
+			<BusinessItems>
+				<RelationalDataItem name="bi132704" base="bi131528"/>
+				<RelationalDataItem name="bi132705" base="bi91982"/>
+				<RelationalDataItem name="bi133790" base="bi133765"/>
+				<RelationalDataItem name="bi135335" base="bi135334"/>
+				<RelationalFilterItem label="Is External Source File" name="bi135397">
+					<EditorProperties>
+						<Property key="complexity">ADVANCED</Property>
+					</EditorProperties>
+					<Expression>notMissing(${bi132704,binned})</Expression>
+				</RelationalFilterItem>
+				<RelationalDataItem name="bi136433" base="bi132445"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds91977" type="relational" name="dd132710">
+				<RelationalQuery columnTotals="false" detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi133790"/>
+							<BusinessItem ref="bi132704"/>
+							<BusinessItem ref="bi132705"/>
+							<BusinessItem ref="bi135335"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi132705" sortDirection="descending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="listTable" maxRowsBehavior="truncate" name="dd132703"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters>
+				<DetailFilters>
+					<BusinessItem ref="bi135397"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds91977" name="dd135527">
+			<BusinessItems>
+				<RelationalDataItem name="bi135530" base="bi91980"/>
+				<RelationalDataItem name="bi135531" base="bi91979"/>
+				<RelationalDataItem name="bi135532" base="bi135498"/>
+				<RelationalDataItem name="bi135533" base="bi135499"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds91977" type="relational" name="dd135528">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi135530"/>
+							<BusinessItem ref="bi135533"/>
+							<BusinessItem ref="bi135532"/>
+							<BusinessItem ref="bi135531"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi135530" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="listTable" maxRowsBehavior="truncate" name="dd135529"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds91977" name="dd135636">
+			<BusinessItems>
+				<RelationalDataItem name="bi135548" base="bi135538"/>
+				<RelationalDataItem name="bi135556" base="bi135555"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds91977" type="multidimensional" name="dd135637">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi135548"/>
+						</Axis>
+						<Axis type="row">
+							<BusinessItem ref="bi135556"/>
+						</Axis>
+					</Axes>
+					<ColumnSortItems>
+						<MeasureSortItem ref="bi135556" sortDirection="descending"/>
+						<SortItem ref="bi135548" sortDirection="ascending"/>
+					</ColumnSortItems>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="graphDefault" maxRowsBehavior="noData" name="dd135638"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+	</DataDefinitions>
+	<DataSources>
+		<DataSource label="STOREDDETAILS" type="relational" name="ds91977">
+			<CasResource server="cas-shared-default" library="prod1ICA" table="STOREDDETAILS" locale="en_US"/>
+			<BusinessItemFolder>
+				<DataItem name="bi91978" label="Stored Process created" xref="STORED_CREATED"/>
+				<DataItem name="bi91979" label="Stored Process ID" xref="STORED_ID"/>
+				<DataItem name="bi91980" label="Stored Process Name" xref="STORED_NAME"/>
+				<DataItem name="bi91981" label="Stored Process updated" xref="STORED_UPDATED"/>
+				<PredefinedDataItem calculation="totalCount" name="bi91982" label="Frequency" usage="quantitative" format="COMMA12."/>
+				<PredefinedDataItem calculation="totalCountPercent" name="bi91983" label="Frequency Percent" usage="quantitative" format="PERCENT20.2"/>
+				<AggregateCalculatedItem dataType="double" name="bi91984" label="Total Stored Processes" format="COMMA12.">
+					<Expression>aggregate(countDistinct,all,${bi91979,binned})</Expression>
+				</AggregateCalculatedItem>
+				<CalculatedItem dataType="date" name="bi91986" label="Date Created" usage="categorical" format="DATE9" aggregation="sum">
+					<Expression>applySASInformat(${bi91978,binned},$SASInformat{ANYDTDTE32.})</Expression>
+				</CalculatedItem>
+				<CalculatedItem dataType="date" name="bi91987" label="Date Last Updated" usage="categorical" format="DATE9" aggregation="sum">
+					<Expression>applySASInformat(${bi91981,binned},$SASInformat{ANYDTDTE32.})</Expression>
+				</CalculatedItem>
+				<CalculatedItem dataType="double" name="bi93534" label="Weeks since last modified" usage="quantitative" format="COMMA12." aggregation="sum">
+					<Expression>plus(times(minus(year(datepart(now())),year(${bi91987,binned})),52),minus(week(datepart(now())),week(${bi91987,binned})))</Expression>
+				</CalculatedItem>
+				<CalculatedItem dataType="double" name="bi93719" label="Weeks since created" usage="quantitative" format="COMMA12." aggregation="sum">
+					<Expression>plus(times(minus(year(datepart(now())),year(${bi91986,binned})),52),minus(week(datepart(now())),week(${bi91986,binned})))</Expression>
+				</CalculatedItem>
+				<DataItem name="bi98739" label="Deployment" xref="SERVER_LABEL"/>
+				<AggregateCalculatedItem dataType="double" name="bi116437" label="Total Deployments" format="COMMA12.">
+					<Expression>aggregate(countDistinct,group,${bi98739,binned})</Expression>
+				</AggregateCalculatedItem>
+				<DataItem name="bi123899" label="Folder Path" xref="FOLDERPATH"/>
+				<DataItem name="bi123900" label="Full Path" xref="FULLPATH"/>
+				<DataItem name="bi123901" label="Metadata Repository" xref="METAREPO"/>
+				<DataItem name="bi124838" label="Server Label Color" xref="SERVER_LABEL_COLOR" hidden="true"/>
+				<DataItem name="bi126617" label="Public Type" xref="PUBLIC_TYPE"/>
+				<DataItem name="bi128551" label="Customer ID" xref="CUSTOMER_ID"/>
+				<DataItem name="bi131524" label="Application Server ID" xref="APPSERVER_ID"/>
+				<DataItem name="bi131525" label="Application Server" xref="APPSERVER_NAME"/>
+				<DataItem name="bi131526" label="Embedded Stored Process ID" xref="STORED_EMBEDDED_SRC_ID"/>
+				<DataItem name="bi131527" label="External Source Full Path" xref="STORED_EXTERNALSOURCEDIR"/>
+				<DataItem name="bi131528" label="External Source File Name" xref="STORED_EXTERNALSOURCEFILE"/>
+				<AggregateCalculatedItem dataType="double" name="bi131762" label="Using Embedded Code" format="COMMA12.">
+					<Expression>aggregate(count,all,${bi131526,raw})</Expression>
+				</AggregateCalculatedItem>
+				<AggregateCalculatedItem dataType="double" name="bi131763" label="Using External Code" format="COMMA12.">
+					<Expression>aggregate(count,all,${bi131527,raw})</Expression>
+				</AggregateCalculatedItem>
+				<AggregateCalculatedItem dataType="double" name="bi132400" label="Stored Processes using Embedded Code" format="COMMA12.">
+					<Expression>aggregate(count,group,${bi131526,raw})</Expression>
+				</AggregateCalculatedItem>
+				<AggregateCalculatedItem dataType="double" name="bi132411" label="Stored Processes using External Source" format="COMMA12.">
+					<Expression>aggregate(count,group,${bi131527,raw})</Expression>
+				</AggregateCalculatedItem>
+				<CalculatedItem dataType="string" name="bi132445" label="Deployment-ApplicationServer" usage="categorical" format="$." aggregation="sum">
+					<Expression>concatenate(${bi98739,binned},concatenate(&apos;:&apos;,${bi131525,binned}))</Expression>
+				</CalculatedItem>
+				<CalculatedItem dataType="string" name="bi133764" label="Parsed Path" usage="categorical" format="$." aggregation="sum">
+					<Expression>substring(${bi123900,binned},plus(length(substring(${bi123900,binned},2,minus(findCharacter(substring(${bi123900,binned},2,length(${bi123900,binned})),&apos;/&apos;),1))),3),length(${bi123900,binned}))</Expression>
+				</CalculatedItem>
+				<CalculatedItem dataType="string" name="bi133765" label="Project" usage="categorical" format="$." aggregation="sum">
+					<Expression>cond(ne(substring(${bi123900,binned},2,minus(findCharacter(substring(${bi123900,binned},2,length(${bi123900,binned})),&apos;/&apos;),1)),&apos;User Folders&apos;),substring(${bi133764,binned},1,minus(findCharacter(substring(${bi133764,binned},1,plus(length(${bi133764,binned}),1)),&apos;/&apos;),1)),&apos;Users&apos;)</Expression>
+				</CalculatedItem>
+				<DataItem name="bi135287" label="Application Server Configuration Directory" xref="LEVDIR"/>
+				<CalculatedItem dataType="string" name="bi135334" label="External Source Directory" usage="categorical" format="$." aggregation="sum">
+					<Expression>cond(gt(findCharacter(${bi131527,binned},&apos;/&apos;),0),reverse(substring(reverse(${bi131527,binned}),findCharacter(reverse(${bi131527,binned}),&apos;/&apos;),length(${bi131527,binned}))),reverse(substring(reverse(${bi131527,binned}),findCharacter(reverse(${bi131527,binned}),&apos;\&apos;),length(${bi131527,binned}))))</Expression>
+				</CalculatedItem>
+				<DataItem name="bi135498" label="Prompt ID" xref="PROMPT_ID"/>
+				<DataItem name="bi135499" label="Prompt Name" xref="PROMPT_NAME"/>
+				<CalculatedItem dataType="string" name="bi135538" label="Has a Prompt?" usage="categorical" format="$." aggregation="sum">
+					<Expression>cond(notMissing(${bi135498,binned}),&apos;Yes&apos;,&apos;No&apos;)</Expression>
+				</CalculatedItem>
+				<AggregateCalculatedItem dataType="double" name="bi135555" label="Number of Stored Processes" format="COMMA12.">
+					<Expression>aggregate(countDistinct,group,${bi91979,binned})</Expression>
+				</AggregateCalculatedItem>
+				<AggregateCalculatedItem dataType="double" name="bi135623" label="Distinct Prompts" format="COMMA12.">
+					<Expression>aggregate(countDistinct,all,${bi135498,binned})</Expression>
+				</AggregateCalculatedItem>
+			</BusinessItemFolder>
+		</DataSource>
+	</DataSources>
+	<VisualElements>
+		<Prompt required="false" resultDefinitions="dd131952" name="ve131949" data="dd131950" label="Buttons - Deployment" selectionDisabled="true" applyDynamicBrushes="promptsOnly" sourceInteractionVariables="bi131986">
+			<EditorProperties>
+				<Property key="autoChartCategory">CONTROL</Property>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span>Select a deployment to filter the report results</Span></P></Title>
+			<LinkBar valueVariable="bi131986"/>
+		</Prompt>
+		<Text name="ve132637" label="Overview Text" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P><Span class="span11">What is the Stored Process Inventory?</Span></P>
+			<P><Span> </Span></P>
+			<P><Span class="span12">The metrics below display the total number of stored processes, the number of stored processes with code stored in external files, and the number of stored processes that have code stored as part of a SAS object. The bar graph shows the number of stored processes by application server and storage type. </Span><Span><Span><Span action="ac132683">Get more report details</Span></Span></Span><Span>.</Span></P>
+		</Text>
+		<VisualContainer containerType="layout" name="ve132671" label="Layout Container 1 (1)" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<Graph graphType="bar" supplementalVisuals="ve132645" resultDefinitions="dd132639" name="ve132646" data="dd132643" label="Bar - STP by Application Server" applyDynamicBrushes="yes" sourceInteractionVariables="bi132640">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+				<Property key="measureAxisLayout">sharedAxis</Property>
+			</EditorProperties>
+			<Title><P><Span>Where is stored process code located? To filter the report metrics, click the bar for an application server in the graph.</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg89432">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg124851">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<![CDATA[<StatGraph border="false" opaque="false" includeMissingDiscrete="true" selectionMode="multiple" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="true" assignedType="any" type="character">
+                <DefaultValues>
+                    <Value>dd132639.bi132640</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="any" type="numeric" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd132639.bi132642</Value>
+                    <Value>dd132639.bi132641</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="GROUP" description="SUBGROUP_VAR" required="false" type="character"/>
+            <DynVar name="COLUMN" description="HORIZONTAL_SERIES_VAR" required="false" type="character" multiplesAllowed="true"/>
+            <DynVar name="ROW" description="VERTICAL_SERIES_VAR" required="false" type="character" multiplesAllowed="true"/>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="numeric" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd132639.bi132640</Value>
+                    <Value>dd132639.bi132641</Value>
+                    <Value>dd132639.bi132642</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="KEY_FRAME" description="ANIMATION" required="false" type="time" multiplesAllowed="false"/>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+        <DataNameMap>
+            <Entry model="LayoutDataMatrix_71" data="dd132639"/>
+        </DataNameMap>
+    </Meta>
+    <LayoutDataMatrix name="LayoutDataMatrix_71" rowVars="ROW" columnVars="COLUMN">
+        <LayoutPrototypeOverlay2D>
+            <BarChartParm name="DRM131883" tipListPolicy="replace" _stmt="barchart" groupDisplay="stack" orient="horizontal" stat="none" segmentLabel="true" tip="TIP" category="CATEGORY" responseVars="RESPONSE" group="GROUP"/>
+            <XAxisOpts name="AxisOptions_938" display="TICKVALUES" gridDisplay="on" reverse="false">
+                <DiscreteOpts sortOrder="data"/>
+                <LinearOpts>
+                    <TickValueFormatOpts extractScale="true"/>
+                </LinearOpts>
+            </XAxisOpts>
+            <YAxisOpts display="LINE TICKS TICKVALUES" gridDisplay="on" reverse="true">
+                <DiscreteOpts tickValueFitPolicy="staggertruncatedrop" sortOrder="data" tickValueAppearance="auto"/>
+                <LinearOpts>
+                    <TickValueFormatOpts extractScale="true"/>
+                </LinearOpts>
+            </YAxisOpts>
+        </LayoutPrototypeOverlay2D>
+    </LayoutDataMatrix>
+    <LayoutGlobalLegend legendTitlePosition="top" allowCollapsed="true">
+        <AutoLegend>
+            <GraphNames>
+                <Value>DRM131883</Value>
+            </GraphNames>
+        </AutoLegend>
+    </LayoutGlobalLegend>
+    <Animation keyFrame="KEY_FRAME"/>
+    <OverviewAxis maxPlotSize="60px" minPlotSize="35px" visible="off" axis="AxisOptions_938"/>
+</StatGraph>
+]]>
+		</Graph>
+		<Graph graphType="keyValue" supplementalVisuals="ve132652" resultDefinitions="dd132648" name="ve132653" data="dd132650" label="Stored Processes " applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Conditions>
+				<Condition ref="rg89432">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg124851">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<![CDATA[<StatGraph border="false" opaque="false" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="false" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="any" type="numeric">
+                <DefaultValues>
+                    <Value>dd132648.bi132649</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="numeric" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd132648.bi132649</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutRegion>
+        <KeyValue name="KeyValue" tipListPolicy="replace" _stmt="keyValue" hAlign="center" justify="center" key="responsevalue" vAlign="center" tip="TIP" category="CATEGORY" response="RESPONSE">
+            <ResponseValueFormatOpts extractScale="false"/>
+            <ResponseLabelAttrs weight="normal"/>
+        </KeyValue>
+    </LayoutRegion>
+</StatGraph>
+]]>
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd132648" name="ve132652" data="dd132650" applyDynamicBrushes="yes">
+			<Columns>
+				<Column variable="bi132649"/>
+			</Columns>
+		</Table>
+		<Graph graphType="keyValue" supplementalVisuals="ve132659" resultDefinitions="dd132655" name="ve132660" data="dd132657" label="Key - Using External Source Code" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Conditions>
+				<Condition ref="rg89432">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg124851">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<![CDATA[<StatGraph border="false" opaque="false" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="false" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="any" type="numeric">
+                <DefaultValues>
+                    <Value>dd132655.bi132656</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="numeric" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd132655.bi132656</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutRegion>
+        <KeyValue name="KeyValue" tipListPolicy="replace" _stmt="keyValue" display="RESPONSELABEL RESPONSEVALUE" hAlign="center" justify="center" key="responsevalue" vAlign="center" tip="TIP" category="CATEGORY" response="RESPONSE">
+            <ResponseValueFormatOpts extractScale="false"/>
+            <ResponseLabelAttrs weight="normal"/>
+        </KeyValue>
+    </LayoutRegion>
+</StatGraph>
+]]>
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd132655" name="ve132659" data="dd132657" applyDynamicBrushes="yes">
+			<Columns>
+				<Column variable="bi132656"/>
+			</Columns>
+		</Table>
+		<Graph graphType="keyValue" supplementalVisuals="ve132666" resultDefinitions="dd132662" name="ve132667" data="dd132664" label="Key- Using Embedded Code" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Conditions>
+				<Condition ref="rg89432">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg124851">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<![CDATA[<StatGraph border="false" opaque="false" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="false" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="any" type="numeric">
+                <DefaultValues>
+                    <Value>dd132662.bi132663</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="numeric" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd132662.bi132663</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutRegion>
+        <KeyValue name="KeyValue" tipListPolicy="replace" _stmt="keyValue" display="CATEGORYLABEL CATEGORYVALUE RESPONSELABEL RESPONSEVALUE" hAlign="center" justify="center" key="responsevalue" vAlign="center" tip="TIP" category="CATEGORY" response="RESPONSE">
+            <ResponseValueFormatOpts extractScale="true"/>
+            <ResponseLabelAttrs weight="normal"/>
+        </KeyValue>
+    </LayoutRegion>
+</StatGraph>
+]]>
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd132662" name="ve132666" data="dd132664" applyDynamicBrushes="yes">
+			<Columns>
+				<Column variable="bi132663"/>
+			</Columns>
+		</Table>
+		<Text name="ve132694" label="Code Location Text" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P><Span class="span8">What are the details that describe or identify each stored process in my environment?</Span></P>
+			<P><Span> </Span></P>
+			<P><Span>The tables below show a list of stored processes grouped by storage type. </Span><Span>Compare the tables to know how much of your source code is stored in the SAS object and how much is stored in the file system. Understand where the stored process source code is located. For the external code, use the external source directory field to find the source code location. Find the folder path of the stored processes that have embedded code in the second table. Custom project names are displayed so that you know how the stored processes are grouped.</Span><Span><Span> Select a compute server from the list below to list the stored processes for the selected server. </Span></Span></P>
+			<P class="paragraph2"><Span><Span><Span><Span><Span><Span action="ac132954">Get more report details</Span></Span></Span></Span></Span></Span></P>
+		</Text>
+		<Prompt required="false" resultDefinitions="dd132696" name="ve132701" data="dd132698" label="Drop-down - Deployment-ApplicationServer" description="" selectionDisabled="true" applyDynamicBrushes="promptsOnly" sourceInteractionVariables="bi132697">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+				<Property key="autoChartCategory">CONTROL</Property>
+			</EditorProperties>
+			<Title><P><Span>Select an application server to filter the stored processes listed in the tables.</Span></P></Title>
+			<ComboBox valueVariable="bi132697"/>
+		</Prompt>
+		<Table columnSizing="autoFill" resultDefinitions="dd132713" name="ve132720" data="dd132718" label="List  - Embedded Source Code" applyDynamicBrushes="yes" sourceInteractionVariables="bi132716 bi132714 bi132715 bi133793 bi134195">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+				<Property key="addedInteractionQueryDataItems">bi136407</Property>
+			</EditorProperties>
+			<Title><P><Span>Which stored processes have embedded code?</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg89432">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg124851">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+			<Columns>
+				<Column variable="bi133793" isVisible="true"/>
+				<Column variable="bi134195" isVisible="true"/>
+				<Column class="tableColumnbi132286" variable="bi132715" isVisible="true"/>
+				<Column variable="bi132714" isVisible="false"/>
+				<Column class="tableColumnbi132280" variable="bi132716" isVisible="false"/>
+			</Columns>
+		</Table>
+		<VisualContainer containerType="layout" name="ve133096" label="Layout Container 14 (1)" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+				<Property key="isAutoLabel">true</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<Text name="ve133054" label="Timeline Title" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P><Span class="span10">When were stored processes created or updated?</Span></P>
+			<P><Span> </Span></P>
+			<P><Span><Span>Identify the time that has passed since a stored process was created or updated. Select an updated date range of time to filter the report.</Span></Span></P>
+			<P><Span><Span><Span><Span><Span action="ac133381">Get more report details</Span><Span>.</Span></Span></Span></Span></Span></P>
+		</Text>
+		<Prompt interactOnAggregateData="false" required="true" resultDefinitions="dd133056" name="ve133062" data="dd133059" label="Slider - Date last modified" selectionDisabled="true" applyDynamicBrushes="no" sourceInteractionVariables="bi133057">
+			<EditorProperties>
+				<Property key="autoChartCategory">CONTROL</Property>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<DefaultValue>
+				<NumericRange type="double" minInclusive="true" maxInclusive="true" dynamicMin="min" dynamicMax="max" minBehavior="dynamic" maxBehavior="dynamic"/>
+			</DefaultValue>
+			<DualSlider orientation="horizontal" minVariable="bi133057" maxVariable="bi133058">
+				<NumericRangeConstraint required="true" minInclusive="true" maxInclusive="true"/>
+			</DualSlider>
+		</Prompt>
+		<Graph graphType="timeSeries" supplementalVisuals="ve133069" resultDefinitions="dd133064" name="ve133070" data="dd133067" label="Time - Date Last Updated" applyDynamicBrushes="yes">
+			<EditorProperties>
+				<Property key="timeSeriesBinOption">formatBin</Property>
+				<Property key="timeSeriesFixedBinCardinality">300</Property>
+				<Property key="autoFrequencyQueryDataItemName">bi133066</Property>
+				<Property key="isAutoLabel">false</Property>
+				<Property key="addedInteractionQueryDataItems">bi136408,bi136409,bi136410,bi136411,bi136412,bi136413,bi136414,bi136415</Property>
+			</EditorProperties>
+			<Title><P><Span>How many stored processes were updated each day?</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg89432">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg124851">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<![CDATA[<StatGraph border="false" opaque="false" includeMissingDiscrete="true" selectionMode="multiple" missingValueDisplay="autolabel" displayOptionPolicy="union">
+    <Meta>
+        <DynVars>
+            <DynVar name="TIME" description="TIME_VAR" required="true" assignedType="any" type="time">
+                <DefaultValues>
+                    <Value>dd133064.bi133065</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="RESPONSE" description="RESPONSE_VAR" required="true" assignedType="any" type="numeric" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd133064.bi133066</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="GROUP" description="SUBGROUP_VAR" required="false" type="character"/>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="numeric" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd133064.bi133065</Value>
+                    <Value>dd133064.bi133066</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+        <DataNameMap>
+            <Entry model="LayoutDataMatrix_155" data="dd133064"/>
+        </DataNameMap>
+    </Meta>
+    <LayoutDataMatrix name="LayoutDataMatrix_155" includeMissingClass="true">
+        <LayoutPrototypeOverlay2D>
+            <TimeSeriesPlot name="TimeSeriesPlot" tipListPolicy="replace" _stmt="timeseriesplot" primary="true" break="true" fadeType="auto" display="NOMARKERS NOFILL" tip="TIP" group="GROUP" time="TIME" responseVars="RESPONSE"/>
+            <XAxisOpts name="categoryAxis" display="TICKVALUES">
+                <DiscreteOpts tickValueAppearance="auto"/>
+                <TimeOpts splitTickValue="false" tickValueFormat="DATA"/>
+            </XAxisOpts>
+            <YAxisOpts display="LINE TICKS TICKVALUES" gridDisplay="on" reverse="false">
+                <DiscreteOpts/>
+                <LinearOpts>
+                    <TickValueFormatOpts extractScale="true"/>
+                </LinearOpts>
+                <TimeOpts/>
+            </YAxisOpts>
+        </LayoutPrototypeOverlay2D>
+    </LayoutDataMatrix>
+    <LayoutGlobalLegend legendTitlePosition="top" allowCollapsed="true">
+        <AutoLegend>
+            <GraphNames>
+                <Value>TimeSeriesPlot</Value>
+            </GraphNames>
+        </AutoLegend>
+    </LayoutGlobalLegend>
+    <OverviewAxis maxPlotSize="60px" minPlotSize="35px" visible="off" axis="categoryAxis"/>
+</StatGraph>
+]]>
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd133064" name="ve133069" data="dd133067" applyDynamicBrushes="yes" sourceInteractionVariables="bi133065 bi136415">
+			<Columns>
+				<Column variable="bi133065"/>
+				<Column variable="bi133066"/>
+			</Columns>
+		</Table>
+		<Graph graphType="histogram" supplementalVisuals="ve133079" resultDefinitions="dd133072" name="ve133080" data="dd133077" label="Histo - Weeks since last modified" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+				<Property key="autoFrequencyQueryDataItemName">bi133076</Property>
+				<Property key="addedInteractionQueryDataItems">bi136416,bi136417,bi136418,bi136419,bi136420,bi136421,bi136422,bi136423</Property>
+			</EditorProperties>
+			<Title><P><Span>What number of weeks have passed since an update was made to the stored process?</Span></P></Title>
+<![CDATA[<StatGraph border="false" opaque="false" includeMissingDiscrete="true" missingValueDisplay="autolabel">
+    <Meta>
+        <DynVars>
+            <DynVar name="X" description="HISTOGRAM_MEASURE" required="true" assignedType="any" type="numeric">
+                <DefaultValues>
+                    <Value>dd133072.bi133073</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="Y" description="HISTOGRAM_FREQUENCY" required="true" assignedType="any" type="numeric">
+                <DefaultValues>
+                    <Value>dd133072.bi133076</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="TIP" description="TIP_VAR" required="false" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd133072.bi133076</Value>
+                    <Value>dd133072.bi133074</Value>
+                    <Value>dd133072.bi133075</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutOverlay>
+        <HistogramParm name="HistogramParm" tipListPolicy="replace" _stmt="histogramparm" xValues="leftpoints" dataLabelFitPolicy="auto" tip="TIP" x="X" y="Y"/>
+        <XAxisOpts display="TICKVALUES" gridDisplay="off">
+            <LinearOpts>
+                <TickValueFormatOpts maxWidth="2" extractScale="true"/>
+            </LinearOpts>
+        </XAxisOpts>
+        <YAxisOpts display="TICKVALUES">
+            <LinearOpts>
+                <TickValueFormatOpts maxWidth="2" extractScale="true"/>
+            </LinearOpts>
+        </YAxisOpts>
+    </LayoutOverlay>
+</StatGraph>
+]]>
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd133072" name="ve133079" data="dd133077" applyDynamicBrushes="yes">
+			<Columns>
+				<Column variable="bi133074"/>
+				<Column variable="bi133075"/>
+				<Column variable="bi133076"/>
+			</Columns>
+		</Table>
+		<Graph graphType="histogram" supplementalVisuals="ve133089" resultDefinitions="dd133082" name="ve133090" data="dd133087" label="Histo - Weeks since created" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+				<Property key="autoFrequencyQueryDataItemName">bi133083</Property>
+				<Property key="addedInteractionQueryDataItems">bi136424,bi136425,bi136426,bi136427,bi136428,bi136429,bi136430,bi136431</Property>
+			</EditorProperties>
+			<Title><P><Span>What number of weeks have passed since the creation of the stored process?</Span></P></Title>
+<![CDATA[<StatGraph border="false" opaque="false" includeMissingDiscrete="true" missingValueDisplay="autolabel">
+    <Meta>
+        <DynVars>
+            <DynVar name="X" description="HISTOGRAM_MEASURE" required="true" assignedType="any" type="numeric">
+                <DefaultValues>
+                    <Value>dd133082.bi133084</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="Y" description="HISTOGRAM_FREQUENCY" required="true" assignedType="any" type="numeric">
+                <DefaultValues>
+                    <Value>dd133082.bi133083</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="TIP" description="TIP_VAR" required="false" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd133082.bi133083</Value>
+                    <Value>dd133082.bi133085</Value>
+                    <Value>dd133082.bi133086</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutOverlay>
+        <HistogramParm name="HistogramParm" tipListPolicy="replace" _stmt="histogramparm" xValues="leftpoints" dataLabelFitPolicy="auto" tip="TIP" x="X" y="Y"/>
+        <XAxisOpts display="TICKVALUES" gridDisplay="off">
+            <LinearOpts>
+                <TickValueFormatOpts maxWidth="2" extractScale="true"/>
+            </LinearOpts>
+        </XAxisOpts>
+        <YAxisOpts display="TICKVALUES">
+            <LinearOpts>
+                <TickValueFormatOpts maxWidth="2" extractScale="true"/>
+            </LinearOpts>
+        </YAxisOpts>
+    </LayoutOverlay>
+</StatGraph>
+]]>
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd133082" name="ve133089" data="dd133087" applyDynamicBrushes="yes">
+			<Columns>
+				<Column variable="bi133085"/>
+				<Column variable="bi133086"/>
+				<Column variable="bi133083"/>
+			</Columns>
+		</Table>
+		<Table columnSizing="autoFill" resultDefinitions="dd133098" name="ve133109" data="dd133107" label="List - Stored Process Times" applyDynamicBrushes="yes" sourceInteractionVariables="bi133099 bi133100 bi133101 bi133102 bi133104 bi133105 bi133106">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+				<Property key="addedInteractionQueryDataItems">bi136432</Property>
+			</EditorProperties>
+			<Title><P><Span>Select one or more stored processes to filter the graph.</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg89432">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg124851">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+			<Columns>
+				<Column class="tableColumnbi92069" variable="bi133099" isVisible="true"/>
+				<Column class="tableColumnbi133103" variable="bi133103" isVisible="true" compactFormat="false"/>
+				<Column variable="bi133101" isVisible="true"/>
+				<Column variable="bi133102" isVisible="true"/>
+				<Column variable="bi133100" isVisible="true"/>
+				<Column variable="bi133104" isVisible="false"/>
+				<Column variable="bi133105" isVisible="false"/>
+				<Column variable="bi133106" isVisible="false"/>
+			</Columns>
+		</Table>
+		<VisualContainer containerType="layout" name="ve133220" label="Layout Container 3" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<VisualContainer containerType="layout" name="ve133222" label="Layout Container 5" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<VisualContainer containerType="standard" name="ve133867" label="Timeline container" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<VisualContainer containerType="layout" name="ve133869" label="Layout Container 2" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<Text name="ve134309" label="About this report" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P><Span>A stored process is a SAS program that is stored on a server and can be executed as required by requesting applications.  Your stored processes&apos; source code is categorized by one of two storage types, external or embedded. Source code stored externally exists in external files with a .sas extension on the file system.   Embedded source code is stored as part of a SAS object. </Span></P>
+			<P><Span> </Span></P>
+			<P><Span>This report provides a breakdown of the SAS Stored Processes so you can quickly identify the type and location within your SAS 9 deployment.  Common terminology includes:</Span></P>
+			<P><Span> </Span></P>
+			<P><Span class="span4">Deployment.</Span><Span> A deployment is the set of hosts on which the SAS software was deployed.</Span></P>
+			<P><Span> </Span></P>
+			<P><Span class="span5">Embedded storage.</Span><Span> Embedded storage is the source code for the SAS Stored Process which is stored within the object on the SAS Metadata Server. </Span></P>
+			<P><Span> </Span></P>
+			<P><Span class="span6">External file.  </Span><Span>An external file is a s</Span><Span>ource code file for the SAS Stored Process which is stored within a file (.sas extension) in the file system.</Span></P>
+			<P><Span> </Span></P>
+			<P><Span class="span7">Project.  </Span><Span>A project is a grouping that is derived from the SAS Metadata Server folder path of a SAS Stored Process. For example, Shared Data\ETO Team would be &quot;ETO Team&quot;.</Span></P>
+			<P><Span>  </Span></P>
+			<P><Span>The report design may not be updated in each release.  The design was last updated in Version 2025.01.</Span></P>
+			<P><Span> </Span></P>
+			<P><Span>SAS has made every attempt to ensure that the information in this report is accurate. Our commitment is to continue to enhance this application. Please check the SAS 9 Content Assessment documentation for changes.</Span></P>
+			<P><Span> </Span></P>
+			<P><Span>You can share assessment results with SAS to influence future development priority. </Span></P>
+			<P><Span> </Span></P>
+			<P><Span> </Span></P>
+			<P><Span class="span14">Copyright (c) 2021-2025, SAS Institute Inc., Cary, NC, USA, All Rights Reserved</Span></P>
+		</Text>
+		<Text name="ve131189" label="Explanatory text about report" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P><Span class="span1"><Span class="span2">How to use this report</Span></Span></P>
+			<P><Span>Select a deployment from the button bar at the top of the report to filter the information. By default, the deployment displays information for all deployments and all artifacts.  On the Stored Processes Timeline page, you can filter the date range by adjusting the start date and end date using the date selector at the top right of the report. </Span></P>
+			<P><Span>  </Span></P>
+			<P><Span class="span3"><Span class="span9">About your data</Span></Span></P>
+			<P class="paragraph1"><Span>The data was collected from your SAS 9 SAS Metadata Server by executing the SAS 9 Profile Content application. </Span><Span><Span> To export the data, right-click the graph and select </Span><Span class="span13">Export data</Span><Span>. Unless specified, the calculations in this report are based on total values, not unique values.</Span></Span></P>
+			<P><Span> </Span></P>
+		</Text>
+		<Table columnSizing="autoFill" resultDefinitions="dd132703" name="ve132711" data="dd132709" label="List - External Source Code" applyDynamicBrushes="yes" sourceInteractionVariables="bi132704 bi133790 bi135335">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+				<Property key="addedInteractionQueryDataItems">bi136433</Property>
+			</EditorProperties>
+			<Title><P><Span>Which stored processes have external code and where is the code location?</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg89432">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg124851">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+			<Summary>
+				<Total rowVisible="false"/>
+			</Summary>
+			<Columns>
+				<Column variable="bi133790" isVisible="true"/>
+				<Column variable="bi135335" isVisible="true"/>
+				<Column class="tableColumnbi132267" variable="bi132704" isVisible="true"/>
+				<Column variable="bi132705" isVisible="true" compactFormat="false">
+					<Cell>
+						<CellVisuals nestedElementPosition="left">
+							<SparkValue type="bar" response="bi132705" name="cv135059"/>
+						</CellVisuals>
+					</Cell>
+				</Column>
+			</Columns>
+		</Table>
+		<Table columnSizing="autoFill" resultDefinitions="dd132639" name="ve132645" data="dd132643" applyDynamicBrushes="yes" sourceInteractionVariables="bi132640">
+			<Columns>
+				<Column variable="bi132640"/>
+				<Column variable="bi132642"/>
+				<Column variable="bi132641"/>
+			</Columns>
+		</Table>
+		<Table columnSizing="autoFill" resultDefinitions="dd135529" name="ve135526" data="dd135527" label="List - STP using prompts" applyDynamicBrushes="yes" sourceInteractionVariables="bi135530 bi135531 bi135532 bi135533">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Conditions>
+				<Condition ref="rg89432">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg124851">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+			<Columns>
+				<Column variable="bi135530" isVisible="true"/>
+				<Column variable="bi135533" isVisible="true"/>
+				<Column variable="bi135532" isVisible="true"/>
+				<Column variable="bi135531" isVisible="true"/>
+			</Columns>
+		</Table>
+		<VisualContainer containerType="layout" name="ve135540" label="Layout Container 1" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<Graph graphType="pie" supplementalVisuals="ve135640" resultDefinitions="dd135638" name="ve135542" data="dd135636" label="Pie - Has a Prompt? 1" applyDynamicBrushes="yes" sourceInteractionVariables="bi135548">
+			<EditorProperties>
+				<Property key="isAutoLabel">true</Property>
+			</EditorProperties>
+			<Title><P><Span>How many of the total stored processes use a prompt?</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg89432">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg124851">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<![CDATA[<StatGraph border="false" opaque="false" includeMissingDiscrete="true" selectionMode="multiple" missingValueDisplay="autolabel" displayOptionPolicy="union">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="true" assignedType="any" type="character">
+                <DefaultValues>
+                    <Value>dd135638.bi135548</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="any" type="numeric" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd135638.bi135556</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="GROUP" description="SUBGROUP_VAR" required="false" type="character"/>
+            <DynVar name="COLUMN" description="HORIZONTAL_SERIES_VAR" required="false" type="character" multiplesAllowed="true"/>
+            <DynVar name="ROW" description="VERTICAL_SERIES_VAR" required="false" type="character" multiplesAllowed="true"/>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="numeric" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd135638.bi135548</Value>
+                    <Value>dd135638.bi135556</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="KEY_FRAME" description="ANIMATION" required="false" type="time" multiplesAllowed="false"/>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutDataMatrix includeMissingClass="true" rowVars="ROW" columnVars="COLUMN">
+        <LayoutPrototypeRegion>
+            <PieChart name="PieChart" tipListPolicy="replace" _stmt="piechart" compactLabelFormats="true" categoryOrder="data" display="NOPIEHEADER" start="90" stat="none" dataLabelContent="CATEGORY" dataLabelLocation="inside" includeMissingGroup="true" tip="TIP" category="CATEGORY" responseVars="RESPONSE" group="GROUP">
+                <DataLabelAttrs size="16pt"/>
+            </PieChart>
+        </LayoutPrototypeRegion>
+    </LayoutDataMatrix>
+    <LayoutGlobalLegend legendTitlePosition="top" allowCollapsed="false" visible="off">
+        <AutoLegend>
+            <GraphNames>
+                <Value>PieChart</Value>
+            </GraphNames>
+        </AutoLegend>
+    </LayoutGlobalLegend>
+    <Animation keyFrame="KEY_FRAME"/>
+</StatGraph>
+]]>
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd135638" name="ve135640" data="dd135636" applyDynamicBrushes="yes" sourceInteractionVariables="bi135548">
+			<Columns>
+				<Column variable="bi135548"/>
+				<Column variable="bi135556"/>
+			</Columns>
+		</Table>
+	</VisualElements>
+	<View>
+		<Header>
+			<MediaContainer target="mt2">
+				<ResponsiveLayout orientation="horizontal" overflow="fit">
+					<Weights mediaTarget="mt5" unit="percent">
+						<Weight value="100%"/>
+					</Weights>
+					<Weights mediaTarget="mt4" unit="percent">
+						<Weight value="100%"/>
+					</Weights>
+					<Weights mediaTarget="mt3" unit="percent">
+						<Weight value="100%"/>
+					</Weights>
+				</ResponsiveLayout>
+				<Visual ref="ve131949" name="vi131948">
+					<ResponsiveConstraint>
+						<WidthConstraint>
+							<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+						</WidthConstraint>
+						<HeightConstraint>
+							<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+						</HeightConstraint>
+					</ResponsiveConstraint>
+				</Visual>
+			</MediaContainer>
+		</Header>
+		<Section name="vi132673" showSelectionControl="false" label="Overview">
+			<Header>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="horizontal" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+				</MediaContainer>
+			</Header>
+			<Body>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="vertical" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+					<Visual ref="ve132637" name="vi132638">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+					<Container ref="ve132671" name="vi132672">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+						<ResponsiveLayout orientation="vertical" overflow="grow"/>
+						<Visual ref="ve132653" name="vi132654">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="25%" flexibility="flexible"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve132660" name="vi132661">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="25%" flexibility="flexible"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve132667" name="vi132668">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="25%" flexibility="flexible"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+						</Visual>
+					</Container>
+					<Visual ref="ve132646" name="vi132647">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+				</MediaContainer>
+			</Body>
+		</Section>
+		<Section name="vi132722" label="SAS Code Locations">
+			<Header>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="horizontal" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+				</MediaContainer>
+			</Header>
+			<Body>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="vertical" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+					<Visual ref="ve132694" name="vi132695">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+					<Visual ref="ve132701" name="vi132702">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+					<Visual ref="ve132711" name="vi132712">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+					<Visual ref="ve132720" name="vi132721">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+				</MediaContainer>
+			</Body>
+		</Section>
+		<Section name="vi133111" showSelectionControl="false" label="Stored Processes Timeline">
+			<Header>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="horizontal" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+				</MediaContainer>
+			</Header>
+			<Body>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="vertical" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+					<Container ref="ve133867" name="vi133866">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="15%" flexibility="shrinkable"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+						<ResponsiveLayout orientation="vertical" overflow="fit">
+							<Weights mediaTarget="mt5" unit="percent">
+								<Weight value="100%"/>
+							</Weights>
+							<Weights mediaTarget="mt4" unit="percent">
+								<Weight value="100%"/>
+							</Weights>
+							<Weights mediaTarget="mt3" unit="percent">
+								<Weight value="100%"/>
+							</Weights>
+						</ResponsiveLayout>
+						<Container ref="ve133869" name="vi133868">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+							<ResponsiveLayout orientation="vertical" overflow="grow"/>
+							<Visual ref="ve133054" name="vi133055">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="75%" flexibility="shrinkable"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+							</Visual>
+							<Visual ref="ve133062" name="vi133063">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="24.96%" flexibility="fixed"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+							</Visual>
+						</Container>
+					</Container>
+					<Container ref="ve133220" name="vi133219">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+						<ResponsiveLayout orientation="vertical" overflow="grow"/>
+						<Container ref="ve133222" name="vi133221">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+							<ResponsiveLayout orientation="vertical" overflow="grow">
+								<Weights mediaTarget="mt5" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+								<Weights mediaTarget="mt4" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+								<Weights mediaTarget="mt3" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+							</ResponsiveLayout>
+							<Container ref="ve133096" name="vi133097">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+								<ResponsiveLayout orientation="vertical" overflow="grow"/>
+								<Visual ref="ve133070" name="vi133071">
+									<ResponsiveConstraint>
+										<WidthConstraint>
+											<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="50%" flexibility="shrinkable"/>
+										</WidthConstraint>
+										<HeightConstraint>
+											<Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+										</HeightConstraint>
+									</ResponsiveConstraint>
+								</Visual>
+							</Container>
+							<Visual ref="ve133080" name="vi133081">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="50.04%" flexibility="flexible"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+							</Visual>
+							<Visual ref="ve133090" name="vi133091">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="50.04%" flexibility="flexible"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+							</Visual>
+						</Container>
+						<Visual ref="ve133109" name="vi133110">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="50%" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="79.08%" flexibility="shrinkable"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+						</Visual>
+					</Container>
+				</MediaContainer>
+			</Body>
+		</Section>
+		<Section name="vi135524" showSelectionControl="true" label="Stored Processes using Prompts" autoInteractionMode="oneWayFilter">
+			<Header>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="horizontal" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+				</MediaContainer>
+			</Header>
+			<Body>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="vertical" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+					<Container ref="ve135540" name="vi135539">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+						<ResponsiveLayout orientation="vertical" overflow="grow"/>
+						<Visual ref="ve135542" name="vi135541">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="40%" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve135526" name="vi135525">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+						</Visual>
+					</Container>
+				</MediaContainer>
+			</Body>
+		</Section>
+		<HiddenSection width="75%" height="75%" purpose="information" name="vi131187" label="Get more report details">
+			<Header>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="horizontal" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+				</MediaContainer>
+			</Header>
+			<Body>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="vertical" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+					<Visual ref="ve131189" name="vi131188">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="growable"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+				</MediaContainer>
+			</Body>
+		</HiddenSection>
+		<Section name="vi134311" label="About This Report">
+			<Header>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="horizontal" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+				</MediaContainer>
+			</Header>
+			<Body>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="vertical" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+					<Visual ref="ve134309" name="vi134310">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="growable"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+				</MediaContainer>
+			</Body>
+		</Section>
+	</View>
+	<Actions>
+		<NavigationAction type="section" value="vi131187" behavior="filter" label="Get more report details" name="ac132683"/>
+		<NavigationAction type="section" value="vi131187" behavior="filter" label="Get more report details" name="ac132954"/>
+		<NavigationAction type="section" value="vi131187" behavior="filter" label="Get more report details" name="ac133381"/>
+	</Actions>
+	<Interactions>
+		<Interaction name="ia132724" type="filter" derived="false">
+			<InteractionElementReference purpose="source" ref="ve132701" variable="bi132697"/>
+			<InteractionElementReference purpose="target" ref="ve132720" variable="bi136407"/>
+		</Interaction>
+		<Interaction name="ia133116" type="filter" derived="false">
+			<InteractionElementReference purpose="source" ref="ve133109" variable="bi133099 bi133100 bi133101 bi133102 bi133104 bi133105 bi133106"/>
+			<InteractionElementReference purpose="target" ref="ve133070" variable="bi136408 bi136409 bi136410 bi136411 bi136412 bi136413 bi136414"/>
+		</Interaction>
+		<Interaction name="ia133117" type="filter" derived="false">
+			<InteractionElementReference purpose="source" ref="ve133109" variable="bi133099 bi133100 bi133101 bi133102 bi133104 bi133105 bi133106"/>
+			<InteractionElementReference purpose="target" ref="ve133080" variable="bi136416 bi136417 bi136418 bi136419 bi136420 bi136421 bi136422"/>
+		</Interaction>
+		<Interaction name="ia133118" type="filter" derived="false">
+			<InteractionElementReference purpose="source" ref="ve133109" variable="bi133099 bi133100 bi133101 bi133102 bi133104 bi133105 bi133106"/>
+			<InteractionElementReference purpose="target" ref="ve133090" variable="bi136424 bi136425 bi136426 bi136427 bi136428 bi136429 bi136430"/>
+		</Interaction>
+		<Interaction name="ia132723" type="filter" derived="false">
+			<InteractionElementReference purpose="source" ref="ve132701" variable="bi132697"/>
+			<InteractionElementReference purpose="target" ref="ve132711" variable="bi136433"/>
+		</Interaction>
+		<Interaction name="ia134985" type="filter" derived="false">
+			<InteractionElementReference purpose="source" ref="ve133062" variable="bi133057"/>
+			<InteractionElementReference purpose="target" ref="ve133080" variable="bi136423"/>
+		</Interaction>
+		<Interaction name="ia134986" type="filter" derived="false">
+			<InteractionElementReference purpose="source" ref="ve133062" variable="bi133057"/>
+			<InteractionElementReference purpose="target" ref="ve133090" variable="bi136431"/>
+		</Interaction>
+		<Interaction name="ia134987" type="filter" derived="false">
+			<InteractionElementReference purpose="source" ref="ve133062" variable="bi133057"/>
+			<InteractionElementReference purpose="target" ref="ve133109" variable="bi136432"/>
+		</Interaction>
+		<Interaction name="ia134988" type="filter" derived="true">
+			<InteractionElementReference purpose="source" ref="ve133062" variable="bi133057"/>
+			<InteractionElementReference purpose="target" ref="ve133070" variable="bi136415"/>
+		</Interaction>
+	</Interactions>
+	<Conditions>
+		<Range scope="global" name="rg89432">
+			<DiscreteAttrMap>
+				<Category categoryColor="#D0E7C4">NO</Category>
+				<Category categoryColor="#D0E7C4">[none]</Category>
+			</DiscreteAttrMap>
+		</Range>
+		<Range scope="global" name="rg124851">
+			<DiscreteAttrMap>
+				<Category categoryColor="#4B85A3">DEPLOY20</Category>
+				<Category categoryColor="#0A994D">DEPLOY19</Category>
+				<Category categoryColor="#BF6907">DEPLOY18</Category>
+				<Category categoryColor="#39B7D3">DEPLOY17</Category>
+				<Category categoryColor="#9E6BD3">DEPLOY16</Category>
+				<Category categoryColor="#80351A">DEPLOY15</Category>
+				<Category categoryColor="#CC455D">DEPLOY14</Category>
+				<Category categoryColor="#F2D94B">DEPLOY13</Category>
+				<Category categoryColor="#7375BC">DEPLOY12</Category>
+				<Category categoryColor="#7C9B7A">DEPLOY11</Category>
+				<Category categoryColor="#CF7748">DEPLOY10</Category>
+				<Category categoryColor="#72C1BE">DEPLOY9</Category>
+				<Category categoryColor="#736519">DEPLOY8</Category>
+				<Category categoryColor="#9C2910">DEPLOY7</Category>
+				<Category categoryColor="#A6427C">DEPLOY6</Category>
+				<Category categoryColor="#FFCA39">DEPLOY5</Category>
+				<Category categoryColor="#3D5AAE">DEPLOY4</Category>
+				<Category categoryColor="#90B328">DEPLOY3</Category>
+				<Category categoryColor="#F08000">DEPLOY2</Category>
+				<Category categoryColor="#00929F">DEPLOY1</Category>
+			</DiscreteAttrMap>
+		</Range>
+	</Conditions>
+	<MediaSchemes>
+		<MediaScheme name="ms1">
+			<BaseStylesheetResource theme="marine"/>
+			<Stylesheet>
+<![CDATA[
+#ve132701 .Container {
+  background-color: #E9ECEF;
+  transparency: 0;
+}
+#ve132653 .ReportElementContainer {
+  padding: 16px;
+}
+#ve135526 .Table {
+  alt-row-color: #e6e6e6;
+}
+#ve132711 .Container {
+  border-color: #E9ECEF;
+  border-width: 1px;
+}
+#ve134309 .span5 {
+  font-weight: bold;
+}
+#ve132711 .ReportElementContainer {
+  padding: 16px;
+}
+#ve131189 .paragraph1 {
+  margin-left: 0in;
+  margin-right: 0in;
+}
+#ve134309 .span4 {
+  font-weight: bold;
+}
+#ve134309 .span7 {
+  font-weight: bold;
+}
+#ve132694 .Container {
+  border-color: #FFFFFF;
+  border-width: 0px;
+}
+#ve134309 .span6 {
+  font-weight: bold;
+}
+#ve131189 .span13 {
+  font-weight: bold;
+}
+#ve132637 .ReportElementContainer {
+  padding: 16px;
+}
+#ve132720 .Container {
+  border-color: #E9ECEF;
+  border-width: 1px;
+}
+#ve133080 .ReportElementContainer {
+  padding: 10px;
+}
+#ve133109 .Table {
+  alt-row-color: #e6e6e6;
+}
+#ve132694 .span8 {
+  font-size: 20pt;
+}
+#ve133109 .tableColumnbi92069 {
+  width: 243px;
+}
+#ve132701 .ComboBox {
+  color: #000000;
+}
+#ve133109 .Container {
+  border-color: #E9ECEF;
+  border-width: 1px;
+}
+#ve133070 .ReportElementContainer {
+  padding: 10px;
+}
+#ve132660 .ReportElementContainer {
+  padding: 16px;
+}
+#ve133109 .ReportElementContainer {
+  padding: 25px;
+}
+#ve131189 .span9 {
+  font-size: 14pt;
+}
+#vi133111 .ReportPagePadding {
+  padding: 5px;
+}
+#ve132711 .tableColumnbi132267 {
+  width: 248px;
+}
+#ve132720 .Table {
+  alt-row-color: #e6e6e6;
+}
+#ve132711 .Table {
+  alt-row-color: #e6e6e6;
+}
+#ve134309 .span14 {
+  color: #3498db;
+}
+#ve133062 .ReportElementContainer {
+  padding: 16px;
+}
+#ve132646 .Container {
+  border-color: #E9ECEF;
+  border-width: 1px;
+}
+#ve132637 .span12 {
+  font-size: 12pt;
+}
+#ve132637 .span11 {
+  font-size: 20pt;
+}
+#ve131189 .span1 {
+  color: #2980b9;
+}
+#ve132694 .ReportElementContainer {
+  padding: 20px;
+}
+#ve131189 .span2 {
+  font-size: 14pt;
+}
+#ve133054 .span10 {
+  font-size: 20pt;
+}
+#ve131189 .span3 {
+  color: #2980b9;
+}
+#ve133054 .Container {
+  border-color: #FFFFFF;
+  border-width: 6px;
+}
+#ve132720 .ReportElementContainer {
+  padding: 16px;
+}
+#ve133109 .tableColumnbi133103 {
+  width: 98px;
+}
+#ve133090 .ReportElementContainer {
+  padding: 10px;
+}
+#ve132720 .tableColumnbi132280 {
+  width: 168px;
+}
+#ve132720 .tableColumnbi132286 {
+  width: 487px;
+}
+#ve132667 .ReportElementContainer {
+  padding: 16px;
+}
+#ve132694 .paragraph2 {
+  text-align: center;
+}
+]]>
+			</Stylesheet>
+		</MediaScheme>
+	</MediaSchemes>
+	<MediaTargets>
+		<MediaTarget windowSize="default" scheme="ms1" name="mt2"/>
+		<MediaTarget windowSize="small" scheme="ms1" name="mt3"/>
+		<MediaTarget windowSize="medium" scheme="ms1" name="mt4"/>
+		<MediaTarget windowSize="large" scheme="ms1" name="mt5"/>
+	</MediaTargets>
+	<Properties>
+		<Property key="lastSection">vi90109</Property>
+		<Property key="loadedFromXML">true</Property>
+		<Property key="displayDataSource">ds91977</Property>
+	</Properties>
+	<ExportProperties>
+		<Export destination="pdf">
+			<Property key="showCoverPage" value="true"></Property>
+			<Property key="showPageNumbers" value="true"></Property>
+			<Property key="fitOption" value="expandClippedContentInAppendix"></Property>
+		</Export>
+	</ExportProperties>
+	<History>
+		<Versions>
+			<Version key="4.1.2" lastDate="2018-06-20T20:34:10Z"/>
+			<Version key="4.2.2" lastDate="2025-01-06T23:53:54Z"/>
+			<Version key="4.50.0" lastDate="2025-07-02T07:08:08Z"/>
+		</Versions>
+		<Conversions>
+			<Conversion startVersion="4.1.2" finalVersion="4.2.2" date="2019-08-20T15:29:35Z"/>
+			<Conversion startVersion="4.2.2" finalVersion="4.50.0" date="2025-07-02T07:08:07Z"/>
+		</Conversions>
+		<Editors>
+			<Editor applicationName="VA">
+				<Revision editorVersion="8.4" lastDate="2025-01-06T23:53:54.600Z"/>
+				<Revision editorVersion="2025.03" lastDate="2025-07-02T08:28:40.958Z"/>
+			</Editor>
+		</Editors>
+	</History>
+	<SASReportState date="2025-07-04T01:08:08Z">
+		<VisualElements>
+			<PromptState element="ve131949"/>
+			<PromptState element="ve132701"/>
+			<PromptState element="ve133062">
+				<Selections>
+					<Selection resultDefinition="dd133056">between(${bi133057,binned},23302,23559)</Selection>
+				</Selections>
+			</PromptState>
+		</VisualElements>
+		<View currentSection="vi134311"/>
+	</SASReportState>
+</SASReport>

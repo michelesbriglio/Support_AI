@@ -451,9 +451,9 @@ export class XMLRepairTool {
       }
       // Remove each element from its parent
       for (let elem of elementsToRemove) {
-        const parent = elem.parentNode;
-        if (parent) {
-          parent.removeChild(elem);
+          const parent = elem.parentNode;
+          if (parent) {
+            parent.removeChild(elem);
         }
       }
     }

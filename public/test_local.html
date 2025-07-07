@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript XML Repair Test</title>
+</head>
+<body>
+    <h1>JavaScript XML Repair Test</h1>
+    <input type="file" id="xmlFile" accept=".xml">
+    <button onclick="testRepair()">Test Repair</button>
+    <div id="results"></div>
+
+    <script type="module">
+        import { XMLRepairTool } from './src/lib/xml-repair.js';
+
+        window.testRepair = async function() {
+            const fileInput = document.getElementById('xmlFile');
+            const resultsDiv = document.getElementById('results');
+            
+            if (!fileInput.files[0]) {
+                alert('Please select an XML file');
+                return;
+            }
+
+            try {
+                const file = fileInput.files[0];
+                const xmlContent = await file.text();
+                
+                const repairTool = new XMLRepairTool();
+                const result = await repairTool.repairXML(xmlContent);
+                
+                resultsDiv.innerHTML = `
+                    <h2>Test Results:</h2>
+                    <pre>${result.analysis}</pre>
+                    <h3>Raw Results:</h3>
+                    <pre>${JSON.stringify(result.results, null, 2)}</pre>
+                `;
+                
+            } catch (error) {
+                resultsDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+                console.error('Test failed:', error);
+            }
+        };
+    </script>
+</body>
+</html> 

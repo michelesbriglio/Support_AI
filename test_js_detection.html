@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test JavaScript Null Candidate Detection</title>
+</head>
+<body>
+    <h1>Testing JavaScript Null Candidate Detection</h1>
+    <div id="results"></div>
+
+    <script>
+        // Simplified version of the detection logic
+        function testDetection() {
+            const xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
+<SASReport xmlns="http://www.sas.com/sasreportmodel/bird-4.50.0">
+    <Properties>
+        <Property key="lastSection">vi90109</Property>
+        <Property key="loadedFromXML">true</Property>
+    </Properties>
+</SASReport>`;
+
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(xmlContent, "text/xml");
+            
+            const idCheck = /^[a-z]{2}[0-9]+$/;
+            const definedIds = new Set();
+            const referencedIds = new Set();
+            
+            // Find defined IDs (name attributes)
+            const allElements = doc.getElementsByTagName('*');
+            for (let elem of allElements) {
+                const name = elem.getAttribute('name');
+                if (name && idCheck.test(name)) {
+                    definedIds.add(name);
+                }
+            }
+            
+            // Find referenced IDs in text content
+            for (let elem of allElements) {
+                if (elem.textContent && elem.textContent.trim()) {
+                    const textContent = elem.textContent.trim();
+                    console.log('Text content found:', textContent);
+                    if (idCheck.test(textContent)) {
+                        referencedIds.add(textContent);
+                        console.log('Added to referenced IDs:', textContent);
+                    }
+                }
+            }
+            
+            // Null candidates are referenced but not defined
+            const nullCandidates = new Set([...referencedIds].filter(id => !definedIds.has(id)));
+            
+            console.log('Defined IDs:', Array.from(definedIds));
+            console.log('Referenced IDs:', Array.from(referencedIds));
+            console.log('Null Candidates:', Array.from(nullCandidates));
+            
+            document.getElementById('results').innerHTML = `
+                <h2>Results:</h2>
+                <p><strong>Defined IDs:</strong> ${Array.from(definedIds).join(', ') || 'none'}</p>
+                <p><strong>Referenced IDs:</strong> ${Array.from(referencedIds).join(', ') || 'none'}</p>
+                <p><strong>Null Candidates:</strong> ${Array.from(nullCandidates).join(', ') || 'none'}</p>
+                <p><strong>vi90109 detected:</strong> ${nullCandidates.has('vi90109') ? 'YES' : 'NO'}</p>
+            `;
+        }
+        
+        // Run the test when page loads
+        window.onload = testDetection;
+    </script>
+</body>
+</html> 

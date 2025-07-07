@@ -1,0 +1,4059 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SASReport xmlns="http://www.sas.com/sasreportmodel/bird-4.50.0" label="SAS_9_CA_Profile_for_SAS_Data_Integration_Scheduling" features="promptModelV2" implicitInteractions="sectionPrompt reportPrompt sectionLink" createdLocale="en" createdVersion="4.1.2" dateCreated="2018-10-15T20:21:37Z" dateModified="2025-07-02T07:07:28Z" createdApplication="SAS Visual Analytics 8.3" lastModifiedApplication="SAS Visual Analytics 2025.03" nextUniqueNameIndex="46093">
+	<DataDefinitions>
+		<ParentDataDefinition childQueryRelationship="independent" status="incomplete" name="dd862">
+			<DataDefinition type="procedural" name="dd863">
+				<ProceduralQuery type="histogram">
+					<Arguments>
+						<Argument purpose="binType">
+							<StringValue>defaultBinEdges</StringValue>
+						</Argument>
+					</Arguments>
+				</ProceduralQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" name="dd864"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd24328">
+			<BusinessItems>
+				<RelationalDataItem name="bi44240" base="bi44239"/>
+				<RelationalDataItem name="bi44244" base="bi12281"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="relational" name="dd24329">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi44240"/>
+							<BusinessItem ref="bi44244"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi44240" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="listTable" maxRowsBehavior="truncate" name="dd24330"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" name="dd37761">
+			<DataDefinition type="relational" name="dd37762">
+				<RelationalQuery detail="false"/>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="textInput" maxRowsBehavior="truncate" name="dd37763"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" name="dd40031">
+			<DataDefinition type="relational" name="dd40032">
+				<RelationalQuery detail="false"/>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="textInput" maxRowsBehavior="truncate" name="dd40033"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd40486">
+			<BusinessItems>
+				<RelationalDataItem name="bi40484" base="bi12990"/>
+				<RelationalDataItem name="bi44135" base="bi12294"/>
+				<RelationalFilterItem name="bi44136">
+					<EditorProperties>
+						<Property key="complexity">SINGLE_DATA_ITEM</Property>
+						<Property key="interactiveEditingAllowed">TRUE</Property>
+					</EditorProperties>
+					<Expression>in(${bi44135,binned},&apos;Event&apos;)</Expression>
+				</RelationalFilterItem>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="multidimensional" name="dd40487">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column"/>
+						<Axis type="row">
+							<BusinessItem ref="bi40484"/>
+						</Axis>
+					</Axes>
+					<ColumnSortItems>
+						<MeasureSortItem ref="bi40484" sortDirection="descending"/>
+					</ColumnSortItems>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" name="dd40482"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters>
+				<DetailFilters>
+					<BusinessItem ref="bi29029"/>
+					<BusinessItem ref="bi44136"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd40109">
+			<BusinessItems>
+				<RelationalDataItem name="bi40125" base="bi12990"/>
+				<RelationalDataItem name="bi40127" base="bi13348"/>
+				<RelationalFilterItem name="bi40128">
+					<EditorProperties>
+						<Property key="complexity">SINGLE_DATA_ITEM</Property>
+						<Property key="interactiveEditingAllowed">TRUE</Property>
+					</EditorProperties>
+					<Expression>in(${bi40127,binned},&apos;Y&apos;)</Expression>
+				</RelationalFilterItem>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="multidimensional" name="dd40110">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column"/>
+						<Axis type="row">
+							<BusinessItem ref="bi40125"/>
+						</Axis>
+					</Axes>
+					<ColumnSortItems>
+						<MeasureSortItem ref="bi40125" sortDirection="descending"/>
+					</ColumnSortItems>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" name="dd40107"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters>
+				<DetailFilters>
+					<BusinessItem ref="bi29029"/>
+					<BusinessItem ref="bi40128"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd12390">
+			<BusinessItems>
+				<RelationalDataItem name="bi12395" base="bi12291"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="relational" name="dd12391">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi12395"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi12395" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="dropdown" maxRowsBehavior="truncate" name="dd12392"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters ignoreDataSourceFilters="false">
+				<DetailFilters>
+					<BusinessItem ref="bi29029"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd38242">
+			<BusinessItems>
+				<RelationalDataItem name="bi28131" base="bi28128"/>
+				<RelationalDataItem name="bi37793" base="bi12295"/>
+				<RelationalFilterItem label="Advanced Filter 1" name="bi26087">
+					<EditorProperties>
+						<Property key="complexity">ADVANCED</Property>
+					</EditorProperties>
+					<Expression>notMissing(${bi27210,binned})</Expression>
+				</RelationalFilterItem>
+				<RelationalDataItem name="bi27210" base="bi25953"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="relational" name="dd38243">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi28131"/>
+							<BusinessItem ref="bi37793"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi28131" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="list" maxRowsBehavior="truncate" name="dd38244"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters>
+				<DetailFilters>
+					<BusinessItem ref="bi26087"/>
+					<BusinessItem ref="bi29029"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd27886">
+			<BusinessItems>
+				<RelationalDataItem name="bi27995" base="bi13348"/>
+				<RelationalDataItem name="bi28478" base="bi12990"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="relational" name="dd27887">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi27995"/>
+							<BusinessItem ref="bi28478"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi27995" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="buttonBar" maxRowsBehavior="truncate" name="dd27883"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters ignoreDataSourceFilters="false">
+				<DetailFilters>
+					<BusinessItem ref="bi29029"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd28046">
+			<BusinessItems>
+				<RelationalDataItem name="bi28040" base="bi12273"/>
+				<RelationalDataItem name="bi28043" base="bi12274"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="relational" name="dd28047">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi28040"/>
+							<BusinessItem ref="bi28043"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi28040" sortDirection="descending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="listTable" maxRowsBehavior="truncate" name="dd28038"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters>
+				<DetailFilters>
+					<BusinessItem ref="bi29029"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd12995">
+			<BusinessItems>
+				<RelationalDataItem name="bi13000" base="bi12990"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="multidimensional" name="dd12996">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column"/>
+						<Axis type="row">
+							<BusinessItem ref="bi13000"/>
+						</Axis>
+					</Axes>
+					<ColumnSortItems>
+						<MeasureSortItem ref="bi13000" sortDirection="descending"/>
+					</ColumnSortItems>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" name="dd12997"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters>
+				<DetailFilters>
+					<BusinessItem ref="bi29029"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd12973">
+			<BusinessItems>
+				<RelationalDataItem name="bi28546" base="bi12990"/>
+				<RelationalDataItem name="bi30097" base="bi30096"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="relational" name="dd12974">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi28546"/>
+							<BusinessItem ref="bi30097"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi30097" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="buttonBar" maxRowsBehavior="truncate" name="dd12975"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters ignoreDataSourceFilters="false">
+				<DetailFilters>
+					<BusinessItem ref="bi29029"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd12649">
+			<BusinessItems>
+				<RelationalDataItem name="bi12653" base="bi12287"/>
+				<RelationalDataItem name="bi12654" base="bi12286"/>
+				<RelationalDataItem name="bi29004" base="bi12275"/>
+				<RelationalDataItem name="bi31746" base="bi25952"/>
+				<RelationalDataItem name="bi31747" base="bi12278"/>
+				<RelationalDataItem name="bi31748" base="bi12283"/>
+				<RelationalDataItem name="bi31749" base="bi12281"/>
+				<RelationalDataItem name="bi31750" base="bi12294"/>
+				<RelationalDataItem name="bi31751" base="bi12273"/>
+				<RelationalFilterItem label="Deployed Job Table Filter" name="bi31752">
+					<EditorProperties>
+						<Property key="complexity">ADVANCED</Property>
+					</EditorProperties>
+					<Expression>or(ismissing(#{pr26203}),contains(upper(${bi31746,binned}),upper(#{pr26203})),contains(upper(${bi31747,binned}),upper(#{pr26203})),contains(upper(${bi31748,binned}),upper(#{pr26203})),contains(upper(${bi31749,binned}),upper(#{pr26203})),contains(upper(${bi31750,binned}),upper(#{pr26203})),contains(upper(${bi31751,binned}),upper(#{pr26203})),contains(upper(${bi12653,binned}),upper(#{pr26203})),contains(upper(${bi29004,binned}),upper(#{pr26203})))</Expression>
+				</RelationalFilterItem>
+				<RelationalFilterItem label="Deployed Job Not Missing Filter" name="bi31834">
+					<EditorProperties>
+						<Property key="complexity">ADVANCED</Property>
+					</EditorProperties>
+					<Expression>notMissing(${bi12653,binned})</Expression>
+				</RelationalFilterItem>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="relational" name="dd12650">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi12653"/>
+							<BusinessItem ref="bi12654"/>
+							<BusinessItem ref="bi29004"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi12653" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="listTable" maxRowsBehavior="truncate" name="dd12651"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters>
+				<DetailFilters>
+					<BusinessItem ref="bi31752"/>
+					<BusinessItem ref="bi31834"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds32328" name="dd32522">
+			<BusinessItems>
+				<RelationalDataItem name="bi32527" base="bi32515"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds32328" type="multidimensional" name="dd32523">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column"/>
+						<Axis type="row">
+							<BusinessItem ref="bi32527"/>
+						</Axis>
+					</Axes>
+					<ColumnSortItems>
+						<MeasureSortItem ref="bi32527" sortDirection="descending"/>
+					</ColumnSortItems>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" name="dd32524"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds32454" name="dd32534">
+			<BusinessItems>
+				<RelationalDataItem name="bi32539" base="bi32468"/>
+				<RelationalDataItem name="bi45201" base="bi32485"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds32454" type="relational" name="dd32535">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi32539"/>
+							<BusinessItem ref="bi45201"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi45201" sortDirection="descending"/>
+						<SortItem ref="bi32539" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="list" maxRowsBehavior="truncate" name="dd32536"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters ignoreDataSourceFilters="false">
+				<DetailFilters>
+					<BusinessItem ref="bi32562"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds32328" name="dd32359">
+			<BusinessItems>
+				<RelationalDataItem name="bi33016" base="bi32929"/>
+				<RelationalDataItem name="bi33019" base="bi32925"/>
+				<RelationalDataItem name="bi34399" base="bi32924"/>
+				<RelationalDataItem name="bi35048" base="bi32352"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds32328" type="relational" name="dd32360">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi33016"/>
+							<BusinessItem ref="bi33019"/>
+							<BusinessItem ref="bi34399"/>
+							<BusinessItem ref="bi35048"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi33016" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="listTable" maxRowsBehavior="truncate" name="dd32361"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds32328" name="dd32377">
+			<BusinessItems>
+				<RelationalDataItem name="bi32380" base="bi32344"/>
+				<RelationalDataItem name="bi32381" base="bi32339"/>
+				<RelationalDataItem name="bi32382" base="bi32346"/>
+				<RelationalDataItem name="bi35050" base="bi32352"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds32328" type="relational" name="dd32378">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi32380"/>
+							<BusinessItem ref="bi32381"/>
+							<BusinessItem ref="bi32382"/>
+							<BusinessItem ref="bi35050"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi32380" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="listTable" maxRowsBehavior="truncate" name="dd32379"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds32454" name="dd32450">
+			<BusinessItems>
+				<RelationalDataItem name="bi32487" base="bi32468"/>
+				<RelationalDataItem name="bi32488" base="bi32462"/>
+				<RelationalDataItem name="bi32489" base="bi32478"/>
+				<RelationalDataItem name="bi32493" base="bi32465"/>
+				<RelationalDataItem name="bi32496" base="bi32479"/>
+				<RelationalDataItem name="bi32513" base="bi32457"/>
+				<RelationalFilterItem label="Flow triggers" name="bi32514">
+					<EditorProperties>
+						<Property key="complexity">ADVANCED</Property>
+					</EditorProperties>
+					<Expression>ismissing(${bi32513,binned})</Expression>
+				</RelationalFilterItem>
+				<RelationalDataItem name="bi33406" base="bi32480"/>
+				<RelationalDataItem name="bi37451" base="bi32467"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds32454" type="relational" name="dd32451">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi32496"/>
+							<BusinessItem ref="bi32487"/>
+							<BusinessItem ref="bi32488"/>
+							<BusinessItem ref="bi32489"/>
+							<BusinessItem ref="bi32493"/>
+							<BusinessItem ref="bi33406"/>
+							<BusinessItem ref="bi37451"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi32496" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="listTable" maxRowsBehavior="truncate" name="dd32452"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters>
+				<DetailFilters>
+					<BusinessItem ref="bi32514"/>
+					<BusinessItem ref="bi32562"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds32454" name="dd32506">
+			<BusinessItems>
+				<RelationalDataItem name="bi32500" base="bi32468"/>
+				<RelationalDataItem name="bi32502" base="bi32462"/>
+				<RelationalDataItem name="bi32503" base="bi32478"/>
+				<RelationalDataItem name="bi32504" base="bi32465"/>
+				<RelationalDataItem name="bi32556" base="bi32480"/>
+				<RelationalDataItem name="bi34832" base="bi32457"/>
+				<RelationalFilterItem label="Job Name Not Missing" name="bi34839">
+					<EditorProperties>
+						<Property key="complexity">ADVANCED</Property>
+					</EditorProperties>
+					<Expression>notMissing(${bi34832,binned})</Expression>
+				</RelationalFilterItem>
+				<RelationalDataItem name="bi37453" base="bi32467"/>
+				<RelationalDataItem name="bi45198" base="bi45075"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds32454" type="relational" name="dd32507">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi34832"/>
+							<BusinessItem ref="bi32500"/>
+							<BusinessItem ref="bi32502"/>
+							<BusinessItem ref="bi32503"/>
+							<BusinessItem ref="bi32504"/>
+							<BusinessItem ref="bi32556"/>
+							<BusinessItem ref="bi37453"/>
+							<BusinessItem ref="bi45198"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi34832" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="listTable" maxRowsBehavior="truncate" name="dd32499"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters>
+				<DetailFilters>
+					<BusinessItem ref="bi32562"/>
+					<BusinessItem ref="bi34839"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds32328" name="dd34318">
+			<BusinessItems>
+				<RelationalDataItem name="bi34321" base="bi32929"/>
+				<RelationalDataItem name="bi34322" base="bi32344"/>
+				<RelationalDataItem name="bi34323" base="bi32346"/>
+				<RelationalDataItem name="bi34324" base="bi32933"/>
+				<RelationalDataItem name="bi34325" base="bi32931"/>
+				<RelationalDataItem name="bi34326" base="bi32932"/>
+				<RelationalDataItem name="bi34327" base="bi32934"/>
+				<RelationalDataItem name="bi34328" base="bi32935"/>
+				<RelationalDataItem name="bi35046" base="bi32352"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds32328" type="relational" name="dd34319">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi34322"/>
+							<BusinessItem ref="bi34323"/>
+							<BusinessItem ref="bi34324"/>
+							<BusinessItem ref="bi34325"/>
+							<BusinessItem ref="bi34326"/>
+							<BusinessItem ref="bi34327"/>
+							<BusinessItem ref="bi34328"/>
+							<BusinessItem ref="bi35046"/>
+							<BusinessItem ref="bi34321"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi34322" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="listTable" maxRowsBehavior="truncate" name="dd34320"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd26120">
+			<BusinessItems>
+				<RelationalDataItem name="bi26116" base="bi12278"/>
+				<RelationalDataItem name="bi26118" base="bi25952"/>
+				<RelationalDataItem name="bi28144" base="bi28143"/>
+				<RelationalDataItem name="bi28564" base="bi12283"/>
+				<RelationalFilterItem name="bi29022">
+					<EditorProperties>
+						<Property key="complexity">SINGLE_DATA_ITEM</Property>
+						<Property key="interactiveEditingAllowed">TRUE</Property>
+					</EditorProperties>
+					<Expression>in(${bi26116,binned},&apos;FileEvent&apos;,&apos;TimeEvent&apos;)</Expression>
+				</RelationalFilterItem>
+				<RelationalFilterItem name="bi29332">
+					<EditorProperties>
+						<Property key="complexity">SINGLE_DATA_ITEM</Property>
+						<Property key="interactiveEditingAllowed">FALSE</Property>
+					</EditorProperties>
+					<Expression>notMissing(${bi26118,binned})</Expression>
+				</RelationalFilterItem>
+				<RelationalDataItem name="bi42921" base="bi12295"/>
+				<RelationalDataItem name="bi42923" base="bi12282"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="relational" name="dd26121">
+				<RelationalQuery columnTotals="true" detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi28144"/>
+							<BusinessItem ref="bi26116"/>
+							<BusinessItem ref="bi26118"/>
+							<BusinessItem ref="bi28564"/>
+							<BusinessItem ref="bi42921"/>
+							<BusinessItem ref="bi42923"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi28564" sortDirection="descending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="listTable" maxRowsBehavior="truncate" name="dd26117"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters>
+				<DetailFilters>
+					<BusinessItem ref="bi29022"/>
+					<BusinessItem ref="bi29029"/>
+					<BusinessItem ref="bi29332"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd29031">
+			<BusinessItems>
+				<RelationalDataItem name="bi29023" base="bi12278"/>
+				<RelationalDataItem name="bi29024" base="bi25952"/>
+				<RelationalDataItem name="bi29026" base="bi12283"/>
+				<RelationalFilterItem name="bi29030">
+					<EditorProperties>
+						<Property key="complexity">SINGLE_DATA_ITEM</Property>
+						<Property key="interactiveEditingAllowed">TRUE</Property>
+					</EditorProperties>
+					<Expression>in(${bi29023,binned},&apos;JobEvent&apos;)</Expression>
+				</RelationalFilterItem>
+				<RelationalDataItem name="bi29325" base="bi12281"/>
+				<RelationalDataItem name="bi29326" base="bi12294"/>
+				<RelationalDataItem name="bi29327" base="bi12273"/>
+				<RelationalDataItem name="bi29328" base="bi12287"/>
+				<RelationalDataItem name="bi29329" base="bi12275"/>
+				<RelationalFilterItem name="bi29331">
+					<EditorProperties>
+						<Property key="complexity">SINGLE_DATA_ITEM</Property>
+						<Property key="interactiveEditingAllowed">FALSE</Property>
+					</EditorProperties>
+					<Expression>notMissing(${bi29024,binned})</Expression>
+				</RelationalFilterItem>
+				<RelationalDataItem name="bi42272" base="bi12286"/>
+				<RelationalDataItem name="bi42926" base="bi12295"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="relational" name="dd29032">
+				<RelationalQuery columnTotals="true" detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi29024"/>
+							<BusinessItem ref="bi29026"/>
+							<BusinessItem ref="bi42272"/>
+							<BusinessItem ref="bi42926"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi29026" sortDirection="descending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="listTable" maxRowsBehavior="truncate" name="dd29027"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters>
+				<DetailFilters>
+					<BusinessItem ref="bi29030"/>
+					<BusinessItem ref="bi29029"/>
+					<BusinessItem ref="bi29331"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd12268">
+			<BusinessItems>
+				<RelationalDataItem name="bi12297" base="bi12283"/>
+				<RelationalDataItem name="bi12299" base="bi12281"/>
+				<RelationalDataItem name="bi12301" base="bi12284"/>
+				<RelationalDataItem name="bi12304" base="bi12291"/>
+				<RelationalDataItem name="bi12305" base="bi12294"/>
+				<RelationalDataItem name="bi13026" base="bi12290"/>
+				<RelationalDataItem name="bi13572" base="bi13348"/>
+				<RelationalDataItem name="bi28062" base="bi12282"/>
+				<RelationalDataItem name="bi29307" base="bi25952"/>
+				<RelationalDataItem name="bi29308" base="bi12278"/>
+				<RelationalDataItem name="bi29309" base="bi12273"/>
+				<RelationalDataItem name="bi29310" base="bi12287"/>
+				<RelationalDataItem name="bi29311" base="bi12275"/>
+				<RelationalFilterItem label="Flow Table File" name="bi28304">
+					<EditorProperties>
+						<Property key="complexity">ADVANCED</Property>
+					</EditorProperties>
+					<Expression>or(contains(upper(${bi29307,binned}),upper(#{pr26203})),contains(upper(${bi29308,binned}),upper(#{pr26203})),contains(upper(${bi12297,binned}),upper(#{pr26203})),contains(upper(${bi12299,binned}),upper(#{pr26203})),contains(upper(${bi12305,binned}),upper(#{pr26203})),contains(upper(${bi29309,binned}),upper(#{pr26203})),contains(upper(${bi29310,binned}),upper(#{pr26203})),contains(upper(${bi29311,binned}),upper(#{pr26203})))</Expression>
+				</RelationalFilterItem>
+				<RelationalDataItem name="bi42348" base="bi42267"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="relational" name="dd12269">
+				<RelationalQuery columnTotals="false" detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi13026"/>
+							<BusinessItem ref="bi12297"/>
+							<BusinessItem ref="bi12299"/>
+							<BusinessItem ref="bi13572"/>
+							<BusinessItem ref="bi12301"/>
+							<BusinessItem ref="bi12304"/>
+							<BusinessItem ref="bi12305"/>
+							<BusinessItem ref="bi28062"/>
+							<BusinessItem ref="bi42348"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi12297" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="listTable" maxRowsBehavior="truncate" name="dd12270"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters>
+				<DetailFilters>
+					<BusinessItem ref="bi28304"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd8828">
+			<BusinessItems>
+				<RelationalDataItem name="bi42456" base="bi12292"/>
+				<RelationalDataItem name="bi43048" base="bi12990"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="relational" name="dd8829">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi42456"/>
+							<BusinessItem ref="bi43048"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi42456" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="dropdown" maxRowsBehavior="truncate" name="dd8830"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds43222" name="dd43233">
+			<BusinessItems>
+				<RelationalDataItem name="bi43238" base="bi43229"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds43222" type="multidimensional" name="dd43234">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column"/>
+						<Axis type="row">
+							<BusinessItem ref="bi43238"/>
+						</Axis>
+					</Axes>
+					<ColumnSortItems>
+						<MeasureSortItem ref="bi43238" sortDirection="descending"/>
+					</ColumnSortItems>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" name="dd43235"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds43222" name="dd43254">
+			<BusinessItems>
+				<RelationalDataItem name="bi43262" base="bi43241"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds43222" type="multidimensional" name="dd43255">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column"/>
+						<Axis type="row">
+							<BusinessItem ref="bi43262"/>
+						</Axis>
+					</Axes>
+					<ColumnSortItems>
+						<MeasureSortItem ref="bi43262" sortDirection="descending"/>
+					</ColumnSortItems>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" name="dd43252"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds43222" name="dd43268">
+			<BusinessItems>
+				<RelationalDataItem name="bi43276" base="bi43265"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds43222" type="multidimensional" name="dd43269">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column"/>
+						<Axis type="row">
+							<BusinessItem ref="bi43276"/>
+						</Axis>
+					</Axes>
+					<ColumnSortItems>
+						<MeasureSortItem ref="bi43276" sortDirection="descending"/>
+					</ColumnSortItems>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" name="dd43266"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters/>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd43476">
+			<BusinessItems>
+				<RelationalDataItem name="bi43481" base="bi40080"/>
+				<RelationalDataItem name="bi43486" base="bi38942"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="multidimensional" name="dd43477">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi43486"/>
+						</Axis>
+						<Axis type="row">
+							<BusinessItem ref="bi43481"/>
+						</Axis>
+					</Axes>
+					<ColumnSortItems>
+						<MeasureSortItem ref="bi43481" sortDirection="descending"/>
+						<SortItem ref="bi43486" sortDirection="ascending"/>
+					</ColumnSortItems>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="graphDefault" maxRowsBehavior="truncate" name="dd43478"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd44230">
+			<BusinessItems>
+				<RelationalDataItem name="bi44247" base="bi44239"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="relational" name="dd44231">
+				<RelationalQuery detail="false">
+					<Axes>
+						<Axis type="column">
+							<BusinessItem ref="bi44247"/>
+						</Axis>
+					</Axes>
+					<SortItems>
+						<SortItem ref="bi44247" sortDirection="ascending"/>
+					</SortItems>
+				</RelationalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" maxRowsLookup="dropdown" maxRowsBehavior="truncate" name="dd44232"/>
+				</ResultDefinitions>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" dataSource="ds12272" name="dd43210">
+			<BusinessItems>
+				<RelationalDataItem name="bi43217" base="bi12282"/>
+				<RelationalDataItem name="bi43220" base="bi42267"/>
+				<RelationalDataItem name="bi43456" base="bi38942"/>
+				<RelationalDataItem name="bi43462" base="bi12291"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="procedural" name="dd43211">
+				<ProceduralQuery type="standard">
+					<GeneratedResources>
+						<GeneratedTable purpose="aggregatedTable" lifetime="executor" name="ge43214"/>
+					</GeneratedResources>
+					<Arguments>
+						<ListArgument purpose="column">
+							<ReferenceValue>bi43217</ReferenceValue>
+							<ReferenceValue>bi43220</ReferenceValue>
+							<ReferenceValue>bi43456</ReferenceValue>
+							<ReferenceValue>bi43462</ReferenceValue>
+						</ListArgument>
+					</Arguments>
+				</ProceduralQuery>
+			</DataDefinition>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd45369">
+			<BusinessItems>
+				<RelationalDataItem name="bi45367" base="bi12990"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="multidimensional" name="dd45370">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column"/>
+						<Axis type="row">
+							<BusinessItem ref="bi45367"/>
+						</Axis>
+					</Axes>
+					<ColumnSortItems>
+						<MeasureSortItem ref="bi45367" sortDirection="descending"/>
+					</ColumnSortItems>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" name="dd45365"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters>
+				<DetailFilters>
+					<BusinessItem ref="bi29029"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd45383">
+			<BusinessItems>
+				<RelationalDataItem name="bi45391" base="bi42857"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="multidimensional" name="dd45384">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column"/>
+						<Axis type="row">
+							<BusinessItem ref="bi45391"/>
+						</Axis>
+					</Axes>
+					<ColumnSortItems>
+						<MeasureSortItem ref="bi45391" sortDirection="descending"/>
+					</ColumnSortItems>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" name="dd45379"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters>
+				<DetailFilters>
+					<BusinessItem ref="bi29029"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd45414">
+			<BusinessItems>
+				<RelationalDataItem name="bi45412" base="bi12990"/>
+				<RelationalDataItem name="bi45422" base="bi12278"/>
+				<RelationalFilterItem name="bi45423">
+					<EditorProperties>
+						<Property key="complexity">SINGLE_DATA_ITEM</Property>
+						<Property key="interactiveEditingAllowed">TRUE</Property>
+					</EditorProperties>
+					<Expression>in(${bi45422,binned},&apos;JobEvent&apos;)</Expression>
+				</RelationalFilterItem>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="multidimensional" name="dd45415">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column"/>
+						<Axis type="row">
+							<BusinessItem ref="bi45412"/>
+						</Axis>
+					</Axes>
+					<ColumnSortItems>
+						<MeasureSortItem ref="bi45412" sortDirection="descending"/>
+					</ColumnSortItems>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" name="dd45410"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters>
+				<DetailFilters>
+					<BusinessItem ref="bi29029"/>
+					<BusinessItem ref="bi45423"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+		<ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds12272" name="dd45426">
+			<BusinessItems>
+				<RelationalDataItem name="bi45434" base="bi40080"/>
+			</BusinessItems>
+			<DataDefinition dataSource="ds12272" type="multidimensional" name="dd45427">
+				<MultidimensionalQuery detail="false">
+					<Axes>
+						<Axis type="column"/>
+						<Axis type="row">
+							<BusinessItem ref="bi45434"/>
+						</Axis>
+					</Axes>
+					<ColumnSortItems>
+						<MeasureSortItem ref="bi45434" sortDirection="descending"/>
+					</ColumnSortItems>
+				</MultidimensionalQuery>
+				<ResultDefinitions>
+					<ResultDefinition purpose="primary" name="dd45424"/>
+				</ResultDefinitions>
+			</DataDefinition>
+			<AppliedFilters>
+				<DetailFilters>
+					<BusinessItem ref="bi29029"/>
+				</DetailFilters>
+			</AppliedFilters>
+		</ParentDataDefinition>
+	</DataDefinitions>
+	<DataSources>
+		<DataSource label="PPM_FLOWEVENTS" type="relational" name="ds32454">
+			<CasResource server="cas-shared-default" library="prod1ICA" table="PPM_FLOWEVENTS" locale="en_US"/>
+			<BusinessItemFolder>
+				<DataItem name="bi32456" xref="ActivityDef_Event_ORDINAL"/>
+				<DataItem name="bi32457" label="Job Name" xref="ActivityDef_ImplementRefer"/>
+				<DataItem name="bi32458" xref="ActivityDef_ImplementType"/>
+				<DataItem name="bi32460" xref="ActivityDef_ORDINAL"/>
+				<DataItem name="bi32461" xref="CUSTOMER_ID"/>
+				<DataItem name="bi32462" xref="Event"/>
+				<DataItem name="bi32464" label="Calendar Description" xref="Event_CalDesc"/>
+				<DataItem name="bi32465" label="Calendar Expression" xref="Event_CalExpr"/>
+				<DataItem name="bi32467" label="Event Description" xref="Event_Description"/>
+				<DataItem name="bi32468" label="Event Type" xref="Event_GeneratorType"/>
+				<DataItem name="bi32478" label="Event Operator" xref="Events_CombinationType"/>
+				<DataItem name="bi32479" label="Flow Name" xref="JobFlowDef_Name"/>
+				<DataItem name="bi32480" label="Deployment" xref="SERVER_LABEL"/>
+				<DataItem name="bi32481" xref="SERVER_LABEL_COLOR"/>
+				<DataItem name="bi32482" xref="Trigger_ORDINAL"/>
+				<DataItem name="bi32483" xref="Triggers_ORDINAL"/>
+				<PredefinedDataItem calculation="totalCount" name="bi32485" label="Frequency" usage="quantitative" format="COMMA12."/>
+				<PredefinedDataItem calculation="totalCountPercent" name="bi32486" label="Frequency Percent" usage="quantitative" format="PERCENT20.2"/>
+				<RelationalFilterItem label="Common Event_GeneratorType Filter 1" name="bi32562">
+					<EditorProperties>
+						<Property key="complexity">SINGLE_DATA_ITEM</Property>
+						<Property key="interactiveEditingAllowed">FALSE</Property>
+					</EditorProperties>
+					<Expression>notIn(${bi32468,binned},&apos;link&apos;)</Expression>
+				</RelationalFilterItem>
+				<CalculatedItem dataType="string" name="bi45075" label="Main Flow Name" usage="categorical" format="$." aggregation="sum">
+					<Expression>cond(gt(findCharacter(${bi32479,binned},&apos;:&apos;),0),substring(${bi32479,binned},1,minus(findCharacter(${bi32479,binned},&apos;:&apos;),1)),${bi32479,binned})</Expression>
+				</CalculatedItem>
+			</BusinessItemFolder>
+		</DataSource>
+		<DataSource label="PPM_FLOWS" type="relational" name="ds32328">
+			<CasResource server="cas-shared-default" library="prod1ICA" table="PPM_FLOWS" locale="en_US"/>
+			<BusinessItemFolder>
+				<DataItem name="bi32329" xref="CUSTOMER_ID"/>
+				<DataItem name="bi32330" xref="DependentJob"/>
+				<DataItem name="bi32336" label="Flow Environment Variables" xref="FlowEnvVars"/>
+				<DataItem name="bi32339" label="Job Description" xref="JobDef_Description"/>
+				<DataItem name="bi32340" label="Job Execution Type" xref="JobDef_ExecutionType"/>
+				<DataItem name="bi32341" xref="JobDef_ExitCodeValue"/>
+				<DataItem name="bi32343" xref="JobDef_ImplementType"/>
+				<DataItem name="bi32344" label="Job Name" xref="JobDef_Name"/>
+				<DataItem name="bi32345" label="Job OEM Name" xref="JobDef_OEMAppName"/>
+				<DataItem name="bi32346" label="Job Queue" xref="JobDef_QueueSelect"/>
+				<DataItem name="bi32348" label="Job Environment Variables" xref="JobEnvVars"/>
+				<DataItem name="bi32352" label="Deployment" xref="SERVER_LABEL"/>
+				<DataItem name="bi32353" xref="SERVER_LABEL_COLOR" hidden="true"/>
+				<PredefinedDataItem calculation="totalCount" name="bi32355" label="Frequency" usage="quantitative" format="COMMA12."/>
+				<PredefinedDataItem calculation="totalCountPercent" name="bi32356" label="Frequency Percent" usage="quantitative" format="PERCENT20.2"/>
+				<AggregateCalculatedItem dataType="double" name="bi32515" label="Flows" format="COMMA12.">
+					<Expression>aggregate(countDistinct,group,${bi32929,binned})</Expression>
+				</AggregateCalculatedItem>
+				<DataItem name="bi32923" label="Flow Id" xref="FLOW_ID"/>
+				<DataItem name="bi32924" xref="FlowClientVersion"/>
+				<DataItem name="bi32925" label="Flow Description" xref="FlowDescription"/>
+				<DataItem name="bi32926" xref="FlowEndBehaviour"/>
+				<DataItem name="bi32927" xref="FlowExclusive"/>
+				<DataItem name="bi32928" xref="FlowExitCodeRule"/>
+				<DataItem name="bi32929" label="Flow Name" xref="FLOWNAME"/>
+				<DataItem name="bi32930" xref="FlowStateMailWhen"/>
+				<DataItem name="bi32931" label="Data Size Limit (KB)" xref="JobDef_DataSizeLimit"/>
+				<DataItem name="bi32932" label="File Size Limit (KB)" xref="JobDef_FileSizeLimit"/>
+				<DataItem name="bi32933" label="Parallel Processors (Min CPUs / Max CPUs)" xref="JobDef_MinMaxCPU"/>
+				<DataItem name="bi32934" label="Run Time Limit (Hours:Minutes)" xref="JobDef_RunTimeLimit"/>
+				<DataItem name="bi32935" label="Stack Size Limit (KB)" xref="JobDef_StackSizeLimit"/>
+				<DataItem name="bi35758" label="Job Id" xref="JOB_ID"/>
+				<DataItem name="bi37190" xref="JobDef_MailWhenStart"/>
+			</BusinessItemFolder>
+		</DataSource>
+		<DataSource label="DIM_DEPLOYED_FLOWS" type="relational" name="ds12272">
+			<CasResource server="cas-shared-default" library="prod1ICA" table="DIM_DEPLOYED_FLOWS" locale="en_US"/>
+			<BusinessItemFolder>
+				<DataItem name="bi12273" label="Associated Job" xref="ASSOC_JOB"/>
+				<DataItem name="bi12274" label="DI Job ID" xref="ASSOC_JOB_ID"/>
+				<DataItem name="bi12275" label="Batch Server" xref="BATCH_SERVER"/>
+				<DataItem name="bi12276" xref="CUSTOMER_ID"/>
+				<DataItem name="bi12277" label="Job Event Condition" xref="EVENT_CONDITION"/>
+				<DataItem name="bi12278" label="Trigger Event Type" xref="EVENT_ROLE"/>
+				<DataItem name="bi12279" label="Deployed Flow Created" xref="FLOW_CREATED"/>
+				<DataItem name="bi12280" label="Deployed Flow Folderpath" xref="FLOW_FOLDERPATH"/>
+				<DataItem name="bi12281" label="Deployed Flow Full Path" xref="FLOW_FULLPATH"/>
+				<DataItem name="bi12282" label="Deployed Flow ID" xref="FLOW_ID"/>
+				<DataItem name="bi12283" label="Deployed Flow Name" xref="FLOW_NAME"/>
+				<DataItem name="bi12284" label="Deployed Flow Last Modified" xref="FLOW_UPDATED"/>
+				<DataItem name="bi12285" label="Has subflows?" xref="HAS_SUBFLOWS"/>
+				<DataItem name="bi12286" label="Deployed Job Id" xref="JFJOB_ID"/>
+				<DataItem name="bi12287" label="Deployed Job Name" xref="JFJOB_NAME"/>
+				<DataItem name="bi12288" label="Deployed Job Public Type" xref="JFJOB_TYPE"/>
+				<DataItem name="bi12289" xref="METAREPO"/>
+				<DataItem name="bi12290" label="Public Type" xref="PUBLIC_TYPE"/>
+				<DataItem name="bi12291" label="Scheduling Server" xref="SCHED_SERVER"/>
+				<DataItem name="bi12292" label="Deployment" xref="SERVER_LABEL"/>
+				<DataItem name="bi12294" label="Submission State" xref="TRIGGER_TYPE"/>
+				<PredefinedDataItem calculation="totalCount" name="bi12295" label="Frequency" usage="quantitative" format="COMMA12."/>
+				<PredefinedDataItem calculation="totalCountPercent" name="bi12296" label="Frequency Percent" usage="quantitative" format="PERCENT20.2"/>
+				<AggregateCalculatedItem dataType="double" name="bi12990" label="Deployed Flows" format="COMMA12.">
+					<Expression>aggregate(countDistinct,group,${bi12282,binned})</Expression>
+				</AggregateCalculatedItem>
+				<DataItem name="bi13348" label="Scheduled?" xref="IS_SCHEDULED"/>
+				<DataItem name="bi25951" xref="MIGR_STATUS"/>
+				<DataItem name="bi25952" label="Event details" xref="EVENT_SUMMARY"/>
+				<DataItem name="bi25953" label="Event Condition Name" xref="EVENT_PARAMETER"/>
+				<GroupedItem grouping="gr28130" dataType="string" label="Event Types" name="bi28128">
+					<GroupingParameters>
+						<GroupingParameter parameter="bi25953" variable="var28129"/>
+					</GroupingParameters>
+				</GroupedItem>
+				<CalculatedItem dataType="string" name="bi28143" label="Event Condition" usage="categorical" format="$." aggregation="sum">
+					<Expression>cond(eq(${bi25953,binned},&apos;yearly&apos;),&apos;Yearly&apos;,cond(eq(${bi25953,binned},&apos;monthly&apos;),&apos;Monthly&apos;,cond(eq(${bi25953,binned},&apos;daily&apos;),&apos;Daily&apos;,cond(eq(${bi25953,binned},&apos;dateList&apos;),&apos;Date List&apos;,cond(eq(${bi25953,binned},&apos;weekly&apos;),&apos;Weekly&apos;,${bi25953,binned})))))</Expression>
+				</CalculatedItem>
+				<RelationalFilterItem label="Filter for all page components" name="bi29029">
+					<EditorProperties>
+						<Property key="complexity">ADVANCED</Property>
+					</EditorProperties>
+					<Expression>or(contains(upper(${bi25952,binned}),upper(#{pr26203})),contains(upper(${bi12278,binned}),upper(#{pr26203})),contains(upper(${bi12283,binned}),upper(#{pr26203})),contains(upper(${bi12281,binned}),upper(#{pr26203})),contains(upper(${bi12294,binned}),upper(#{pr26203})),contains(upper(${bi12273,binned}),upper(#{pr26203})),contains(upper(${bi12287,binned}),upper(#{pr26203})),contains(upper(${bi12275,binned}),upper(#{pr26203})))</Expression>
+				</RelationalFilterItem>
+				<CalculatedItem dataType="string" name="bi30096" label="SubmissionStateCalculatedItem" usage="categorical" format="$." aggregation="sum">
+					<Expression>cond(eq(upper(${bi12294,binned}),upper(&apos;RunNow&apos;)),&apos;Run Now&apos;,${bi12294,binned})</Expression>
+				</CalculatedItem>
+				<DataItem name="bi38942" label="Scheduling Server Type" xref="SCHED_SERVER_TYPE"/>
+				<DataItem name="bi39662" xref="SCHED_SERVER_ID"/>
+				<AggregateCalculatedItem dataType="double" name="bi40080" label="Scheduling Servers" format="BEST12.">
+					<Expression>aggregate(countDistinct,group,${bi39662,binned})</Expression>
+				</AggregateCalculatedItem>
+				<GroupedItem grouping="gr40278" dataType="string" label="Server Type Categories" name="bi40276">
+					<GroupingParameters>
+						<GroupingParameter parameter="bi38942" variable="var40277"/>
+					</GroupingParameters>
+				</GroupedItem>
+				<AggregateCalculatedItem dataType="double" name="bi40375" label="Number of Event Triggers" format="COMMA12.">
+					<Expression>aggregate(countDistinct,group,${bi28128,binned})</Expression>
+				</AggregateCalculatedItem>
+				<AggregateCalculatedItem dataType="double" name="bi41796" label="Avg Events per Deployed Flow" format="COMMA12.2">
+					<Expression>div(${bi42267,raw},${bi12990,raw})</Expression>
+				</AggregateCalculatedItem>
+				<AggregateCalculatedItem dataType="double" name="bi42267" label="Number of Events" format="COMMA12.">
+					<Expression>aggregate(count,group,${bi25952,raw})</Expression>
+				</AggregateCalculatedItem>
+				<AggregateCalculatedItem dataType="double" name="bi42857" label="Total Jobs" format="COMMA12.">
+					<Expression>aggregate(countDistinct,group,${bi12274,binned})</Expression>
+				</AggregateCalculatedItem>
+				<DataItem name="bi43564" xref="SERVER_LABEL_COLOR"/>
+				<CalculatedItem dataType="string" name="bi44239" label="Content Grouping" usage="categorical" format="$." aggregation="sum">
+					<Expression>cond(notMissing(getWordAtTokenIndex(findAndReplaceString(removeCharacters(removeCharacters(removeCharacters(removeCharacters(removeCharacters(removeCharacters(removeWhiteSpace(${bi12281,binned},ALL),&apos;-&apos;),&apos;,&apos;),&apos;+&apos;),&apos;(&apos;),&apos;)&apos;),&apos;.&apos;),&apos;\&apos;,&apos;/&apos;,ALL),#{pr24356})),getWordAtTokenIndex(findAndReplaceString(removeCharacters(removeCharacters(removeCharacters(removeCharacters(removeCharacters(removeCharacters(removeWhiteSpace(${bi12281,binned},ALL),&apos;-&apos;),&apos;,&apos;),&apos;+&apos;),&apos;(&apos;),&apos;)&apos;),&apos;.&apos;),&apos;\&apos;,&apos;/&apos;,ALL),#{pr24356}),&apos;_unknown level_&apos;)</Expression>
+				</CalculatedItem>
+			</BusinessItemFolder>
+		</DataSource>
+		<DataSource label="DIM_DEPLOYED_FLOWS_AGGREGATED" type="relational" name="ds43222">
+			<GeneratedResource type="standalone" resource="ge43214" generator="dd43211" source="ds12272" lifetime="executor" externalReferenceName="cas-shared-defaultPublicDIM_DEPLOYED_FLOWSFLOW_IDSCHED_SERVER_TYPESCHED_SERVER"/>
+			<BusinessItemFolder>
+				<GeneratedDataItem root="bi43217" name="bi43224" label="Deployed Flow ID" xref="FLOW_ID" usage="categorical" format="$."/>
+				<GeneratedDataItem root="bi43220" name="bi43225" label="Number of Events" xref="calculation" usage="quantitative" format="COMMA12." aggregation="sum"/>
+				<PredefinedDataItem calculation="totalCount" name="bi43226" label="Frequency" usage="quantitative" format="COMMA12."/>
+				<PredefinedDataItem calculation="totalCountPercent" name="bi43227" label="Frequency Percent" usage="quantitative" format="PERCENT20.2"/>
+				<AggregateCalculatedItem dataType="double" name="bi43229" label="Average Events per Flow" format="COMMA12.">
+					<Expression>cond(eq(aggregate(countDistinct,group,${bi43224,binned}),0),0,aggregate(average,group,${bi43225,raw}))</Expression>
+				</AggregateCalculatedItem>
+				<AggregateCalculatedItem dataType="double" name="bi43241" label="Minimum Number of Events" format="COMMA12.">
+					<Expression>cond(eq(aggregate(countDistinct,group,${bi43224,binned}),0),0,aggregate(min,group,${bi43225,raw}))</Expression>
+				</AggregateCalculatedItem>
+				<AggregateCalculatedItem dataType="double" name="bi43265" label="Maximum Number of Events" format="COMMA12.">
+					<Expression>cond(eq(aggregate(countDistinct,group,${bi43224,binned}),0),0,aggregate(max,group,${bi43225,raw}))</Expression>
+				</AggregateCalculatedItem>
+				<GeneratedDataItem root="bi43456" name="bi43459" label="Scheduling Server Type" xref="SCHED_SERVER_TYPE" usage="categorical" format="$."/>
+				<GeneratedDataItem root="bi43462" name="bi43465" label="Scheduling Server" xref="SCHED_SERVER" usage="categorical" format="$."/>
+			</BusinessItemFolder>
+		</DataSource>
+	</DataSources>
+	<VisualElements>
+		<Graph graphType="histogram" supplementalVisuals="ve865" resultDefinitions="dd864" name="ve861" data="dd862" label="Histogram 1" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">true</Property>
+			</EditorProperties>
+			<Title auto="true"><P><DynamicSpan key="bird.autotitle.template.oneOfTwo.fmt.txt"><Substitutions><Substitution key="bird.autotitle.frequency.txt"/><Substitution key="bird.autotitle.measure.txt"/></Substitutions></DynamicSpan></P></Title>
+<StatGraph border="false" opaque="false" includeMissingDiscrete="true" missingValueDisplay="autolabel">
+    <Meta>
+        <DynVars>
+            <DynVar name="X" description="HISTOGRAM_MEASURE" required="true" assignedType="any" type="numeric"/>
+            <DynVar name="Y" description="HISTOGRAM_FREQUENCY" required="true" assignedType="any" type="numeric"/>
+            <DynVar name="TIP" description="TIP_VAR" required="false" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutOverlay>
+        <HistogramParm name="HistogramParm" tipListPolicy="replace" _stmt="histogramparm" xValues="leftpoints" dataLabelFitPolicy="auto" tip="TIP" x="X" y="Y"/>
+        <XAxisOpts gridDisplay="off">
+            <LinearOpts>
+                <TickValueFormatOpts maxWidth="2" extractScale="true"/>
+            </LinearOpts>
+        </XAxisOpts>
+        <YAxisOpts>
+            <LinearOpts>
+                <TickValueFormatOpts maxWidth="2" extractScale="true"/>
+            </LinearOpts>
+        </YAxisOpts>
+    </LayoutOverlay>
+</StatGraph>
+
+		</Graph>
+		<Text name="ve5829" label="Explanatory text about report" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P><Span class="span5"><Span class="span6"><Span class="span7">How to use this report</Span></Span></Span></P>
+			<P><Span>Select a Deployment from the drop-down menu to filter the information. By default, your report displays information for all deployments. The drop-down menu also indicates the number of flows in each deployment. </Span></P>
+			<P><Span> </Span><Span> </Span></P>
+			<P><Span> </Span></P>
+			<P><Span class="span10"><Span class="span12"><Span class="span13">Deployed Flows</Span></Span></Span></P>
+			<P><Span>The Deployed Flows table lists the deployed flows found in the deployments.  Determine which characteristics of the deployed flows are most important to you.  If more than one scheduling server contains deployed flows, filter by the associated scheduling server to view only the deployed flows executed by that scheduling server.  </Span></P>
+			<P><Span> </Span></P>
+			<P><Span>Trigger events are associated to the deployed flow, not a particular deployed job.  When a trigger event filter is applied, the Deployed Jobs table is empty.</Span></P>
+			<P><Span> </Span></P>
+			<P><Span>NOTE: Profiling deployed flows searches the SAS Metadata Server for platform objects. In the case of Platform LSF scheduling, the Platform Suite for SAS must have been installed and used for metadata objects to have been created. If a user did not install this software, then profiling will not find Platform objects.  Platform Suite for SAS was most recently available with SAS Grid Manager for Platform.  </Span></P>
+			<P><Span> </Span></P>
+			<P><Span class="span28"><Span class="span29"><Span class="span30">Platform Suite for SAS Flows</Span></Span></Span></P>
+			<P><Span>The flows represented on this page have been gathered using flow definition files exported from IBM Spectrum LSF Process Manager,10.1.0 or later, from SAS 9 Platform Suite for SAS.  The definition files must have been created by an administrator and made </Span><Span>available </Span><Span>to Content Assessment prior to executing the profile.  </Span></P>
+			<P><Span> </Span></P>
+			<P><Span>A "(Missing)" event condition usually indicates the flow, or job, must be manually triggered.  An "lsf" event condition indicates the trigger is based on the job status returned by the LSF master host.</Span></P>
+			<P><Span> </Span></P>
+			<P><Span class="span31"><Span class="span32"><Span class="span33">Explanation of Overview Metrics</Span></Span></Span></P>
+			<P><Span> </Span></P>
+			<P class="paragraph4"><Span class="span34"><Span class="span35"><Span class="span38">Deployed Flows.  </Span><Span>The Deployed Flows value shows the number of deployed flows found in all deployments. </Span></Span></Span></P>
+			<P class="paragraph5"><Span> </Span></P>
+			<P class="paragraph6"><Span class="span39"><Span class="span40"><Span class="span41">Scheduling Servers.</Span><Span> The Scheduling Servers value shows the number of unique scheduling servers in all deployments.</Span></Span></Span></P>
+			<P class="paragraph7"><Span> </Span></P>
+			<P class="paragraph8"><Span class="span42"><Span class="span43"><Span class="span44">​​​​​​Total Jobs. </Span><Span>The Total Jobs value shows the number of SAS Data Integration Studio jobs associated with the deployed flows in all deployments.</Span></Span></Span></P>
+			<P class="paragraph10"><Span> </Span></P>
+			<P class="paragraph11"><Span class="span45"><Span class="span46"><Span class="span47">Scheduled flows.</Span><Span> The Scheduled Flows value shows the number of deployed flows that have been submitted to the scheduling server.</Span></Span></Span></P>
+			<P class="paragraph12"><Span> </Span></P>
+			<P class="paragraph13"><Span class="span48"><Span class="span50"><Span class="span51">Flows with Dependencies.</Span><Span> The  Flows with Dependencies value shows the number of deployed flows that have dependencies on other jobs.</Span></Span></Span></P>
+			<P class="paragraph14"><Span> </Span></P>
+			<P class="paragraph15"><Span class="span52"><Span class="span53"><Span class="span54">Flows with Triggering Events.</Span><Span> The Flows with Triggering Events value shows the number of deployed flows that have events to trigger the flow execution.</Span></Span></Span></P>
+			<P><Span> </Span></P>
+			<P><Span> </Span></P>
+			<P><Span> </Span></P>
+			<P><Span> </Span></P>
+		</Text>
+		<Text name="ve6155" label="Explanation" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P><Span><Span>The SAS 9 Profile for SAS Data Integration Scheduling report enables you to explore the scheduling details of SAS Data Integration Studio deployed flows, including SAS 9 Platform Suite for SAS flows. Information such as the scheduling server, triggering conditions, and dependencies are available, as well as the SAS Data Integration Studio jobs that are part of the flow. If you are interested in additional objects or more technical details, see </Span><Span><Span><Span><Span action="ac45519">SAS 9 Profile for SAS Data Integration</Span></Span></Span></Span><Span>.</Span></Span></P>
+			<P><Span> </Span></P>
+			<P><Span class="span9"><Span class="span11">Terminology</Span></Span></P>
+			<P><Span>This report provides a breakdown of the SAS Data Integration Studio deployed flows so you can identify any scheduled job inputs and outputs that will need to be planned for as you migrate SAS Data Integration Studio jobs to a SAS Viya environment.</Span></P>
+			<P><Span> </Span></P>
+			<P><Span><Span class="span16">Deployment</Span><Span>. A deployment is the set of hosts on which the SAS software was deployed.</Span></Span></P>
+			<P><Span> </Span></P>
+			<P><Span class="span17">Content Grouping.</Span><Span>  Some companies organize their data in their SAS systems according to data governance rules. These rules might prescribe a pattern in the file system directory or metadata folder structure. At some level of the directory or folder structure, it is reasonable to assume that the data is being collected into a logical grouping. These groupings are helpful when planning for a migration because they organize the data into smaller and more focused collections.</Span></P>
+			<P><Span> </Span></P>
+			<P><Span>In this report, the grouping Full Program Name displays the directory or folder structure of each SAS program file. By default, this grouping is the fourth level of the directory or folder structure.  You can edit the level using </Span><Span><Span><Span><Span><Span><Span><Span><Span><Span><Span><Span><Span><Span><Span><Span><Span><Span><Span><Span action="ac24365">Settings</Span></Span></Span></Span></Span></Span></Span></Span></Span></Span></Span></Span></Span></Span></Span></Span></Span></Span></Span><Span> to change the grouping that is displayed. The specified setting groups report content and displays the grouped results by that level of the directory or folder structure.</Span></P>
+			<P><Span> </Span></P>
+			<P><Span>For example, the default content grouping in /opt/SAS/projects/HR/payroll/ would be "HR".</Span></P>
+			<P><Span> </Span></P>
+			<P><Span><Span class="span18">Job</Span><Span>. </Span></Span><Span>A job is a collection of SAS tasks that create output.</Span><Span> </Span></P>
+			<P><Span> </Span></P>
+			<P><Span class="span19">Deployed Flow. </Span><Span>A deployed flow is a group of jobs and their dependencies, including dependencies on other jobs, on files, or on specified dates and times.</Span></P>
+			<P><Span> </Span><Span> </Span></P>
+			<P><Span class="span20">Scheduling Server.  </Span><Span>A scheduling</Span><Span> server is a server that runs deployed jobs in a scheduled deployed flow. The scheduling server determines whether conditions and dependencies have been met before a job is run.</Span></P>
+			<P><Span> </Span></P>
+			<P><Span class="span21">Deployed Job. </Span><Span>A deployed job is a</Span><Span> job that has been saved in a deployment directory and can be scheduled.</Span></P>
+			<P><Span> </Span></P>
+			<P><Span class="span22">SAS 9 Platform Suite for SAS Flow</Span><Span>. A SAS 9 Platform Suite for SAS flow is a SAS deployed flow converted to an IBM Spectrum LSF Process Manager flow definition.  These flows are created in SAS 9 and scheduled using a Platform Process Manager server.  ​​​​​​</Span></P>
+			<P><Span> </Span><Span> </Span></P>
+			<P><Span class="span23"><Span class="span24">Version History</Span></Span></P>
+			<P><Span>The report design might not be updated in each release. The design was last updated in Version 2025.01.</Span></P>
+			<P><Span> </Span></P>
+			<P><Span class="span25"><Span class="span26">Information</Span></Span></P>
+			<P><Span>SAS has made every attempt to ensure that the information in this report is accurate. Our commitment is to continue to enhance this application. Please check the SAS 9 Content Assessment documentation for changes.</Span></P>
+			<P><Span> </Span></P>
+			<P><Span>You can share assessment results with SAS to influence future development priority. </Span></P>
+			<P><Span> </Span></P>
+			<P><Span> </Span></P>
+			<P><Span class="span27">Copyright (c) 2020-2025, SAS Institute Inc., Cary, NC, USA, All Rights Reserved</Span></P>
+		</Text>
+		<Text name="ve12913" label="Job Flow Text" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P><Span class="span110"><Span class="span111"><Span class="span112">Which jobs have deployed flows that can be scheduled? </Span></Span></Span></P>
+			<P><Span class="span113"><Span class="span135">Select a deployed flow from the top table to view its deployed jobs.  Triggers that initiate a deployed job to run and dependencies are listed in the bottom tables. Trigger events can be age, day, date, file-based, and so on. A deployed flow&apos;s associated jobs are important because deployed flow migration depends on associated jobs completing successfully. </Span><Span action="ac18102" class="span136">Get more report details</Span><Span class="span137">.</Span></Span></P>
+		</Text>
+		<Text name="ve13506" label="Job Flow Help Text" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P><Span class="span36"><Span>Deployed flows can be submitted to the scheduling server to </Span><Span class="span49">Run Now</Span><Span><Span>, and all conditions are verified before jobs are executed.  Or, </Span><Span>deployed </Span><Span>flows can be submitted to the scheduling server to be </Span><Span class="span98">Manual</Span><Span>, and the jobs are held in the scheduling server until they are run manually. </Span></Span></Span></P>
+		</Text>
+		<Table columnSizing="autoFill" resultDefinitions="dd864" name="ve865" data="dd862" applyDynamicBrushes="yes">
+			<Columns/>
+		</Table>
+		<Text name="ve24321" label="Settings Description" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P><Span class="span95"><Span class="span124"><Span class="span125">Content Grouping</Span></Span></Span></P>
+			<P><Span>Some companies organize their data in their SAS systems according to data governance rules. </Span><Span>These rules might prescribe a pattern in the file system directory </Span><Span>or metadata folder structure. At some level of the directory or folder structure</Span><Span>, it is reasonable to assume that t</Span><Span>he data is being collected into a logical grouping. These groupings are helpful when planning for a migration because they organize the data into smaller and more focused collections.</Span></P>
+			<P><Span> </Span></P>
+			<P><Span>In this report, the grouping Full program name displays the directory or folder structure of each SAS program file. By default, this grouping is the fourth level of the directory or folder structure.  You can edit the level in the text box below to change the grouping that is displayed. The specified setting groups report content and displays the grouped results by that level of the directory or folder structure.</Span></P>
+			<P><Span> </Span></P>
+			<P><Span>For example, the default content grouping in /opt/SAS/projects/HR/payroll/ would be "HR".</Span></P>
+		</Text>
+		<Table columnSizing="autoFill" resultDefinitions="dd24330" name="ve24327" data="dd24328" label="View Content Grouping" applyDynamicBrushes="yes" sourceInteractionVariables="bi44240 bi44244">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+			<Columns>
+				<Column variable="bi44240" isVisible="true"/>
+				<Column variable="bi44244" isVisible="true"/>
+			</Columns>
+		</Table>
+		<Prompt required="false" name="ve24333" label="Content Grouping Input" selectionDisabled="true" applyDynamicBrushes="promptsOnly">
+			<EditorProperties>
+				<Property key="autoChartCategory">CONTROL</Property>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span>Enter a value from 1 to 10 to select the level to use for Content Grouping:</Span></P></Title>
+			<TextField defaultFormat="COMMA12.">
+				<NumericConstraint min="1.0" max="10.0" minInclusive="true" maxInclusive="true"/>
+			</TextField>
+		</Prompt>
+		<Prompt required="false" name="ve28291" label="Job Flows Search Field" selectionDisabled="true" applyDynamicBrushes="promptsOnly">
+			<EditorProperties>
+				<Property key="autoChartCategory">CONTROL</Property>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<TextField>
+				<StringConstraint/>
+			</TextField>
+		</Prompt>
+		<Text name="ve40477" label="Overview Text" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P class="paragraph16"><Span class="span14"><Span class="span15"><Span class="span37">Explore SAS 9 Deployed Flows for SAS Data Integration Studio Scheduling</Span></Span></Span></P>
+			<P class="paragraph17"><Span class="span56"><Span><Span action="ac42037">Get more report details</Span></Span></Span></P>
+		</Text>
+		<Graph graphType="keyValue" supplementalVisuals="ve40488" resultDefinitions="dd40482" name="ve40489" data="dd40486" label="Flows with Triggering Events" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P class="styleForTitle_paragraph1"><Span class="styleForTitle_span1">Flows with Triggering Events</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<StatGraph border="false" opaque="false" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="false" assignedType="any" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="any" type="numeric">
+                <DefaultValues>
+                    <Value>dd40482.bi40484</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="numeric" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd40482.bi40484</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutRegion>
+        <KeyValue name="KeyValue" tipListPolicy="replace" _stmt="keyValue" display="CATEGORYLABEL CATEGORYVALUE RESPONSEVALUE" hAlign="center" justify="center" key="responsevalue" vAlign="top" tip="TIP" category="CATEGORY" response="RESPONSE">
+            <ResponseValueFormatOpts extractScale="false"/>
+            <CategoryLabelAttrs weight="normal"/>
+            <KeyAttrs weight="normal" color="16316922"/>
+        </KeyValue>
+    </LayoutRegion>
+</StatGraph>
+
+		</Graph>
+		<Graph graphType="keyValue" supplementalVisuals="ve40111" resultDefinitions="dd40107" name="ve40112" data="dd40109" label="Number of Flows Scheduled" description="" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P class="styleForTitle_paragraph2"><Span class="styleForTitle_span2">Scheduled Flows</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<StatGraph border="false" opaque="false" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="false" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="any" type="numeric">
+                <DefaultValues>
+                    <Value>dd40107.bi40125</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="numeric" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd40107.bi40125</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutRegion>
+        <KeyValue name="KeyValue" tipListPolicy="replace" _stmt="keyValue" display="CATEGORYLABEL CATEGORYVALUE RESPONSEVALUE" hAlign="center" justify="center" key="responsevalue" vAlign="top" tip="TIP" category="CATEGORY" response="RESPONSE">
+            <ResponseValueFormatOpts extractScale="false"/>
+            <CategoryLabelAttrs weight="normal"/>
+            <KeyAttrs weight="normal" color="15790580"/>
+        </KeyValue>
+    </LayoutRegion>
+</StatGraph>
+
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd40107" name="ve40111" data="dd40109" applyDynamicBrushes="yes">
+			<Columns>
+				<Column variable="bi40125"/>
+			</Columns>
+		</Table>
+		<Prompt required="false" resultDefinitions="dd12392" name="ve12389" data="dd12390" label="Select Scheduling Server" description="" selectionDisabled="true" applyDynamicBrushes="promptsOnly" sourceInteractionVariables="bi12395">
+			<EditorProperties>
+				<Property key="autoChartCategory">CONTROL</Property>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span>Select a scheduling server to filter the table.</Span></P></Title>
+			<ComboBox valueVariable="bi12395"/>
+		</Prompt>
+		<Prompt required="false" resultDefinitions="dd38244" name="ve12314" data="dd38242" label="Select Event Conditions" applyDynamicBrushes="promptsOnly" sourceInteractionVariables="bi28131">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+				<Property key="autoChartCategory">CONTROL</Property>
+			</EditorProperties>
+			<Title><P><Span>Event Conditions</Span></P></Title>
+			<CheckBoxList valueVariable="bi28131" measureVariable="bi37793"/>
+		</Prompt>
+		<Prompt required="false" resultDefinitions="dd27883" name="ve27889" data="dd27886" label="Job Flow Scheduled buttons" selectionDisabled="true" applyDynamicBrushes="promptsOnly" sourceInteractionVariables="bi27995">
+			<EditorProperties>
+				<Property key="autoChartCategory">CONTROL</Property>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span>Is the deployed flow scheduled ?</Span></P></Title>
+			<LinkBar valueVariable="bi27995" measureVariable="bi28478"/>
+		</Prompt>
+		<Table columnSizing="autoFill" resultDefinitions="dd28038" name="ve28048" data="dd28046" label="Associated Jobs Table" applyDynamicBrushes="yes" sourceInteractionVariables="bi28040 bi28043">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span>Jobs</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+			<Columns>
+				<Column class="tableColumnbi28040" variable="bi28040" isVisible="true"/>
+				<Column variable="bi28043" isVisible="false"/>
+			</Columns>
+		</Table>
+		<Graph graphType="keyValue" supplementalVisuals="ve12998" resultDefinitions="dd12997" name="ve12994" data="dd12995" label="Number of Deployed Flows" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<StatGraph border="false" opaque="false" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="false" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="any" type="numeric">
+                <DefaultValues>
+                    <Value>dd12997.bi13000</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="numeric" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd12997.bi13000</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutRegion>
+        <KeyValue name="KeyValue" tipListPolicy="replace" _stmt="keyValue" hAlign="center" justify="center" key="responsevalue" vAlign="center" tip="TIP" category="CATEGORY" response="RESPONSE">
+            <ResponseValueFormatOpts extractScale="false"/>
+            <KeyAttrs weight="normal" color="16316922"/>
+            <ResponseLabelAttrs color="16316922"/>
+        </KeyValue>
+    </LayoutRegion>
+</StatGraph>
+
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd12997" name="ve12998" data="dd12995" applyDynamicBrushes="yes">
+			<Columns>
+				<Column variable="bi13000"/>
+			</Columns>
+		</Table>
+		<Prompt required="false" resultDefinitions="dd12975" name="ve12972" data="dd12973" label="Choose a Flow Trigger" selectionDisabled="true" applyDynamicBrushes="promptsOnly" sourceInteractionVariables="bi30097">
+			<EditorProperties>
+				<Property key="autoChartCategory">CONTROL</Property>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span>Choose a submission state to filter the deployed flows table. </Span></P></Title>
+			<LinkBar valueVariable="bi30097" measureVariable="bi28546"/>
+		</Prompt>
+		<Table columnSizing="autoFill" resultDefinitions="dd12651" name="ve12648" data="dd12649" label="Deployed Jobs Table" applyDynamicBrushes="yes" sourceInteractionVariables="bi12653 bi12654 bi29004">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span>Deployed Jobs</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+			<Columns>
+				<Column variable="bi12653" isVisible="true"/>
+				<Column variable="bi29004" isVisible="true"/>
+				<Column variable="bi12654" isVisible="false"/>
+			</Columns>
+		</Table>
+		<Text name="ve33187" label="Platform Suite for SAS Flow Text" selectionDisabled="true" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<P><Span class="span102"><Span class="span103"><Span class="span104">Which SAS 9 deployed flows are scheduled in SAS 9 Platform Suite for SAS? </Span></Span></Span></P>
+			<P><Span class="span105"><Span class="span106">This data represents the SAS deployed flows defined within Process Manager of SAS 9 Platform Suite for SAS. The number of deployed flows found in Process Manager may differ from the number of deployed flows in SAS Metadata Server. After a deployed flow has been created in SAS, it must have been assigned to a Platform Process Manager scheduling server for the scheduled jobs with the flow to run in Platform Process Manager.  Only scheduled deployed flows are represented in the tables below.  </Span><Span action="ac33186" class="span120">Get more report details</Span><Span class="span138">.</Span></Span></P>
+		</Text>
+		<VisualContainer containerType="stacking" name="ve34313" label="Platform Suite for SAS Flows" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<StackNavigationControl horizontalPosition="left" verticalPosition="top" buttonDirection="horizontal" buttonType="tab"/>
+		</VisualContainer>
+		<VisualContainer containerType="standard" name="ve34301" label="Definitions" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<VisualContainer containerType="layout" name="ve34307" label="Layout Container 13" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<VisualContainer containerType="layout" name="ve34311" label="Layout Container 17" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<Graph graphType="keyValue" supplementalVisuals="ve32525" resultDefinitions="dd32524" name="ve32521" data="dd32522" label="Number of Flows" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<StatGraph border="false" opaque="false" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="false" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="any" type="numeric">
+                <DefaultValues>
+                    <Value>dd32524.bi32527</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="numeric" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd32524.bi32527</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutRegion>
+        <KeyValue name="KeyValue" tipListPolicy="replace" _stmt="keyValue" hAlign="center" justify="left" key="responsevalue" vAlign="center" tip="TIP" category="CATEGORY" response="RESPONSE">
+            <KeyAttrs color="16316922"/>
+            <ResponseLabelAttrs color="16316922"/>
+        </KeyValue>
+    </LayoutRegion>
+</StatGraph>
+
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd32524" name="ve32525" data="dd32522" applyDynamicBrushes="yes">
+			<Columns>
+				<Column variable="bi32527"/>
+			</Columns>
+		</Table>
+		<Prompt required="false" resultDefinitions="dd32536" name="ve32533" data="dd32534" label="Event Conditions" selectionDisabled="false" applyDynamicBrushes="promptsOnly" sourceInteractionVariables="bi32539">
+			<EditorProperties>
+				<Property key="autoChartCategory">CONTROL</Property>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span>Select an Event Condition</Span></P></Title>
+			<CheckBoxList valueVariable="bi32539" measureVariable="bi45201"/>
+		</Prompt>
+		<VisualContainer containerType="layout" name="ve34309" label="Layout Container 15" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<Table columnSizing="autoFill" resultDefinitions="dd32361" name="ve32358" data="dd32359" label="Flow Definitions" applyDynamicBrushes="yes" sourceInteractionVariables="bi33016 bi33019 bi34399 bi35048">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span>Flow Definitions</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+			<Columns>
+				<Column variable="bi33016" isVisible="true"/>
+				<Column variable="bi33019" isVisible="true"/>
+				<Column variable="bi34399" isVisible="true" compactFormat="false"/>
+				<Column variable="bi35048" isVisible="true"/>
+			</Columns>
+		</Table>
+		<Table columnSizing="autoFill" resultDefinitions="dd32379" name="ve32376" data="dd32377" label="Job Definitions" applyDynamicBrushes="yes" sourceInteractionVariables="bi32380 bi32381 bi32382 bi35050">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span>Job Definitions</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+			<Columns>
+				<Column variable="bi32380" isVisible="true"/>
+				<Column class="tableColumnbi32381" variable="bi32381" isVisible="true"/>
+				<Column variable="bi32382" isVisible="true"/>
+				<Column variable="bi35050" isVisible="true"/>
+			</Columns>
+		</Table>
+		<Table columnSizing="autoFill" resultDefinitions="dd32452" name="ve32449" data="dd32450" label="Flow Triggers" applyDynamicBrushes="yes" sourceInteractionVariables="bi32487 bi32488 bi32489 bi32493 bi32496 bi33406 bi37451">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span>Flow Triggers</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+			<Columns>
+				<Column variable="bi32496" isVisible="true"/>
+				<Column class="tableColumnbi32487" variable="bi32487" isVisible="true"/>
+				<Column variable="bi32488" isVisible="true"/>
+				<Column class="tableColumnbi32489" variable="bi32489" isVisible="true"/>
+				<Column variable="bi32493" isVisible="true"/>
+				<Column variable="bi33406" isVisible="true"/>
+				<Column variable="bi37451" isVisible="true"/>
+			</Columns>
+		</Table>
+		<Table columnSizing="autoFill" resultDefinitions="dd32499" name="ve32508" data="dd32506" label="Job triggers" applyDynamicBrushes="yes" sourceInteractionVariables="bi32500 bi32502 bi32503 bi32504 bi32556 bi34832 bi37453 bi45198">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span>Job Triggers</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+			<Columns>
+				<Column variable="bi34832" isVisible="true"/>
+				<Column class="tableColumnbi32487" variable="bi32500" isVisible="true"/>
+				<Column variable="bi32502" isVisible="true"/>
+				<Column class="tableColumnbi32489" variable="bi32503" isVisible="true"/>
+				<Column variable="bi32504" isVisible="true"/>
+				<Column variable="bi32556" isVisible="true"/>
+				<Column variable="bi37453" isVisible="true"/>
+				<Column variable="bi45198" isVisible="false"/>
+			</Columns>
+		</Table>
+		<VisualContainer containerType="standard" name="ve34315" label="Customizations" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<Table columnSizing="autoFill" resultDefinitions="dd34320" name="ve34317" data="dd34318" label="Job Attributes" applyDynamicBrushes="yes" sourceInteractionVariables="bi34321 bi34322 bi34323 bi34324 bi34327 bi35046">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span>Job-specific attributes configurable in Process Manager.</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+			<Columns>
+				<Column variable="bi34322" isVisible="true"/>
+				<Column variable="bi34323" isVisible="true"/>
+				<Column variable="bi34324" isVisible="true"/>
+				<Column variable="bi34325" isVisible="true" compactFormat="false"/>
+				<Column variable="bi34326" isVisible="true" compactFormat="false"/>
+				<Column variable="bi34327" isVisible="true" compactFormat="false"/>
+				<Column variable="bi34328" isVisible="true" compactFormat="false"/>
+				<Column variable="bi35046" isVisible="false"/>
+				<Column variable="bi34321" isVisible="false"/>
+			</Columns>
+		</Table>
+		<VisualContainer containerType="layout" name="ve41364" label="Layout Container 2" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<VisualContainer containerType="layout" name="ve41366" label="Layout Container 3" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<VisualContainer containerType="layout" name="ve41370" label="Layout Container 4" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<VisualContainer containerType="layout" name="ve41402" label="Layout Container 7" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<VisualContainer containerType="layout" name="ve41507" label="Layout Container 8" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<VisualContainer containerType="layout" name="ve42301" label="Layout Container 5" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<Table columnSizing="autoFill" resultDefinitions="dd26117" name="ve26122" data="dd26120" label="Job Flow Trigger Events Table" applyDynamicBrushes="yes" sourceInteractionVariables="bi26116 bi26118 bi28144 bi28564 bi42923">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span>Triggers</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+			<Summary>
+				<Total rowVisible="true"/>
+			</Summary>
+			<Columns>
+				<Column variable="bi28144" isVisible="true"/>
+				<Column variable="bi26116" isVisible="true"/>
+				<Column class="tableColumnbi26118" variable="bi26118" isVisible="true"/>
+				<Column variable="bi28564" isVisible="true"/>
+				<Column variable="bi42921" isVisible="true" compactFormat="false"/>
+				<Column variable="bi42923" isVisible="false"/>
+			</Columns>
+		</Table>
+		<VisualContainer containerType="layout" name="ve42776" label="Layout Container 6" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<Table columnSizing="autoFill" resultDefinitions="dd29027" name="ve29033" data="dd29031" label="Dependencies Table" applyDynamicBrushes="yes" sourceInteractionVariables="bi29024 bi29026 bi42272">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span>Dependencies</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+			<Summary>
+				<Total rowVisible="true"/>
+			</Summary>
+			<Columns>
+				<Column class="tableColumnbi26118" variable="bi29024" isVisible="true"/>
+				<Column class="tableColumnbi29026" variable="bi29026" isVisible="true"/>
+				<Column variable="bi42926" isVisible="true" compactFormat="false"/>
+				<Column variable="bi42272" isVisible="false"/>
+			</Columns>
+		</Table>
+		<Table columnSizing="autoFill" resultDefinitions="dd12270" name="ve12267" data="dd12268" label="Flows Table" applyDynamicBrushes="yes" sourceInteractionVariables="bi12297 bi12299 bi12301 bi12304 bi12305 bi13026 bi13572 bi28062">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span>Deployed Flows</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+			<Summary>
+				<Total rowVisible="false"/>
+			</Summary>
+			<Columns>
+				<Column class="tableColumnbi12297" variable="bi12297" isVisible="true"/>
+				<Column variable="bi12299" isVisible="true"/>
+				<Column variable="bi13572" isVisible="true"/>
+				<Column variable="bi12301" isVisible="true"/>
+				<Column class="tableColumnbi12304" variable="bi12304" isVisible="true"/>
+				<Column class="tableColumnbi12305" variable="bi12305" isVisible="true"/>
+				<Column variable="bi42348" isVisible="true" compactFormat="false"/>
+				<Column variable="bi13026" isVisible="false"/>
+				<Column variable="bi28062" isVisible="false"/>
+			</Columns>
+		</Table>
+		<Prompt required="false" resultDefinitions="dd8830" name="ve8827" data="dd8828" label="Select a Deployment" selectionDisabled="true" applyDynamicBrushes="promptsOnly" sourceInteractionVariables="bi42456">
+			<EditorProperties>
+				<Property key="autoChartCategory">CONTROL</Property>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span>Select a deployment to filter the report</Span></P></Title>
+			<ComboBox valueVariable="bi42456" measureVariable="bi43048"/>
+		</Prompt>
+		<Graph graphType="keyValue" supplementalVisuals="ve43236" resultDefinitions="dd43235" name="ve43232" data="dd43233" label="Average Events per Flow" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<StatGraph border="false" opaque="false" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="false" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="any" type="numeric">
+                <DefaultValues>
+                    <Value>dd43235.bi43238</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="numeric" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd43235.bi43238</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutRegion>
+        <KeyValue name="KeyValue" tipListPolicy="replace" _stmt="keyValue" display="CATEGORYLABEL CATEGORYVALUE RESPONSELABEL RESPONSEVALUE" hAlign="center" justify="center" key="responsevalue" vAlign="center" tip="TIP" category="CATEGORY" response="RESPONSE">
+            <ResponseValueFormatOpts extractScale="false"/>
+            <KeyAttrs color="15790580"/>
+            <ResponseLabelAttrs color="16777215"/>
+        </KeyValue>
+    </LayoutRegion>
+</StatGraph>
+
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd43235" name="ve43236" data="dd43233" applyDynamicBrushes="yes">
+			<Columns>
+				<Column variable="bi43238"/>
+			</Columns>
+		</Table>
+		<Graph graphType="keyValue" supplementalVisuals="ve43256" resultDefinitions="dd43252" name="ve43257" data="dd43254" label="Minimum Number of Events" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<StatGraph border="false" opaque="false" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="false" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="any" type="numeric">
+                <DefaultValues>
+                    <Value>dd43252.bi43262</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="numeric" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd43252.bi43262</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutRegion>
+        <KeyValue name="KeyValue" tipListPolicy="replace" _stmt="keyValue" display="CATEGORYLABEL CATEGORYVALUE RESPONSELABEL RESPONSEVALUE" hAlign="center" justify="center" key="responsevalue" vAlign="center" tip="TIP" category="CATEGORY" response="RESPONSE">
+            <ResponseValueFormatOpts extractScale="false"/>
+            <KeyAttrs color="15790580"/>
+            <ResponseLabelAttrs color="16777215"/>
+        </KeyValue>
+    </LayoutRegion>
+</StatGraph>
+
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd43252" name="ve43256" data="dd43254" applyDynamicBrushes="yes">
+			<Columns>
+				<Column variable="bi43262"/>
+			</Columns>
+		</Table>
+		<Graph graphType="keyValue" supplementalVisuals="ve43270" resultDefinitions="dd43266" name="ve43271" data="dd43268" label="Maximum Number of Events" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<StatGraph border="false" opaque="false" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="false" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="any" type="numeric">
+                <DefaultValues>
+                    <Value>dd43266.bi43276</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="numeric" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd43266.bi43276</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutRegion>
+        <KeyValue name="KeyValue" tipListPolicy="replace" _stmt="keyValue" display="CATEGORYLABEL CATEGORYVALUE RESPONSELABEL RESPONSEVALUE" hAlign="center" justify="center" key="responsevalue" vAlign="center" tip="TIP" category="CATEGORY" response="RESPONSE">
+            <ResponseValueFormatOpts extractScale="false"/>
+            <KeyAttrs color="15790580"/>
+            <ResponseLabelAttrs color="16777215"/>
+        </KeyValue>
+    </LayoutRegion>
+</StatGraph>
+
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd43266" name="ve43270" data="dd43268" applyDynamicBrushes="yes">
+			<Columns>
+				<Column variable="bi43276"/>
+			</Columns>
+		</Table>
+		<VisualContainer containerType="layout" name="ve43280" label="Layout Container 1" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<Graph graphType="bar" supplementalVisuals="ve43479" resultDefinitions="dd43478" name="ve43475" data="dd43476" label="Scheduling Server Types" applyDynamicBrushes="yes" sourceInteractionVariables="bi43486">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span class="styleForTitle_span4">Scheduling Servers by Scheduling Server Type</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<StatGraph border="false" opaque="false" includeMissingDiscrete="true" selectionMode="multiple" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="true" assignedType="any" type="character">
+                <DefaultValues>
+                    <Value>dd43478.bi43486</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="any" type="numeric" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd43478.bi43481</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="GROUP" description="SUBGROUP_VAR" required="false" type="character"/>
+            <DynVar name="COLUMN" description="HORIZONTAL_SERIES_VAR" required="false" type="character" multiplesAllowed="true"/>
+            <DynVar name="ROW" description="VERTICAL_SERIES_VAR" required="false" type="character" multiplesAllowed="true"/>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="character" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd43478.bi43481</Value>
+                    <Value>dd43478.bi43486</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="KEY_FRAME" description="ANIMATION" required="false" type="time" multiplesAllowed="false"/>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+        <DataNameMap>
+            <Entry model="LayoutDataMatrix_98" data="dd43478"/>
+        </DataNameMap>
+    </Meta>
+    <LayoutDataMatrix name="LayoutDataMatrix_98" includeMissingClass="true" rowVars="ROW" columnVars="COLUMN">
+        <LayoutPrototypeOverlay2D>
+            <BarChartParm name="BarChart" tipListPolicy="replace" _stmt="barchart" groupDisplay="cluster" orient="horizontal" stat="none" segmentLabel="true" tip="TIP" category="CATEGORY" responseVars="RESPONSE" group="GROUP">
+                <SegmentLabelAttrs weight="bold" color="15790580"/>
+            </BarChartParm>
+            <XAxisOpts name="categoryAxis" display="TICKVALUES">
+                <DiscreteOpts sortOrder="data"/>
+                <LinearOpts>
+                    <TickValueFormatOpts extractScale="true"/>
+                </LinearOpts>
+            </XAxisOpts>
+            <YAxisOpts display="TICKVALUES" reverse="true">
+                <DiscreteOpts tickValueFitPolicy="staggertruncatedrop" sortOrder="data" tickValueAppearance="auto"/>
+                <LinearOpts>
+                    <TickValueFormatOpts extractScale="true"/>
+                </LinearOpts>
+            </YAxisOpts>
+        </LayoutPrototypeOverlay2D>
+    </LayoutDataMatrix>
+    <LayoutGlobalLegend legendTitlePosition="top" allowCollapsed="true">
+        <AutoLegend>
+            <GraphNames>
+                <Value>BarChart</Value>
+            </GraphNames>
+        </AutoLegend>
+    </LayoutGlobalLegend>
+    <Animation keyFrame="KEY_FRAME"/>
+    <OverviewAxis maxPlotSize="60px" minPlotSize="35px" visible="off" axis="categoryAxis"/>
+</StatGraph>
+
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd43478" name="ve43479" data="dd43476" applyDynamicBrushes="yes" sourceInteractionVariables="bi43486">
+			<Columns>
+				<Column variable="bi43486"/>
+				<Column variable="bi43481"/>
+			</Columns>
+		</Table>
+		<VisualContainer containerType="layout" name="ve43982" label="Layout Container 11" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<VisualContainer containerType="layout" name="ve43984" label="Layout Container 9" selectionDisabled="true">
+			<EditorProperties>
+				<Property key="visualType">LAYOUT_CONTAINER</Property>
+			</EditorProperties>
+		</VisualContainer>
+		<Prompt required="false" resultDefinitions="dd44232" name="ve44229" data="dd44230" label="Select Content Grouping" selectionDisabled="true" applyDynamicBrushes="promptsOnly" sourceInteractionVariables="bi44247">
+			<EditorProperties>
+				<Property key="autoChartCategory">CONTROL</Property>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P><Span>Select a content group to filter the page:</Span></P></Title>
+			<ComboBox valueVariable="bi44247"/>
+		</Prompt>
+		<Graph graphType="keyValue" supplementalVisuals="ve45371" resultDefinitions="dd45365" name="ve45372" data="dd45369" label="Deployed Flows Overview" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P class="styleForTitle_paragraph4"><Span class="styleForTitle_span5">Deployed Flows</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<StatGraph border="false" opaque="false" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="false" assignedType="any" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="any" type="numeric">
+                <DefaultValues>
+                    <Value>dd45365.bi45367</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="numeric" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd45365.bi45367</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutRegion>
+        <KeyValue name="KeyValue" tipListPolicy="replace" _stmt="keyValue" display="CATEGORYLABEL CATEGORYVALUE RESPONSEVALUE" hAlign="center" justify="center" key="responsevalue" vAlign="top" tip="TIP" category="CATEGORY" response="RESPONSE">
+            <ResponseValueFormatOpts extractScale="false"/>
+            <CategoryLabelAttrs weight="normal"/>
+            <KeyAttrs weight="normal" color="16316922"/>
+        </KeyValue>
+    </LayoutRegion>
+</StatGraph>
+
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd45365" name="ve45371" data="dd45369" applyDynamicBrushes="yes">
+			<Columns>
+				<Column variable="bi45367"/>
+			</Columns>
+		</Table>
+		<Table columnSizing="autoFill" resultDefinitions="dd40482" name="ve40488" data="dd40486" applyDynamicBrushes="yes">
+			<Columns>
+				<Column variable="bi40484"/>
+			</Columns>
+		</Table>
+		<Graph graphType="keyValue" supplementalVisuals="ve45385" resultDefinitions="dd45379" name="ve45386" data="dd45383" label="Total Jobs Overview" description="" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P class="styleForTitle_paragraph5"><Span class="styleForTitle_span6">Total Jobs</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<StatGraph border="false" opaque="false" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="false" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="any" type="numeric">
+                <DefaultValues>
+                    <Value>dd45379.bi45391</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="numeric" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd45379.bi45391</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutRegion>
+        <KeyValue name="KeyValue" tipListPolicy="replace" _stmt="keyValue" display="CATEGORYLABEL CATEGORYVALUE RESPONSEVALUE" hAlign="center" justify="center" key="responsevalue" vAlign="top" tip="TIP" category="CATEGORY" response="RESPONSE">
+            <ResponseValueFormatOpts extractScale="false"/>
+            <CategoryLabelAttrs weight="normal"/>
+            <KeyAttrs weight="normal" color="15790580"/>
+        </KeyValue>
+    </LayoutRegion>
+</StatGraph>
+
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd45379" name="ve45385" data="dd45383" applyDynamicBrushes="yes">
+			<Columns>
+				<Column variable="bi45391"/>
+			</Columns>
+		</Table>
+		<Graph graphType="keyValue" supplementalVisuals="ve45416" resultDefinitions="dd45410" name="ve45417" data="dd45414" label="Flows with Dependencies" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P class="styleForTitle_paragraph7"><Span class="styleForTitle_span8">Flows with Dependencies</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<StatGraph border="false" opaque="false" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="false" assignedType="any" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="any" type="numeric">
+                <DefaultValues>
+                    <Value>dd45410.bi45412</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="numeric" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd45410.bi45412</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutRegion>
+        <KeyValue name="KeyValue" tipListPolicy="replace" _stmt="keyValue" display="CATEGORYLABEL CATEGORYVALUE RESPONSEVALUE" hAlign="center" justify="center" key="responsevalue" vAlign="top" tip="TIP" category="CATEGORY" response="RESPONSE">
+            <ResponseValueFormatOpts extractScale="false"/>
+            <CategoryLabelAttrs weight="normal"/>
+            <KeyAttrs weight="normal" color="16316922"/>
+        </KeyValue>
+    </LayoutRegion>
+</StatGraph>
+
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd45410" name="ve45416" data="dd45414" applyDynamicBrushes="yes">
+			<Columns>
+				<Column variable="bi45412"/>
+			</Columns>
+		</Table>
+		<Graph graphType="keyValue" supplementalVisuals="ve45428" resultDefinitions="dd45424" name="ve45429" data="dd45426" label="Scheduling Servers Overview " description="" applyDynamicBrushes="no">
+			<EditorProperties>
+				<Property key="isAutoLabel">false</Property>
+			</EditorProperties>
+			<Title><P class="styleForTitle_paragraph3"><Span class="styleForTitle_span3">Scheduling Servers</Span></P></Title>
+			<Conditions>
+				<Condition ref="rg5234">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+				<Condition ref="rg5255">
+					<ConditionParameters>
+						<ConditionParameter parameter="*"/>
+					</ConditionParameters>
+				</Condition>
+			</Conditions>
+<StatGraph border="false" opaque="false" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DynVars>
+            <DynVar name="CATEGORY" description="CATEGORY_VAR" required="false" type="character"/>
+            <DynVar name="RESPONSE" description="MEASURE_VAR" required="true" assignedType="any" type="numeric">
+                <DefaultValues>
+                    <Value>dd45424.bi45434</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="TIP" description="TIP_VAR" required="false" assignedType="numeric" type="any" multiplesAllowed="true">
+                <DefaultValues>
+                    <Value>dd45424.bi45434</Value>
+                </DefaultValues>
+            </DynVar>
+            <DynVar name="HIDDEN" description="HIDDEN_VAR" required="false" type="character" multiplesAllowed="true"/>
+        </DynVars>
+    </Meta>
+    <LayoutRegion>
+        <KeyValue name="KeyValue" tipListPolicy="replace" _stmt="keyValue" display="CATEGORYLABEL CATEGORYVALUE RESPONSEVALUE" hAlign="center" justify="center" key="responsevalue" vAlign="top" tip="TIP" category="CATEGORY" response="RESPONSE">
+            <ResponseValueFormatOpts extractScale="false"/>
+            <CategoryLabelAttrs weight="normal"/>
+            <KeyAttrs weight="normal" color="15790580"/>
+        </KeyValue>
+    </LayoutRegion>
+</StatGraph>
+
+		</Graph>
+		<Table columnSizing="autoFill" resultDefinitions="dd45424" name="ve45428" data="dd45426" applyDynamicBrushes="yes">
+			<Columns>
+				<Column variable="bi45434"/>
+			</Columns>
+		</Table>
+	</VisualElements>
+	<PromptDefinitions>
+		<PromptDefinition label="Content Grouping Depth" isParameter="true" format="COMMA12." dataType="double" multiValued="false" name="pr24356">
+			<CurrentValueSource visualElement="ve24333"/>
+		</PromptDefinition>
+		<PromptDefinition label="value to search" isParameter="true" dataType="string" multiValued="false" name="pr26203">
+			<CurrentValueSource visualElement="ve28291"/>
+		</PromptDefinition>
+	</PromptDefinitions>
+	<View>
+		<Header>
+			<MediaContainer target="mt2">
+				<ResponsiveLayout orientation="horizontal" overflow="fit">
+					<Weights mediaTarget="mt5" unit="percent">
+						<Weight value="100%"/>
+					</Weights>
+					<Weights mediaTarget="mt4" unit="percent">
+						<Weight value="100%"/>
+					</Weights>
+					<Weights mediaTarget="mt3" unit="percent">
+						<Weight value="100%"/>
+					</Weights>
+				</ResponsiveLayout>
+				<Visual ref="ve8827" name="vi8826">
+					<ResponsiveConstraint>
+						<WidthConstraint>
+							<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+						</WidthConstraint>
+						<HeightConstraint>
+							<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+						</HeightConstraint>
+					</ResponsiveConstraint>
+				</Visual>
+			</MediaContainer>
+		</Header>
+		<Section name="vi40029" showSelectionControl="true" label="Overview" autoInteractionMode="twoWayFilter">
+			<Header>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="horizontal" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+				</MediaContainer>
+			</Header>
+			<Body>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="vertical" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+					<Visual ref="ve40477" name="vi40476">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+					<Container ref="ve41507" name="vi41506">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+						<ResponsiveLayout orientation="vertical" overflow="grow"/>
+						<Container ref="ve43982" name="vi43981">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+							<ResponsiveLayout orientation="vertical" overflow="grow">
+								<Weights mediaTarget="mt5" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+								<Weights mediaTarget="mt4" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+								<Weights mediaTarget="mt3" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+							</ResponsiveLayout>
+							<Visual ref="ve45372" name="vi45373">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="fixed"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="25%" flexibility="growable"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+							</Visual>
+							<Visual ref="ve45386" name="vi45387">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="fixed"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="25.01%" flexibility="growable"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+							</Visual>
+							<Visual ref="ve45429" name="vi45430">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="fixed"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="25%" flexibility="growable"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+							</Visual>
+						</Container>
+						<Container ref="ve43984" name="vi43983">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+							<ResponsiveLayout orientation="vertical" overflow="grow">
+								<Weights mediaTarget="mt5" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+								<Weights mediaTarget="mt4" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+								<Weights mediaTarget="mt3" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+							</ResponsiveLayout>
+							<Visual ref="ve40489" name="vi40490">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="fixed"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="25%" flexibility="growable"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+							</Visual>
+							<Visual ref="ve40112" name="vi40113">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="fixed"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="25.01%" flexibility="growable"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+							</Visual>
+							<Visual ref="ve45417" name="vi45418">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="fixed"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="25%" flexibility="growable"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+							</Visual>
+						</Container>
+					</Container>
+				</MediaContainer>
+			</Body>
+		</Section>
+		<Section name="vi11945" showSelectionControl="true" label="Deployed Flows" autoInteractionMode="twoWayFilter">
+			<Header>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="horizontal" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+				</MediaContainer>
+			</Header>
+			<Body>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="vertical" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+					<Container ref="ve43280" name="vi43279">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+						<ResponsiveLayout orientation="vertical" overflow="grow"/>
+						<Visual ref="ve43232" name="vi43231">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="15%" flexibility="fixed"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve43257" name="vi43258">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="15%" flexibility="fixed"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve43271" name="vi43272">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="15%" flexibility="fixed"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+						</Visual>
+					</Container>
+					<Visual ref="ve12913" name="vi12912">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+					<Visual ref="ve13506" name="vi13505">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+					<Container ref="ve41364" name="vi41363">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+						<ResponsiveLayout orientation="vertical" overflow="grow"/>
+						<Container ref="ve41402" name="vi41401">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+							<ResponsiveLayout orientation="vertical" overflow="grow">
+								<Weights mediaTarget="mt5" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+								<Weights mediaTarget="mt4" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+								<Weights mediaTarget="mt3" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+							</ResponsiveLayout>
+							<Visual ref="ve12994" name="vi12993">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="25%" flexibility="shrinkable"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="20%" flexibility="fixed"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+							</Visual>
+							<Visual ref="ve12389" name="vi12388">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="25%" flexibility="shrinkable"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="10%" flexibility="shrinkable"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+							</Visual>
+							<Visual ref="ve43475" name="vi43474">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="30%" flexibility="flexible"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+							</Visual>
+							<Visual ref="ve12314" name="vi12313">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="25%" flexibility="shrinkable"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="50%" flexibility="fixed"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+							</Visual>
+						</Container>
+						<Container ref="ve41366" name="vi41365">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+							<ResponsiveLayout orientation="vertical" overflow="grow">
+								<Weights mediaTarget="mt5" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+								<Weights mediaTarget="mt4" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+								<Weights mediaTarget="mt3" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+							</ResponsiveLayout>
+							<Container ref="ve41370" name="vi41369">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+								<ResponsiveLayout orientation="vertical" overflow="grow"/>
+								<Visual ref="ve12972" name="vi12971">
+									<ResponsiveConstraint>
+										<WidthConstraint>
+											<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="37.5%" flexibility="shrinkable"/>
+										</WidthConstraint>
+										<HeightConstraint>
+											<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+										</HeightConstraint>
+									</ResponsiveConstraint>
+								</Visual>
+								<Visual ref="ve27889" name="vi27890">
+									<ResponsiveConstraint>
+										<WidthConstraint>
+											<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+										</WidthConstraint>
+										<HeightConstraint>
+											<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="8.41%" flexibility="growable"/>
+										</HeightConstraint>
+									</ResponsiveConstraint>
+								</Visual>
+								<Visual ref="ve44229" name="vi44228">
+									<ResponsiveConstraint>
+										<WidthConstraint>
+											<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+										</WidthConstraint>
+										<HeightConstraint>
+											<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+										</HeightConstraint>
+									</ResponsiveConstraint>
+								</Visual>
+							</Container>
+							<Visual ref="ve28291" name="vi28290">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="75%" flexibility="flexible"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+							</Visual>
+							<Visual ref="ve12267" name="vi12266">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="74.99%" flexibility="growable"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="99.13%" flexibility="growable"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+							</Visual>
+							<Container ref="ve42301" name="vi42300">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+								<ResponsiveLayout orientation="vertical" overflow="grow"/>
+								<Visual ref="ve12648" name="vi12647">
+									<ResponsiveConstraint>
+										<WidthConstraint>
+											<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="growable"/>
+										</WidthConstraint>
+										<HeightConstraint>
+											<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="50%" flexibility="growable"/>
+										</HeightConstraint>
+									</ResponsiveConstraint>
+								</Visual>
+								<Visual ref="ve28048" name="vi28049">
+									<ResponsiveConstraint>
+										<WidthConstraint>
+											<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="growable"/>
+										</WidthConstraint>
+										<HeightConstraint>
+											<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="50%" flexibility="growable"/>
+										</HeightConstraint>
+									</ResponsiveConstraint>
+								</Visual>
+							</Container>
+						</Container>
+					</Container>
+					<Container ref="ve42776" name="vi42775">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+						<ResponsiveLayout orientation="vertical" overflow="grow"/>
+						<Visual ref="ve26122" name="vi26123">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="55.4%" flexibility="shrinkable"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="40.09%" flexibility="flexible"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+						</Visual>
+						<Visual ref="ve29033" name="vi29034">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="44.6%" flexibility="flexible"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="40.09%" flexibility="flexible"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+						</Visual>
+					</Container>
+				</MediaContainer>
+			</Body>
+		</Section>
+		<Section name="vi32319" showSelectionControl="true" label="SAS 9 Platform Suite for SAS Flows" autoInteractionMode="twoWayFilter">
+			<Header>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="horizontal" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+				</MediaContainer>
+			</Header>
+			<Body>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="vertical" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+					<Visual ref="ve33187" name="vi33188">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+					<Container ref="ve34313" name="vi34312">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+						<ResponsiveLayout orientation="horizontal" overflow="stack">
+							<Weights mediaTarget="mt5" unit="percent">
+								<Weight value="100%"/>
+							</Weights>
+							<Weights mediaTarget="mt4" unit="percent">
+								<Weight value="100%"/>
+							</Weights>
+							<Weights mediaTarget="mt3" unit="percent">
+								<Weight value="100%"/>
+							</Weights>
+						</ResponsiveLayout>
+						<Container ref="ve34301" name="vi34300">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+							<ResponsiveLayout orientation="vertical" overflow="fit">
+								<Weights mediaTarget="mt5" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+								<Weights mediaTarget="mt4" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+								<Weights mediaTarget="mt3" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+							</ResponsiveLayout>
+							<Container ref="ve34307" name="vi34306">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+								<ResponsiveLayout orientation="vertical" overflow="grow"/>
+								<Container ref="ve34311" name="vi34310">
+									<ResponsiveConstraint>
+										<WidthConstraint>
+											<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+										</WidthConstraint>
+										<HeightConstraint>
+											<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+										</HeightConstraint>
+									</ResponsiveConstraint>
+									<ResponsiveLayout orientation="vertical" overflow="grow">
+										<Weights mediaTarget="mt5" unit="percent">
+											<Weight value="100%"/>
+										</Weights>
+										<Weights mediaTarget="mt4" unit="percent">
+											<Weight value="100%"/>
+										</Weights>
+										<Weights mediaTarget="mt3" unit="percent">
+											<Weight value="100%"/>
+										</Weights>
+									</ResponsiveLayout>
+									<Visual ref="ve32521" name="vi32520">
+										<ResponsiveConstraint>
+											<WidthConstraint>
+												<Width mediaTarget="mt3" preferredSizeBehavior="ignore" value="25%" flexibility="shrinkable"/>
+											</WidthConstraint>
+											<HeightConstraint>
+												<Height mediaTarget="mt3" preferredSizeBehavior="ignore" value="25%" flexibility="growable"/>
+											</HeightConstraint>
+										</ResponsiveConstraint>
+									</Visual>
+									<Visual ref="ve32533" name="vi32532">
+										<ResponsiveConstraint>
+											<WidthConstraint>
+												<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+											</WidthConstraint>
+											<HeightConstraint>
+												<Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+											</HeightConstraint>
+										</ResponsiveConstraint>
+									</Visual>
+								</Container>
+								<Container ref="ve34309" name="vi34308">
+									<ResponsiveConstraint>
+										<WidthConstraint>
+											<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+										</WidthConstraint>
+										<HeightConstraint>
+											<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+										</HeightConstraint>
+									</ResponsiveConstraint>
+									<ResponsiveLayout orientation="vertical" overflow="grow">
+										<Weights mediaTarget="mt5" unit="percent">
+											<Weight value="100%"/>
+										</Weights>
+										<Weights mediaTarget="mt4" unit="percent">
+											<Weight value="100%"/>
+										</Weights>
+										<Weights mediaTarget="mt3" unit="percent">
+											<Weight value="100%"/>
+										</Weights>
+									</ResponsiveLayout>
+									<Visual ref="ve32358" name="vi32357">
+										<ResponsiveConstraint>
+											<WidthConstraint>
+												<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+											</WidthConstraint>
+											<HeightConstraint>
+												<Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+											</HeightConstraint>
+										</ResponsiveConstraint>
+									</Visual>
+									<Visual ref="ve32376" name="vi32375">
+										<ResponsiveConstraint>
+											<WidthConstraint>
+												<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+											</WidthConstraint>
+											<HeightConstraint>
+												<Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+											</HeightConstraint>
+										</ResponsiveConstraint>
+									</Visual>
+									<Visual ref="ve32449" name="vi32448">
+										<ResponsiveConstraint>
+											<WidthConstraint>
+												<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+											</WidthConstraint>
+											<HeightConstraint>
+												<Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+											</HeightConstraint>
+										</ResponsiveConstraint>
+									</Visual>
+									<Visual ref="ve32508" name="vi32509">
+										<ResponsiveConstraint>
+											<WidthConstraint>
+												<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+											</WidthConstraint>
+											<HeightConstraint>
+												<Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+											</HeightConstraint>
+										</ResponsiveConstraint>
+									</Visual>
+								</Container>
+							</Container>
+						</Container>
+						<Container ref="ve34315" name="vi34314">
+							<ResponsiveConstraint>
+								<WidthConstraint>
+									<Width mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</WidthConstraint>
+								<HeightConstraint>
+									<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="shrinkable"/>
+								</HeightConstraint>
+							</ResponsiveConstraint>
+							<ResponsiveLayout orientation="vertical" overflow="fit">
+								<Weights mediaTarget="mt5" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+								<Weights mediaTarget="mt4" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+								<Weights mediaTarget="mt3" unit="percent">
+									<Weight value="100%"/>
+								</Weights>
+							</ResponsiveLayout>
+							<Visual ref="ve34317" name="vi34316">
+								<ResponsiveConstraint>
+									<WidthConstraint>
+										<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+									</WidthConstraint>
+									<HeightConstraint>
+										<Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+									</HeightConstraint>
+								</ResponsiveConstraint>
+							</Visual>
+						</Container>
+					</Container>
+				</MediaContainer>
+			</Body>
+		</Section>
+		<HiddenSection width="75%" height="75%" purpose="information" name="vi5838" label="Get More Report Details">
+			<Header>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="horizontal" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+				</MediaContainer>
+			</Header>
+			<Body>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="vertical" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+					<Visual ref="ve5829" name="vi5828">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="flexible"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+				</MediaContainer>
+			</Body>
+		</HiddenSection>
+		<Section name="vi6153" label="About This Report">
+			<Header>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="horizontal" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+				</MediaContainer>
+			</Header>
+			<Body>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="vertical" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+					<Visual ref="ve6155" name="vi6154">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+				</MediaContainer>
+			</Body>
+		</Section>
+		<HiddenSection width="75%" height="75%" purpose="information" name="vi24304" label="Reference: Settings">
+			<Header>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="horizontal" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+				</MediaContainer>
+			</Header>
+			<Body>
+				<MediaContainer target="mt2">
+					<ResponsiveLayout orientation="vertical" overflow="fit">
+						<Weights mediaTarget="mt5" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt4" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+						<Weights mediaTarget="mt3" unit="percent">
+							<Weight value="100%"/>
+						</Weights>
+					</ResponsiveLayout>
+					<Visual ref="ve24321" name="vi24320">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+					<Visual ref="ve24333" name="vi24332">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="honor" flexibility="fixed"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+					<Visual ref="ve24327" name="vi24326">
+						<ResponsiveConstraint>
+							<WidthConstraint>
+								<Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</WidthConstraint>
+							<HeightConstraint>
+								<Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+							</HeightConstraint>
+						</ResponsiveConstraint>
+					</Visual>
+				</MediaContainer>
+			</Body>
+		</HiddenSection>
+	</View>
+	<Actions>
+		<NavigationAction type="section" value="vi5838" behavior="filter" label="Get More Report Details" name="ac18102"/>
+		<NavigationAction type="section" value="vi24304" behavior="filter" label="Reference: Settings" name="ac24365"/>
+		<NavigationAction type="section" value="vi5838" behavior="filter" label="Get More Report Details" name="ac33186"/>
+		<NavigationAction type="section" value="vi5838" behavior="filter" label="Get More Report Details" name="ac42037"/>
+		<NavigationAction type="report" value="/reports/reports/26fe8cee-0409-409d-91bb-4e542d2ebdb3" behavior="filter" label="SAS 9 Profile for SAS Data Integration" name="ac45519">
+		</NavigationAction>
+	</Actions>
+	<Interactions>
+		<Interaction name="ia24722" type="filter" derived="true">
+			<InteractionElementReference purpose="source" ref="ve8827"/>
+			<InteractionElementReference purpose="target" ref="ve861"/>
+		</Interaction>
+		<Interaction name="ia46073" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" ref="ve24333"/>
+			<InteractionElementReference purpose="target" variable="pr24356"/>
+		</Interaction>
+		<Interaction name="ia46074" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" ref="ve28291"/>
+			<InteractionElementReference purpose="target" variable="pr26203"/>
+		</Interaction>
+		<Interaction name="ia46075" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" variable="pr24356"/>
+			<InteractionElementReference purpose="target" ref="ve24327" variable="pr24356"/>
+		</Interaction>
+		<Interaction name="ia46076" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" variable="pr26203"/>
+			<InteractionElementReference purpose="target" ref="ve40489" variable="pr26203"/>
+		</Interaction>
+		<Interaction name="ia46077" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" variable="pr26203"/>
+			<InteractionElementReference purpose="target" ref="ve40112" variable="pr26203"/>
+		</Interaction>
+		<Interaction name="ia46078" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" variable="pr26203"/>
+			<InteractionElementReference purpose="target" ref="ve12389" variable="pr26203"/>
+		</Interaction>
+		<Interaction name="ia46079" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" variable="pr26203"/>
+			<InteractionElementReference purpose="target" ref="ve12314" variable="pr26203"/>
+		</Interaction>
+		<Interaction name="ia46080" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" variable="pr26203"/>
+			<InteractionElementReference purpose="target" ref="ve27889" variable="pr26203"/>
+		</Interaction>
+		<Interaction name="ia46081" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" variable="pr26203"/>
+			<InteractionElementReference purpose="target" ref="ve28048" variable="pr26203"/>
+		</Interaction>
+		<Interaction name="ia46082" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" variable="pr26203"/>
+			<InteractionElementReference purpose="target" ref="ve12994" variable="pr26203"/>
+		</Interaction>
+		<Interaction name="ia46083" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" variable="pr26203"/>
+			<InteractionElementReference purpose="target" ref="ve12972" variable="pr26203"/>
+		</Interaction>
+		<Interaction name="ia46084" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" variable="pr26203"/>
+			<InteractionElementReference purpose="target" ref="ve12648" variable="pr26203"/>
+		</Interaction>
+		<Interaction name="ia46085" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" variable="pr26203"/>
+			<InteractionElementReference purpose="target" ref="ve26122" variable="pr26203"/>
+		</Interaction>
+		<Interaction name="ia46086" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" variable="pr26203"/>
+			<InteractionElementReference purpose="target" ref="ve29033" variable="pr26203"/>
+		</Interaction>
+		<Interaction name="ia46087" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" variable="pr26203"/>
+			<InteractionElementReference purpose="target" ref="ve12267" variable="pr26203"/>
+		</Interaction>
+		<Interaction name="ia46088" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" variable="pr24356"/>
+			<InteractionElementReference purpose="target" ref="ve44229" variable="pr24356"/>
+		</Interaction>
+		<Interaction name="ia46089" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" variable="pr26203"/>
+			<InteractionElementReference purpose="target" ref="ve45372" variable="pr26203"/>
+		</Interaction>
+		<Interaction name="ia46090" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" variable="pr26203"/>
+			<InteractionElementReference purpose="target" ref="ve45386" variable="pr26203"/>
+		</Interaction>
+		<Interaction name="ia46091" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" variable="pr26203"/>
+			<InteractionElementReference purpose="target" ref="ve45417" variable="pr26203"/>
+		</Interaction>
+		<Interaction name="ia46092" type="parameter" dataStage="detail" derived="true">
+			<InteractionElementReference purpose="source" variable="pr26203"/>
+			<InteractionElementReference purpose="target" ref="ve45429" variable="pr26203"/>
+		</Interaction>
+	</Interactions>
+	<Conditions>
+		<Range scope="global" name="rg5234">
+			<DiscreteAttrMap>
+				<Category categoryColor="#4B85A3">DEPLOY20</Category>
+				<Category categoryColor="#0A994D">DEPLOY19</Category>
+				<Category categoryColor="#BF6907">DEPLOY18</Category>
+				<Category categoryColor="#39B7D3">DEPLOY17</Category>
+				<Category categoryColor="#9E6BD3">DEPLOY16</Category>
+				<Category categoryColor="#80351A">DEPLOY15</Category>
+				<Category categoryColor="#CC455D">DEPLOY14</Category>
+				<Category categoryColor="#F2D94B">DEPLOY13</Category>
+				<Category categoryColor="#7375BC">DEPLOY12</Category>
+				<Category categoryColor="#7C9B7A">DEPLOY11</Category>
+				<Category categoryColor="#CF7748">DEPLY10</Category>
+				<Category categoryColor="#72C1BE">DEPLOY9</Category>
+				<Category categoryColor="#736519">DEPLOY8</Category>
+				<Category categoryColor="#9C2910">DEPLOY7</Category>
+				<Category categoryColor="#A6427C">DEPLOY6</Category>
+				<Category categoryColor="#FFCA39">DEPLOY5</Category>
+				<Category categoryColor="#3D5AAE">DEPLOY4</Category>
+				<Category categoryColor="#90B328">DEPLOY3</Category>
+				<Category categoryColor="#F08000">DEPLOY2</Category>
+				<Category categoryColor="#00929F">DEPLOY1</Category>
+			</DiscreteAttrMap>
+		</Range>
+		<Range scope="global" name="rg5255">
+			<DiscreteAttrMap>
+				<Category categoryColor="#ECF7D8">YES</Category>
+				<Category categoryColor="#FDFAD7">[none]</Category>
+			</DiscreteAttrMap>
+		</Range>
+	</Conditions>
+	<MediaSchemes>
+		<MediaScheme name="ms1">
+			<BaseStylesheetResource theme="opal"/>
+			<Stylesheet>
+
+#ve5829 .paragraph8 {
+  margin-left: 0in;
+  margin-right: 0in;
+}
+#ve45429 .Container {
+  background-color: #0367B0;
+  transparency: 0;
+  border-color: #FFFFFF;
+  border-width: 4px;
+}
+#ve27889 .ButtonBar {
+  background-color: #0367B0;
+  color: #FFFFFF;
+}
+#ve5829 .paragraph4 {
+  margin-left: 0in;
+  margin-right: 0in;
+}
+#ve40489 .styleForTitle_paragraph1 {
+  text-align: center;
+}
+#ve5829 .paragraph5 {
+  margin-left: 0in;
+  margin-right: 0in;
+}
+#ve45417 .styleForTitle_paragraph7 {
+  text-align: center;
+}
+#ve40112 .Container {
+  background-color: #0367B0;
+  transparency: 0;
+  border-color: #FFFFFF;
+  border-width: 4px;
+}
+#ve5829 .paragraph6 {
+  margin-left: 0in;
+  margin-right: 0in;
+}
+#ve5829 .paragraph7 {
+  margin-left: 0in;
+  margin-right: 0in;
+}
+#ve13506 .Container {
+  background-color: #3D4550;
+  transparency: 0;
+}
+#ve43232 .Container {
+  background-color: #0367B0;
+  transparency: 0;
+  border-color: #FFFFFF;
+  border-width: 4px;
+}
+#ve13506 .span49 {
+  font-weight: bold;
+}
+#ve45429 .styleForTitle_span3 {
+  color: #ffffff;
+  font-size: 22pt;
+}
+#ve24321 .span125 {
+  font-weight: bold;
+}
+#ve24321 .span124 {
+  color: #0367b0;
+}
+#ve45372 .styleForTitle_paragraph4 {
+  text-align: center;
+}
+#ve12267 .Container {
+  border-color: #B0B7C2;
+  border-width: 1px;
+}
+#ve40489 .Container {
+  background-color: #0367B0;
+  transparency: 0;
+  border-color: #FFFFFF;
+  border-width: 4px;
+}
+#ve32521 .Container {
+  background-color: #0367B0;
+  transparency: 0;
+  border-color: #FFFFFF;
+  border-width: 4px;
+}
+#ve6155 .span9 {
+  font-size: 14pt;
+}
+#ve32358 .Table {
+  alt-row-color: #e6e6e6;
+}
+#ve29033 .Container {
+  border-color: #B0B7C2;
+  border-width: 1px;
+}
+#ve12913 .span113 {
+  font-size: 14pt;
+}
+#ve12913 .span112 {
+  font-weight: bold;
+}
+#ve32508 .Table {
+  alt-row-color: #e6e6e6;
+}
+#ve45372 .styleForTitle_span5 {
+  color: #ffffff;
+  font-size: 24pt;
+}
+#ve12913 .span111 {
+  font-size: 20pt;
+}
+#ve12913 .span110 {
+  color: #0367b0;
+}
+#ve32358 .Container {
+  border-color: #B0B7C2;
+  border-width: 1px;
+}
+#ve32508 .Header {
+  font-weight: bold;
+  text-align: left;
+}
+#ve34317 .Header {
+  font-weight: bold;
+  text-align: left;
+}
+#ve13506 .span36 {
+  color: #ecf0f1;
+}
+#ve33187 .span138 {
+  color: #6b778c;
+}
+#ve32449 .Table {
+  alt-row-color: #e6e6e6;
+}
+#ve26122 .tableColumnbi26118 {
+  width: 473px;
+}
+#ve29033 .tableColumnbi29026 {
+  width: 354px;
+}
+#ve43271 .Container {
+  background-color: #0367B0;
+  transparency: 0;
+  border-color: #FFFFFF;
+  border-width: 4px;
+}
+#ve12994 .Container {
+  background-color: #0367B0;
+  transparency: 0;
+  border-color: #FFFFFF;
+  border-width: 4px;
+}
+#ve5829 .span50 {
+  font-size: 12pt;
+}
+#ve12972 .ButtonBar {
+  background-color: #0367B0;
+  color: #FFFFFF;
+  selected-color: #FFFFFF;
+}
+#ve40477 .span15 {
+  font-weight: bold;
+}
+#ve40477 .span14 {
+  color: #0367b0;
+}
+#ve12267 .Header {
+  font-weight: bold;
+  text-align: left;
+}
+#ve32533 .Container {
+  border-color: #B0B7C2;
+  border-width: 1px;
+}
+#ve12267 .Table {
+  wrap-text: normal;
+}
+#ve26122 .Container {
+  border-color: #B0B7C2;
+  border-width: 1px;
+}
+#ve5829 .span51 {
+  font-weight: bold;
+}
+#ve32508 .tableColumnbi32487 {
+  width: 161px;
+}
+#ve12314 .Container {
+  border-color: #E9ECEF;
+  border-width: 1px;
+}
+#ve5829 .span52 {
+  font-family: AvenirNext;
+}
+#ve45417 .styleForTitle_span8 {
+  color: #ffffff;
+  font-size: 22pt;
+}
+#ve5829 .span53 {
+  font-size: 12pt;
+}
+#ve5829 .span54 {
+  font-weight: bold;
+}
+#ve43475 .styleForTitle_span4 {
+  font-size: 14pt;
+}
+#ve45386 .styleForTitle_paragraph5 {
+  text-align: center;
+}
+#ve12648 .Container {
+  border-color: #B0B7C2;
+  border-width: 1px;
+}
+#ve32508 .tableColumnbi32489 {
+  width: 176px;
+}
+#ve12913 .Container {
+  background-color: #F8F9FA;
+  transparency: 0;
+}
+#ve28048 .Container {
+  border-color: #B0B7C2;
+  border-width: 1px;
+}
+#ve32449 .tableColumnbi32487 {
+  width: 161px;
+}
+#ve12267 .tableColumnbi12305 {
+  width: 195px;
+}
+#ve12913 .span137 {
+  color: #6b778c;
+}
+#ve12913 .span136 {
+  color: #6b778c;
+}
+#ve12267 .tableColumnbi12304 {
+  width: 217px;
+}
+#ve12913 .span135 {
+  color: #6b778c;
+}
+#ve5829 .span48 {
+  font-family: AvenirNext;
+}
+#ve12648 .Header {
+  font-weight: bold;
+  text-align: left;
+}
+#ve32449 .Header {
+  font-weight: bold;
+  text-align: left;
+}
+#ve5829 .span40 {
+  font-size: 12pt;
+}
+#ve5829 .span41 {
+  font-weight: bold;
+}
+#ve5829 .span42 {
+  font-family: AvenirNext;
+}
+#ve5829 .span43 {
+  font-size: 12pt;
+}
+#ve32376 .tableColumnbi32381 {
+  width: 523px;
+}
+#ve5829 .span44 {
+  font-weight: bold;
+}
+#ve45386 .Container {
+  background-color: #0367B0;
+  transparency: 0;
+  border-color: #FFFFFF;
+  border-width: 4px;
+}
+#ve5829 .span45 {
+  font-family: AvenirNext;
+}
+#ve5829 .span46 {
+  font-size: 12pt;
+}
+#ve5829 .span47 {
+  font-weight: bold;
+}
+#ve40112 .styleForTitle_paragraph2 {
+  text-align: center;
+}
+#ve6155 .span11 {
+  color: #0367b0;
+}
+#ve32449 .Container {
+  border-color: #B0B7C2;
+  border-width: 1px;
+}
+#ve40477 .span37 {
+  font-size: 20pt;
+}
+#ve6155 .span18 {
+  font-weight: bold;
+}
+#ve6155 .span19 {
+  font-weight: bold;
+}
+#ve13506 .span98 {
+  font-weight: bold;
+}
+#ve24321 .span95 {
+  font-size: 20pt;
+}
+#ve6155 .span16 {
+  font-weight: bold;
+}
+#ve6155 .span17 {
+  font-weight: bold;
+}
+#ve40477 .paragraph17 {
+  text-align: center;
+}
+#ve5829 .span38 {
+  font-weight: bold;
+}
+#ve5829 .span39 {
+  font-family: AvenirNext;
+}
+#ve33187 .span105 {
+  font-size: 14pt;
+}
+#ve33187 .span106 {
+  color: #6b778c;
+}
+#ve32449 .tableColumnbi32489 {
+  width: 176px;
+}
+#ve5829 .span30 {
+  font-weight: bold;
+}
+#ve5829 .span31 {
+  font-weight: bold;
+}
+#ve5829 .span32 {
+  color: #0367b0;
+}
+#ve32376 .Table {
+  alt-row-color: #e6e6e6;
+}
+#ve5829 .span33 {
+  font-size: 16pt;
+}
+#ve5829 .span34 {
+  font-family: AvenirNext;
+}
+#ve5829 .span35 {
+  font-size: 12pt;
+}
+#ve5829 .span7 {
+  font-weight: bold;
+}
+#ve33187 .span102 {
+  color: #0367b0;
+}
+#ve5829 .span6 {
+  font-size: 20pt;
+}
+#ve33187 .span103 {
+  font-size: 20pt;
+}
+#ve5829 .span5 {
+  color: #0367b0;
+}
+#ve33187 .span104 {
+  font-weight: bold;
+}
+#ve40112 .styleForTitle_span2 {
+  color: #ffffff;
+  font-size: 22pt;
+}
+#ve32508 .Container {
+  border-color: #B0B7C2;
+  border-width: 1px;
+}
+#ve43257 .Container {
+  background-color: #0367B0;
+  transparency: 0;
+  border-color: #FFFFFF;
+  border-width: 4px;
+}
+#ve29033 .Header {
+  font-weight: bold;
+  text-align: left;
+}
+#ve32376 .Container {
+  border-color: #B0B7C2;
+  border-width: 1px;
+}
+#ve5829 .paragraph14 {
+  margin-left: 0in;
+  margin-right: 0in;
+}
+#ve5829 .paragraph13 {
+  margin-left: 0in;
+  margin-right: 0in;
+}
+#ve45429 .styleForTitle_paragraph3 {
+  text-align: center;
+}
+#ve5829 .span28 {
+  color: #0367b0;
+}
+#ve5829 .paragraph12 {
+  margin-left: 0in;
+  margin-right: 0in;
+}
+#ve5829 .span29 {
+  font-size: 16pt;
+}
+#ve5829 .paragraph11 {
+  margin-left: 0in;
+  margin-right: 0in;
+}
+#ve5829 .paragraph10 {
+  margin-left: 0in;
+  margin-right: 0in;
+}
+#ve40477 .span56 {
+  font-size: 14pt;
+}
+#ve45386 .styleForTitle_span6 {
+  color: #ffffff;
+  font-size: 22pt;
+}
+#ve45372 .Container {
+  background-color: #0367B0;
+  transparency: 0;
+  border-color: #FFFFFF;
+  border-width: 4px;
+}
+#ve32376 .Header {
+  font-weight: bold;
+  text-align: left;
+}
+#ve5829 .paragraph15 {
+  margin-left: 0in;
+  margin-right: 0in;
+}
+#ve12267 .tableColumnbi12297 {
+  width: 190px;
+}
+#ve33187 .Container {
+  background-color: #F8F9FA;
+  transparency: 0;
+}
+#ve29033 .tableColumnbi26118 {
+  width: 334px;
+}
+#ve5829 .span10 {
+  color: #0367b0;
+}
+#ve5829 .span12 {
+  font-size: 16pt;
+}
+#ve5829 .span13 {
+  font-weight: bold;
+}
+#ve6155 .span21 {
+  font-weight: bold;
+}
+#ve33187 .span120 {
+  color: #6b778c;
+}
+#ve6155 .span22 {
+  font-weight: bold;
+}
+#ve6155 .span23 {
+  color: #0367b0;
+}
+#ve28048 .tableColumnbi28040 {
+  width: 341px;
+}
+#ve6155 .span24 {
+  font-size: 14pt;
+}
+#ve6155 .span20 {
+  font-weight: bold;
+}
+#ve45417 .Container {
+  background-color: #0367B0;
+  transparency: 0;
+  border-color: #FFFFFF;
+  border-width: 4px;
+}
+#ve26122 .Header {
+  font-weight: bold;
+  text-align: left;
+}
+#ve40489 .styleForTitle_span1 {
+  color: #ffffff;
+  font-size: 24pt;
+}
+#ve6155 .span25 {
+  color: #0367b0;
+}
+#ve6155 .span26 {
+  font-size: 14pt;
+}
+#ve40477 .paragraph16 {
+  text-align: center;
+}
+#ve6155 .span27 {
+  color: #0367b0;
+}
+#ve32358 .Header {
+  font-weight: bold;
+  text-align: left;
+}
+#ve28048 .Header {
+  font-weight: bold;
+  text-align: left;
+}
+
+			</Stylesheet>
+		</MediaScheme>
+	</MediaSchemes>
+	<MediaTargets>
+		<MediaTarget windowSize="default" scheme="ms1" name="mt2"/>
+		<MediaTarget windowSize="small" scheme="ms1" name="mt3"/>
+		<MediaTarget windowSize="medium" scheme="ms1" name="mt4"/>
+		<MediaTarget windowSize="large" scheme="ms1" name="mt5"/>
+	</MediaTargets>
+	<Properties>
+	</Properties>
+	<Groupings>
+		<Grouping outputType="string" name="gr28130">
+			<GroupingVariables>
+				<GroupingVariable variable="var28129" type="string"/>
+			</GroupingVariables>
+			<Group>
+				<ValueExpression>&apos;Yearly&apos;</ValueExpression>
+				<TestExpression>in(${var28129,binned},&apos;yearly&apos;)</TestExpression>
+			</Group>
+			<Group>
+				<ValueExpression>&apos;Daily&apos;</ValueExpression>
+				<TestExpression>in(${var28129,binned},&apos;daily&apos;)</TestExpression>
+			</Group>
+			<Group>
+				<ValueExpression>&apos;Date list&apos;</ValueExpression>
+				<TestExpression>in(${var28129,binned},&apos;dateList&apos;)</TestExpression>
+			</Group>
+			<Group>
+				<ValueExpression>&apos;Weekly&apos;</ValueExpression>
+				<TestExpression>in(${var28129,binned},&apos;weekly&apos;)</TestExpression>
+			</Group>
+			<Group>
+				<ValueExpression>&apos;Arrives&apos;</ValueExpression>
+				<TestExpression>in(${var28129,binned},&apos;Arrives&apos;)</TestExpression>
+			</Group>
+			<Group>
+				<ValueExpression>&apos;Age&apos;</ValueExpression>
+				<TestExpression>in(${var28129,binned},&apos;Age&apos;)</TestExpression>
+			</Group>
+			<Group>
+				<ValueExpression>&apos;Monthly&apos;</ValueExpression>
+				<TestExpression>in(${var28129,binned},&apos;monthly&apos;)</TestExpression>
+			</Group>
+			<Group>
+				<ValueExpression>&apos;Exists&apos;</ValueExpression>
+				<TestExpression>in(${var28129,binned},&apos;Exists&apos;)</TestExpression>
+			</Group>
+			<Group>
+				<ValueExpression>&apos;Size&apos;</ValueExpression>
+				<TestExpression>in(${var28129,binned},&apos;Size&apos;)</TestExpression>
+			</Group>
+			<Other>
+				<ValueExpression>&apos;Other&apos;</ValueExpression>
+			</Other>
+		</Grouping>
+		<Grouping outputType="string" name="gr40278">
+			<GroupingVariables>
+				<GroupingVariable variable="var40277" type="string"/>
+			</GroupingVariables>
+			<Group>
+				<ValueExpression>&apos;Oozie Scheduling Server&apos;</ValueExpression>
+				<TestExpression>in(${var40277,binned},&apos;Server.Oozie&apos;)</TestExpression>
+			</Group>
+			<Group>
+				<ValueExpression>&apos;Operating System Services&apos;</ValueExpression>
+				<TestExpression>in(${var40277,binned},&apos;Server.OSScheduler&apos;)</TestExpression>
+			</Group>
+			<Group>
+				<ValueExpression>&apos;Platform Process Manager&apos;</ValueExpression>
+				<TestExpression>in(${var40277,binned},&apos;Server.PlatformProcessManager&apos;)</TestExpression>
+			</Group>
+			<Group>
+				<ValueExpression>&apos;SAS Distributed In-Process Services&apos;</ValueExpression>
+				<TestExpression>in(${var40277,binned},&apos;Server.SASDistributedInProcess&apos;)</TestExpression>
+			</Group>
+			<Group>
+				<ValueExpression>&apos;SAS Job Flow Scheduler Server&apos;</ValueExpression>
+				<TestExpression>in(${var40277,binned},&apos;Server.SASJFS&apos;)</TestExpression>
+			</Group>
+			<Other>
+				<ValueExpression>&apos;Other&apos;</ValueExpression>
+			</Other>
+		</Grouping>
+	</Groupings>
+	<DataSourceMappings>
+		<InternalDataSourceMapping source="ds12272" target="ds43222" name="dm43466">
+			<InternalColumnMapping source="bi12282" target="bi43224"/>
+			<InternalColumnMapping source="bi38942" target="bi43459"/>
+			<InternalColumnMapping source="bi12291" target="bi43465"/>
+		</InternalDataSourceMapping>
+		<InternalDataSourceMapping source="ds32328" target="ds12272" name="dm44459">
+			<InternalColumnMapping source="bi32352" target="bi12292"/>
+		</InternalDataSourceMapping>
+		<InternalDataSourceMapping source="ds32454" target="ds32328" name="dm32549">
+			<InternalColumnMapping source="bi32480" target="bi32352"/>
+			<InternalColumnMapping source="bi45075" target="bi32929"/>
+			<InternalColumnMapping source="bi32457" target="bi32344"/>
+		</InternalDataSourceMapping>
+		<InternalDataSourceMapping source="ds32454" target="ds12272" name="dm41057">
+			<InternalColumnMapping source="bi32480" target="bi12292"/>
+		</InternalDataSourceMapping>
+	</DataSourceMappings>
+	<ExportProperties>
+		<Export destination="pdf">
+			<Property key="showCoverPage" value="true"/>
+			<Property key="showPageNumbers" value="true"/>
+			<Property key="fitOption" value="expandClippedContentInAppendix"/>
+		</Export>
+	</ExportProperties>
+	<History>
+		<Versions>
+			<Version key="4.1.2" lastDate="2018-10-15T20:21:37Z"/>
+			<Version key="4.2.2" lastDate="2025-01-06T22:24:46Z"/>
+			<Version key="4.50.0" lastDate="2025-07-02T07:07:28Z"/>
+		</Versions>
+		<Conversions>
+			<Conversion startVersion="4.1.2" finalVersion="4.2.2" date="2020-05-14T18:35:23Z"/>
+			<Conversion startVersion="4.2.2" finalVersion="4.50.0" date="2025-07-02T07:07:28Z"/>
+		</Conversions>
+		<Editors>
+			<Editor applicationName="VA">
+				<Revision editorVersion="8.4" lastDate="2025-01-06T22:24:46.227Z"/>
+				<Revision editorVersion="2025.03" lastDate="2025-07-02T08:27:58.610Z"/>
+			</Editor>
+		</Editors>
+	</History>
+	<SASReportState date="2025-07-04T01:06:02Z">
+		<VisualElements>
+			<PromptState element="ve24333">
+				<Selections>
+					<Selection>fixedEq(4)</Selection>
+				</Selections>
+			</PromptState>
+			<PromptState element="ve28291"/>
+			<PromptState element="ve12389"/>
+			<PromptState element="ve12314"/>
+			<PromptState element="ve27889"/>
+			<PromptState element="ve12972"/>
+			<PromptState element="ve32533"/>
+			<PromptState element="ve8827"/>
+			<PromptState element="ve44229"/>
+		</VisualElements>
+		<View currentSection="vi6153">
+			<Section section="vi32319"/>
+		</View>
+	</SASReportState>
+</SASReport>

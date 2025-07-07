@@ -222,12 +222,28 @@ async function analyzeXMLContent(xmlContent: string) {
     }
     
     // Find referenced IDs in text content (important for Property elements)
+    // Use a more robust approach that matches the Python implementation
     const textContentPattern = />([^<]+)</g;
     let textMatch;
     while ((textMatch = textContentPattern.exec(xmlContent)) !== null) {
       const textContent = textMatch[1].trim();
-      if (idCheck.test(textContent)) {
-        referencedIds.add(textContent);
+      
+      // Use the same logic as Python: find all matches and check boundaries
+      let match;
+      const regex = /[a-z]{2}[0-9]+/g;
+      while ((match = regex.exec(textContent)) !== null) {
+        const matchText = match[0];
+        const matchIndex = match.index;
+        const beforeChar = matchIndex > 0 ? textContent[matchIndex - 1] : '';
+        const afterChar = matchIndex + matchText.length < textContent.length ? textContent[matchIndex + matchText.length] : '';
+        
+        // Match Python logic: exclude alphanumeric and # characters
+        const beforeValid = !beforeChar.match(/[A-Za-z0-9#]/);
+        const afterValid = !afterChar.match(/[A-Za-z0-9#]/);
+        
+        if (beforeValid && afterValid) {
+          referencedIds.add(matchText);
+        }
       }
     }
     
@@ -237,9 +253,15 @@ async function analyzeXMLContent(xmlContent: string) {
     // Apply filtering (same as Python script)
     const filteredCandidates = new Set<string>();
     for (const candidate of nullCandidates) {
-      if (candidate.length < 3) continue;
+      // Skip if it looks like an HTML color code
       if (/^[a-fA-F0-9]{6}$/.test(candidate)) continue;
-      if (['bi1', 'label', 'title'].includes(candidate.toLowerCase())) continue;
+      
+      // Skip if it's a common label pattern
+      if (['label', 'title', 'name', 'id'].includes(candidate.toLowerCase())) continue;
+      
+      // Skip if it's 'bi1' (special case to ignore)
+      if (candidate === 'bi1') continue;
+      
       filteredCandidates.add(candidate);
     }
     
@@ -382,21 +404,91 @@ export async function POST(request: NextRequest) {
       console.log('Input file:', tempInputPath);
       console.log('Working directory:', process.cwd());
       
-      const result = await execAsync(`python3 "${scriptPath}" "${tempInputPath}"`, {
-        cwd: process.cwd(), // Run from project root so repaired files are created there
-        timeout: 30000 // 30 second timeout
-      });
-      
-      stdout = result.stdout;
-      stderr = result.stderr;
-      
-      console.log('Python script stdout:', stdout);
-      if (stderr) console.log('Python script stderr:', stderr);
+      let result;
+      try {
+        result = await execAsync(`python3 "${scriptPath}" "${tempInputPath}"`, {
+          cwd: process.cwd(), // Run from project root so repaired files are created there
+          timeout: 30000 // 30 second timeout
+        });
+        
+        stdout = result.stdout;
+        stderr = result.stderr;
+        
+        console.log('Python script stdout:', stdout);
+        if (stderr) console.log('Python script stderr:', stderr);
+      } catch (execError) {
+        console.error('Python script execution failed:', execError);
+        console.log('Falling back to JavaScript implementation for XML processing');
+        
+        // Fallback to JavaScript implementation
+        try {
+          const xmlContent = await readFile(tempInputPath, 'utf-8');
+          const result = await analyzeXMLContent(xmlContent);
+          
+          // Parse the analysis to extract null candidates count
+          const nullCandidatesMatch = result.analysis.match(/Null Candidates: (\d+)/);
+          const nullCandidates = nullCandidatesMatch ? parseInt(nullCandidatesMatch[1]) : 0;
+          
+          const totalObjectsMatch = result.analysis.match(/Total Objects: (\d+)/);
+          const totalObjects = totalObjectsMatch ? parseInt(totalObjectsMatch[1]) : 0;
+          
+          return NextResponse.json({
+            file: result.content,
+            results: {
+              duplicates: 0,
+              prompts: 0,
+              nullCandidates: nullCandidates,
+              hasDuplicates: false,
+              hasPrompts: false,
+              hasNullCandidates: nullCandidates > 0,
+              totalObjects: totalObjects
+            },
+            analysis: result.analysis,
+            filename: `repaired_${file.name}`,
+            hasRepairs: false
+          });
+        } catch (fallbackError) {
+          console.error('JavaScript fallback also failed:', fallbackError);
+          return NextResponse.json({ error: 'Failed to process XML file with both Python and JavaScript implementations' }, { status: 500 });
+        }
+      }
 
       // Check if the script executed successfully
       if (stderr && !stderr.includes('INFO')) {
         console.error('Python script stderr:', stderr);
-        return NextResponse.json({ error: 'Failed to process XML file' }, { status: 500 });
+        console.log('Falling back to JavaScript implementation for XML processing');
+        
+        // Fallback to JavaScript implementation
+        try {
+          const xmlContent = await readFile(tempInputPath, 'utf-8');
+          const result = await analyzeXMLContent(xmlContent);
+          
+          // Parse the analysis to extract null candidates count
+          const nullCandidatesMatch = result.analysis.match(/Null Candidates: (\d+)/);
+          const nullCandidates = nullCandidatesMatch ? parseInt(nullCandidatesMatch[1]) : 0;
+          
+          const totalObjectsMatch = result.analysis.match(/Total Objects: (\d+)/);
+          const totalObjects = totalObjectsMatch ? parseInt(totalObjectsMatch[1]) : 0;
+          
+          return NextResponse.json({
+            file: result.content,
+            results: {
+              duplicates: 0,
+              prompts: 0,
+              nullCandidates: nullCandidates,
+              hasDuplicates: false,
+              hasPrompts: false,
+              hasNullCandidates: nullCandidates > 0,
+              totalObjects: totalObjects
+            },
+            analysis: result.analysis,
+            filename: `repaired_${file.name}`,
+            hasRepairs: false
+          });
+        } catch (fallbackError) {
+          console.error('JavaScript fallback also failed:', fallbackError);
+          return NextResponse.json({ error: 'Failed to process XML file with both Python and JavaScript implementations' }, { status: 500 });
+        }
       }
 
       // For XML input, use the old logic
