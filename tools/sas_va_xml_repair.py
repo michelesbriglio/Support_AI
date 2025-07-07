@@ -358,6 +358,8 @@ class BIRDXMLRepair:
                 
                 # Determine object type based on element tag (without namespace)
                 obj_type = elem.tag.split('}')[-1] if '}' in elem.tag else elem.tag
+                # Debug: log the actual element type
+                logger.debug(f"Found element with name='{obj_id}', type='{obj_type}', tag='{elem.tag}'")
                 location = self._get_element_location(elem)
                 
                 duplicates[obj_id].append(ObjectReference(
@@ -381,6 +383,16 @@ class BIRDXMLRepair:
                 # (these are legitimate dynamic variables used in different contexts)
                 if all(ref.object_type == 'DynVar' for ref in references):
                     logger.debug(f"Skipping legitimate DynVar duplicates for {obj_id}")
+                    continue
+                
+                # Skip common legitimate duplicate names that appear in SAS BIRD XML
+                # These are typically dynamic variables or CSS properties that are supposed to be duplicated
+                legitimate_names = {
+                    'CATEGORY', 'RESPONSE', 'GROUP', 'COLUMN', 'ROW', 'TIP', 
+                    'KEY_FRAME', 'HIDDEN', 'X', 'Y'
+                }
+                if obj_id in legitimate_names:
+                    logger.debug(f"Skipping legitimate duplicate name: {obj_id}")
                     continue
                 
                 # Skip if all references are Category elements in stylesheet

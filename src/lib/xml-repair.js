@@ -249,6 +249,17 @@ export class XMLRepairTool {
           continue;
         }
         
+        // Skip common legitimate duplicate names that appear in SAS BIRD XML
+        // These are typically dynamic variables or CSS properties that are supposed to be duplicated
+        const legitimateNames = new Set([
+          'CATEGORY', 'RESPONSE', 'GROUP', 'COLUMN', 'ROW', 'TIP', 
+          'KEY_FRAME', 'HIDDEN', 'X', 'Y'
+        ]);
+        if (legitimateNames.has(objId)) {
+          console.log(`Skipping legitimate duplicate name: ${objId}`);
+          continue;
+        }
+        
         // Skip if all references are Category elements in stylesheet
         // (these are legitimate CSS category definitions)
         if (references.every(ref => ref.objectType === 'Category')) {
